@@ -35,15 +35,7 @@ p {
 .row .col {
 	padding:0.75rem;
 }
-.logoButton {
-	position: fixed;
-	left: 48px;
-	bottom: 48px;
-	background-image: url("../img/logo.png");
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-position: center;
-}
+
 .addButton {
 	position: fixed;
 	right: 48px;
@@ -55,3 +47,4 @@ p {
 	height: 420px;
 	max-height: 100%;
 }
+

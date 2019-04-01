@@ -14,6 +14,9 @@
 </head>
 
 <body>
+    <a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
+        <i class="material-icons">menu</i>
+    </a>
     <div class="container">
         <div class="row">
             <div class="col s12 m3">
@@ -252,8 +255,6 @@
     </div>
 
 
-    <a href="#" class="btn-flat btn-large waves-effect waves-light transparent logoButton sidenav-trigger" data-target="slide-out">
-    </a>
     <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 addButton modal-trigger" href="#newBox">
         <i class="material-icons">add</i>
     </a>
