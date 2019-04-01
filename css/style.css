@@ -1,0 +1,57 @@
+* {
+	font-family: Montserrat;
+}
+body {
+	background-color: #fffaef;
+}
+.box {
+	position: relative;
+	margin: auto;
+	height: 200px;
+	background-color: #FFF;
+	border-radius: 8px;
+	padding: 16px;
+
+}
+p {
+	margin: 0;
+}
+.boxContent {
+}
+.boxBottom {
+	position: absolute;
+	bottom: 16px;
+	width: 100%;
+}
+.date {
+	display: inline-block;
+	font-size: 12px;
+	font-weight: bold;
+}
+.check {
+	position: absolute;
+	right: 25px;
+}
+.row .col {
+	padding:0.75rem;
+}
+.logoButton {
+	position: fixed;
+	left: 48px;
+	bottom: 48px;
+	background-image: url("../img/logo.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.addButton {
+	position: fixed;
+	right: 48px;
+	bottom: 48px;
+}
+
+#newBox {
+	width: 500px;
+	height: 420px;
+	max-height: 100%;
+}

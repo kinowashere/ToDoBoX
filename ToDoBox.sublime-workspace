@@ -1,0 +1,450 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font",
+				"font-weight\tproperty"
+			],
+			[
+				"bord",
+				"border-radius\tproperty"
+			],
+			[
+				"padd",
+				"padding\tproperty"
+			],
+			[
+				"back",
+				"background-color\tproperty"
+			],
+			[
+				"text",
+				"text-align\tproperty"
+			],
+			[
+				"padding",
+				"padding-top\tproperty"
+			],
+			[
+				"arr",
+				"arrMiles"
+			],
+			[
+				"filter",
+				"filter_var"
+			],
+			[
+				"col",
+				"color\tproperty"
+			],
+			[
+				"fon",
+				"font-weight\tproperty"
+			],
+			[
+				"he",
+				"header\tTag"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"prin",
+				"print_r"
+			],
+			[
+				"num",
+				"numOfDistances"
+			],
+			[
+				"pos",
+				"position\tproperty"
+			],
+			[
+				"wid",
+				"width\tproperty"
+			],
+			[
+				"bac",
+				"background-color\tproperty"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.php",
+			"settings":
+			{
+				"buffer_size": 1906,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "css/style.css",
+			"settings":
+			{
+				"buffer_size": 230,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
+			]
+		],
+		[
+			[
+				[
+					"Packages/Python/Python.sublime-build",
+					""
+				],
+				[
+					"Packages/Python/Python.sublime-build",
+					"Syntax Check"
+				]
+			],
+			[
+				"Packages/Python/Python.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"ind",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"in",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"inden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"Package Control: ins",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 150.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/wamp64/www/labs/todobox/style.css",
+		"/C/wamp64/www/labs/todobox/sendmail.php",
+		"/C/wamp64/www/labs/todobox/other.css",
+		"/C/wamp64/www/labs/todobox/settings.html",
+		"/C/wamp64/www/labs/todobox/index.html",
+		"/C/wamp64/www/labs/todobox/archive.html",
+		"/C/wamp64/www/labs/todobox/contact.html",
+		"/C/wamp64/www/labs/todobox/about.html",
+		"/C/wamp64/www/labs/lab6/templates/test.php",
+		"/C/wamp64/www/labs/lab5/index.php",
+		"/C/wamp64/www/labs/lab6/styles/style.css",
+		"/C/wamp64/www/labs/lab6/courses.csv",
+		"/C/wamp64/www/labs/old/miles.php",
+		"/C/wamp64/www/labs/lab6/index.php",
+		"/C/wamp64/www/labs/lab6/lib/tpl.class.php",
+		"/C/wamp64/www/labs/lab6/lib/course.class.php",
+		"/C/wamp64/sendmail/sendmail.ini",
+		"/C/Users/Manuel/Desktop/links.txt",
+		"/C/Users/Manuel/Desktop/autochan/autochan.py",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Ruby/Practice Labs/fix-ois/fix-ois-template/lib/students/student.rb",
+		"/D/Software/autochan/autochan.py",
+		"/C/Users/Manuel/Desktop/pseudocode.c",
+		"/C/Users/Manuel/Desktop/pseudo code.txt",
+		"/C/Program Files (x86)/Activision/Call of Duty 4 - Modern Warfare/zone/english/code_post_gfx_mp.ff",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Ruby/Practice Labs/fix-ois/fix-ois-template/lib/courses/course.rb",
+		"/C/wamp64/www/lab/form.php",
+		"/C/wamp64/www/lab/lab6/style.css",
+		"/C/wamp64/www/lab/lab6/index.php",
+		"/C/wamp64/www/lab/phonics.php",
+		"/C/wamp64/www/lab/implement.php",
+		"/C/wamp64/www/lab6/style.css",
+		"/C/wamp64/www/lab/vowels.php",
+		"/C/wamp64/www/lab/miles.php",
+		"/C/wamp64/www/lab/file.php",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/lab_2/lab2.html",
+		"/C/wamp64/www/lab/index.html",
+		"/C/wamp64/bin/apache/apache2.4.37/conf/httpd.conf",
+		"/C/PHP7/php.ini",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/phpLab/file.php",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/phpLab/index.html",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/todobox/test/about.css",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/todobox/test/style.css",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/todobox/test/about.html",
+		"/D/Backup Archive/Ubuntu/Meal Plan",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Ruby/Practice Labs/lab-1/lab1_classes.rb",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Ruby/Practice Labs/lab-1/.git/config",
+		"/C/Users/Manuel/Documents/Workspace/Programming/Ruby/Practice Labs/lab-1/test_lab1.rb",
+		"/C/Users/Manuel/AppData/Local/Temp/is-BNG2V.tmp/editor-test.txt",
+		"/home/manuel/Desktop/files.csv",
+		"/home/manuel/Documents/Programming/Ruby/Practice Labs/lab-1/lab_1.rb",
+		"/home/manuel/Downloads/lab1_classes.rb",
+		"/home/manuel/Documents/Programming/Ruby/Practice Labs/lab-1/ok.cpp",
+		"/home/manuel/Documents/Programming/Ruby/Practice Labs/lab-1/ha.cpp",
+		"/home/manuel/Documents/Programming/Ruby/Practice Labs/lab-1/lol.js",
+		"/home/manuel/Software/startpage/normalize.css",
+		"/home/manuel/Software/startpage/scripts.js",
+		"/home/manuel/Software/startpage/styles.css",
+		"/home/manuel/Software/startpage/index.html",
+		"/home/manuel/.config/sublime-text-3/Packages/Package Control/Package Control.sublime-settings",
+		"/home/manuel/Desktop/Meal Plan",
+		"/usr/share/X11/xkb/symbols/sn",
+		"/etc/sysctl.conf"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"16px",
+			"3",
+			"2000px"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1906,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1474,
+								1474
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 1,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 230,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								154,
+								154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			0.521990740741,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 203.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "ToDoBox.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 174.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
