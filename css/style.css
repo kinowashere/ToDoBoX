@@ -29,8 +29,9 @@ p {
 	font-weight: bold;
 }
 .check {
-	position: absolute;
-	right: 25px;
+	position:absolute;
+	right:16px;
+	bottom:16px;
 }
 .row .col {
 	padding:0.75rem;

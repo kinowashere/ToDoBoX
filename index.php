@@ -17,6 +17,7 @@
     <a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
         <i class="material-icons">menu</i>
     </a>
+
     <div class="container">
         <div class="row">
             <div class="col s12 m3">
@@ -24,12 +25,16 @@
                     <p class="boxContent">
                         Look at this amazing note, it's so beautiful and long and I hope it doesn't take too much space.
                     </p>
+
                     <div class="boxBottom">
                         <p class="date">Due: 23/1/19</p>
-                        <a class="btn-floating btn-small waves-effect waves-light blue check">
-                            <i class="material-icons">check</i>
-                        </a>
+
                     </div>
+
+                    <a class="btn-floating btn-small waves-effect waves-light blue check">
+                        <i class="material-icons">check</i>
+                    </a>
+
                 </div>
             </div>
 
@@ -40,10 +45,11 @@
                     </p>
                     <div class="boxBottom">
                         <p class="date">Due: 23/1/19</p>
-                        <a class="btn-floating btn-small waves-effect waves-light blue check">
-                            <i class="material-icons">check</i>
-                        </a>
                     </div>
+
+                    <a class="btn-floating btn-small waves-effect waves-light blue check">
+                        <i class="material-icons">check</i>
+                    </a>
                 </div>
             </div>
 
@@ -54,10 +60,11 @@
                     </p>
                     <div class="boxBottom">
                         <p class="date">Due: 23/1/19</p>
-                        <a class="btn-floating btn-small waves-effect waves-light blue check">
-                            <i class="material-icons">check</i>
-                        </a>
                     </div>
+
+                    <a class="btn-floating btn-small waves-effect waves-light blue check">
+                        <i class="material-icons">check</i>
+                    </a>
                 </div>
             </div>
 
@@ -69,10 +76,11 @@
                     </p>
                     <div class="boxBottom">
                         <p class="date">Due: 23/1/19</p>
-                        <a class="btn-floating btn-small waves-effect waves-light blue check">
-                            <i class="material-icons">check</i>
-                        </a>
+
                     </div>
+                    <a class="btn-floating btn-small waves-effect waves-light blue check">
+                        <i class="material-icons">check</i>
+                    </a>
                 </div>
             </div>
 
