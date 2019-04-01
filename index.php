@@ -92,10 +92,10 @@
                     </p>
                     <div class="boxBottom">
                         <p class="date">Due: 23/1/19</p>
-                        <a class="btn-floating btn-small waves-effect waves-light blue check">
-                            <i class="material-icons">check</i>
-                        </a>
                     </div>
+                    <a class="btn-floating btn-small waves-effect waves-light blue check">
+                        <i class="material-icons">check</i>
+                    </a>
                 </div>
             </div>
         </div>
