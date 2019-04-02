@@ -14,6 +14,9 @@
 </head>
 
 <body>
+  <?php
+    require 'lib/getNotes.php';
+  ?>
     <a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
         <i class="material-icons">menu</i>
     </a>
@@ -49,7 +52,7 @@
     </ul>
 
     <!-- Modal New Box -->
-    <form method="post" action="logic.php">
+    <form method="post" action="index.php">
         <div id="newBox" class="modal">
             <div class="modal-content newBoxContent">
                 <h5>New Note</h5>

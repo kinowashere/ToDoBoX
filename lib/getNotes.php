@@ -7,11 +7,11 @@ if ($_POST) {
   echo ($noteInput);
   echo ($date);
 
-  $f = fopen("list.csv", "a");
+  $f = fopen("./list.csv", "a");
   if ($f) {
     fputcsv($f, $data);
   } else {
     echo ("nofile");
   }
-  flose($f);
+  fclose($f);
 }

@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"gett",
+				"gettype"
+			],
+			[
+				"print",
+				"print_r"
+			],
+			[
+				"fget",
+				"fgetcsv"
+			],
+			[
 				"max",
 				"max-height\tproperty"
 			],
@@ -107,7 +119,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 5993,
+				"buffer_size": 8362,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -116,9 +128,19 @@
 			"file": "css/style.css",
 			"settings":
 			{
-				"buffer_size": 757,
+				"buffer_size": 581,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "list.csv",
+			"settings":
+			{
+				"buffer_size": 112,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "1,4-5-2019,Do my dishes"
 			}
 		},
 		{
@@ -129,6 +151,33 @@
 				"encoding": "UTF-8",
 				"line_ending": "Windows",
 				"name": "document.addEventListener('DOMContentLoaded', func"
+			}
+		},
+		{
+			"file": "boxLoadEngine.php",
+			"settings":
+			{
+				"buffer_size": 273,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/csvToArray.php",
+			"settings":
+			{
+				"buffer_size": 919,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/boxViews.html",
+			"settings":
+			{
+				"buffer_size": 450,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
 			}
 		}
 	],
@@ -225,6 +274,9 @@
 	},
 	"file_history":
 	[
+		"/C/wamp64/www/labs/temp/index.php",
+		"/C/wamp64/www/labs/temp/views/hello.html",
+		"/C/wamp64/www/labs/todobox/lib/boxLoadEngine.php",
 		"/C/wamp64/www/labs/todobox/style.css",
 		"/C/wamp64/www/labs/todobox/sendmail.php",
 		"/C/wamp64/www/labs/todobox/other.css",
@@ -335,15 +387,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5993,
+						"buffer_size": 8362,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3261,
-								3261
+								588,
+								588
 							]
 						],
 						"settings":
@@ -356,7 +408,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 4,
 					"type": "text"
 				}
 			]
@@ -371,15 +423,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 757,
+						"buffer_size": 581,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								127,
-								127
+								0,
+								0
 							]
 						],
 						"settings":
@@ -390,11 +442,40 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
 					"buffer": 2,
+					"file": "list.csv",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 112,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								112,
+								112
+							]
+						],
+						"settings":
+						{
+							"auto_name": "1,4-5-2019,Do my dishes",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
 					"file": "js/script.js",
 					"semi_transient": false,
 					"settings":
@@ -414,6 +495,90 @@
 						{
 							"auto_name": "document.addEventListener('DOMContentLoaded', func",
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "boxLoadEngine.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 273,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								269,
+								269
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "lib/csvToArray.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 919,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								133,
+								133
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "views/boxViews.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 450,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								416,
+								416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -453,7 +618,7 @@
 		"cols":
 		[
 			0.0,
-			0.521990740741,
+			0.522941144474,
 			1.0
 		],
 		"rows":
