@@ -1,0 +1,23 @@
+{% for box in tasks %}
+{% if box.valid == '0' %}
+<div class="col s12 m3">
+	<div class="box z-depth-1">
+		<p class="boxContent">
+			{{ box.task }}
+		</p>
+
+		<div class="boxBottom">
+			{% if box.date %}
+			<p class="date">Due by: {{ box.date }}</p>
+			{% endif %}
+
+		</div>
+
+		<a class="btn-floating btn-small waves-effect waves-light red lighten-2 check">
+			<i class="material-icons">delete</i>
+		</a>
+
+	</div>
+</div>
+{% endif %}
+{% endfor %}

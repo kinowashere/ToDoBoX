@@ -24,13 +24,13 @@
     <div class="container">
         <div class="row">
             <?php
-            require_once 'boxLoadEngine.php';
+            require_once 'archiveLoadEngine.php';
             ?>
         </div>
     </div>
 
     <?php
-      require 'modalsEngine.php';
+    require 'modalsEngine.php';
     ?>
 
     <!--JavaScript at end of body for optimized loading-->
