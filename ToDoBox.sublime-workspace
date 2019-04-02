@@ -4,6 +4,34 @@
 		"selected_items":
 		[
 			[
+				"max",
+				"max-height\tproperty"
+			],
+			[
+				"btn",
+				"btn-large"
+			],
+			[
+				"modal",
+				"modal-trigger"
+			],
+			[
+				"side",
+				"sidenav-trigger"
+			],
+			[
+				"backgr",
+				"background-position\tproperty"
+			],
+			[
+				"inli",
+				"inline-block\tdisplay"
+			],
+			[
+				"marg",
+				"margin-top\tproperty"
+			],
+			[
 				"font",
 				"font-weight\tproperty"
 			],
@@ -79,7 +107,7 @@
 			"file": "index.php",
 			"settings":
 			{
-				"buffer_size": 1906,
+				"buffer_size": 5993,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -88,9 +116,19 @@
 			"file": "css/style.css",
 			"settings":
 			{
-				"buffer_size": 230,
+				"buffer_size": 757,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "js/script.js",
+			"settings":
+			{
+				"buffer_size": 13,
+				"encoding": "UTF-8",
+				"line_ending": "Windows",
+				"name": "document.addEventListener('DOMContentLoaded', func"
 			}
 		}
 	],
@@ -138,11 +176,11 @@
 		"selected_items":
 		[
 			[
-				"re",
+				"reind",
 				"Indentation: Reindent Lines"
 			],
 			[
-				"reind",
+				"re",
 				"Indentation: Reindent Lines"
 			],
 			[
@@ -266,6 +304,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"note",
+			"z-depth-2",
 			"16px",
 			"3",
 			"2000px"
@@ -295,20 +335,22 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1906,
+						"buffer_size": 5993,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1474,
-								1474
+								3261,
+								3261
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -320,7 +362,7 @@
 			]
 		},
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -329,20 +371,49 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 230,
+						"buffer_size": 757,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								154,
-								154
+								127,
+								127
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "js/script.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								13,
+								13
+							]
+						],
+						"settings":
+						{
+							"auto_name": "document.addEventListener('DOMContentLoaded', func",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
