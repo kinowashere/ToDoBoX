@@ -20,9 +20,9 @@
 
     <div class="container">
         <div class="row">
-          <?php
-          require_once 'boxLoadEngine.php';
-          ?>
+            <?php
+            require_once 'boxLoadEngine.php';
+            ?>
         </div>
     </div>
 
@@ -49,32 +49,33 @@
     </ul>
 
     <!-- Modal New Box -->
-    <div id="newBox" class="modal">
-        <div class="modal-content newBoxContent">
-            <h5>New Note</h5>
-            <div class="row blue-text text-darken-2">
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">mode_edit</i>
-                    <textarea id="noteInput" class="materialize-textarea" data-length="120"></textarea>
-                    <label for="noteInput">What to do?</label>
-                </div>
-                <div class="input-field col s12">
-                    <i class="material-icons prefix">date_range</i>
-                    <input type="date">
-                    <label for="date">Due by</label>
+    <form method="post" action="logic.php">
+        <div id="newBox" class="modal">
+            <div class="modal-content newBoxContent">
+                <h5>New Note</h5>
+                <div class="row blue-text text-darken-2">
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">mode_edit</i>
+                        <textarea name="noteInput" id="noteInput" class="materialize-textarea" data-length="120"></textarea>
+                        <label for="noteInput">What to do?</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <i class="material-icons prefix">date_range</i>
+                        <input type="date" name="date" id="date">
+                        <label for="date">Due by</label>
+                    </div>
                 </div>
             </div>
+            <div class="modal-footer">
+                <a href="#!" class="modal-close btn-large waves-effect waves-red btn-flat transparent">
+                    <i class="material-icons">clear</i>
+                </a>
+                <a href="#!" class="modal-close btn-large waves-effect waves-green btn-flat transparent">
+                    <button type="submit" class="transparent"><i class="material-icons">check</i></button>
+                </a>
+            </div>
         </div>
-        <div class="modal-footer">
-            <a href="#!" class="modal-close btn-large waves-effect waves-red btn-flat transparent">
-                <i class="material-icons">clear</i>
-            </a>
-            <a href="#!" class="modal-close btn-large waves-effect waves-green btn-flat transparent">
-                <i class="material-icons">check</i>
-            </a>
-        </div>
-    </div>
-
+    </form>
     <!-- Modal Settings -->
     <div id="settingsModal" class="modal">
         <div class="modal-content">
