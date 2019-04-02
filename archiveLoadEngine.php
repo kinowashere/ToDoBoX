@@ -8,8 +8,8 @@ $twig = new Twig_Environment($loader);
 $boxes = csv_to_array('list.csv');
 
 echo $twig->render('archiveViews.html',array(
-  'tasks' => $boxes
-  )
+	'tasks' => $boxes
+	)
 );
 
 ?>

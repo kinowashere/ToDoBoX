@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"marg",
+				"margin\tproperty"
+			],
+			[
+				"user",
+				"userData"
+			],
+			[
 				"gett",
 				"gettype"
 			],
@@ -38,10 +46,6 @@
 			[
 				"inli",
 				"inline-block\tdisplay"
-			],
-			[
-				"marg",
-				"margin-top\tproperty"
 			],
 			[
 				"font",
@@ -116,67 +120,128 @@
 	"buffers":
 	[
 		{
+			"contents": "<!DOCTYPE html>\n<html>\n\n<head>\n\t\t<title>ToDoBoX</title>\n\t\t<!--Import Google Icon Font-->\n\t\t<link href=\"https://fonts.googleapis.com/icon?family=Material+Icons\" rel=\"stylesheet\">\n\t\t<!--Import materialize.css-->\n\t\t<link type=\"text/css\" rel=\"stylesheet\" href=\"css/materialize.min.css\" media=\"screen,projection\" />\n\t\t<!--Let browser know website is optimized for mobile-->\n\t\t<meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n\t\t<link href=\"https://fonts.googleapis.com/css?family=Baloo|Montserrat\" rel=\"stylesheet\">\n\t\t<link rel=\"stylesheet\" type=\"text/css\" href=\"css/style.css\">\n</head>\n\n<body>\n\t\t<?php\n\t\trequire 'lib/postNotes.php';\n\t\t?>\n\t\t<a href=\"#\" class=\"btn-flat btn-large waves-effect waves-light sidenav-trigger transparent\" data-target=\"slide-out\" id=\"menuButton\">\n\t\t\t\t<i class=\"material-icons\">menu</i>\n\t\t</a>\n\n\t\t<div class=\"container\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<?php\n\t\t\t\t\t\trequire_once 'boxLoadEngine.php';\n\t\t\t\t\t\t?>\n\t\t\t\t</div>\n\t\t</div>\n\n\t\t<?php\n\t\t\trequire 'modalsEngine.php';\n\t\t?>\n\n\t\t<!--JavaScript at end of body for optimized loading-->\n\t\t<script type=\"text/javascript\" src=\"js/materialize.min.js\"></script>\n\t\t<script type=\"text/javascript\" src=\"js/script.js\"></script>\n</body>\n\n</html> ",
 			"file": "index.php",
+			"file_size": 1336,
+			"file_write_time": 131986789089688601,
 			"settings":
 			{
-				"buffer_size": 8362,
+				"buffer_size": 1221,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "css/style.css",
+			"contents": "<?php\n\nrequire_once 'vendor/autoload.php';\nrequire_once 'lib/csvToArray.php';\n\n$loader = new Twig_Loader_Filesystem('views');\n$twig = new Twig_Environment($loader);\n$userData = explode(\",\",file_get_contents(\"user.csv\"));\n\necho $twig->render('modalsViews.html', array(\n\t\"name\" => $userData[0],\n\t\"email\" => $userData[1],\n\t\"password\" => $userData[2]\n));\n\n?>",
+			"file": "modalsEngine.php",
+			"file_size": 372,
+			"file_write_time": 131986785401442044,
 			"settings":
 			{
-				"buffer_size": 581,
+				"buffer_size": 354,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "list.csv",
+			"contents": "{% for box in tasks %}\n{% if box.valid == '0' %}\n<div class=\"col s12 m3\">\n\t<div class=\"box z-depth-1\">\n\t\t<p class=\"boxContent\">\n\t\t\t{{ box.task }}\n\t\t</p>\n\n\t\t<div class=\"boxBottom\">\n\t\t\t{% if box.date %}\n\t\t\t<p class=\"date\">Due by: {{ box.date }}</p>\n\t\t\t{% endif %}\n\n\t\t</div>\n\n\t\t<a class=\"btn-floating btn-small waves-effect waves-light red lighten-2 check\">\n\t\t\t<i class=\"material-icons\">delete</i>\n\t\t</a>\n\n\t</div>\n</div>\n{% endif %}\n{% endfor %}",
+			"file": "views/archiveViews.html",
+			"file_size": 464,
+			"file_write_time": 131986795474635100,
 			"settings":
 			{
-				"buffer_size": 112,
+				"buffer_size": 442,
 				"encoding": "UTF-8",
-				"line_ending": "Windows",
-				"name": "1,4-5-2019,Do my dishes"
+				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "js/script.js",
-			"settings":
-			{
-				"buffer_size": 13,
-				"encoding": "UTF-8",
-				"line_ending": "Windows",
-				"name": "document.addEventListener('DOMContentLoaded', func"
-			}
-		},
-		{
+			"contents": "<?php\n\nrequire_once 'vendor/autoload.php';\nrequire_once 'lib/csvToArray.php';\n\n$loader = new Twig_Loader_Filesystem('views');\n$twig = new Twig_Environment($loader);\n$boxes = csv_to_array('list.csv');\n\necho $twig->render('boxViews.html',array(\n\t'tasks' => $boxes\n\t)\n);\n\n?>",
 			"file": "boxLoadEngine.php",
+			"file_size": 287,
+			"file_write_time": 131986785441586265,
 			"settings":
 			{
-				"buffer_size": 273,
+				"buffer_size": 271,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "* {\n\tfont-family: Montserrat;\n}\nbody {\n\tbackground-color: #fffaef;\n}\n.box {\n\tposition: relative;\n\tmargin: auto;\n\theight: 200px;\n\tbackground-color: #FFF;\n\tborder-radius: 8px;\n\tpadding: 16px;\n\n}\np {\n\tmargin: 0;\n}\n.box:hover {\n\tbox-shadow: 0 4px 5px 0 rgba(0,0,0,0.14),0 1px 10px 0 rgba(0,0,0,0.12),0 2px 4px -1px rgba(0,0,0,0.3);\n}\n.boxBottom {\n\tposition: absolute;\n\tbottom: 16px;\n\twidth: 100%;\n}\n.date {\n\tdisplay: inline-block;\n\tfont-size: 12px;\n\tfont-weight: bold;\n}\n.check {\n\tposition:absolute;\n\tright:16px;\n\tbottom:16px;\n}\n.row .col {\n\tpadding:0.75rem;\n}\n\n.addButton {\n\tposition: fixed;\n\tright: 48px;\n\tbottom: 48px;\n}\n\n#newBox {\n\twidth: 500px;\n\theight: 420px;\n\tmax-height: 100%;\n}\n\n",
+			"file": "css/style.css",
+			"file_size": 736,
+			"file_write_time": 131986806262043790,
+			"settings":
+			{
+				"buffer_size": 684,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "lib/csvToArray.php",
+			"file": "archive.php",
 			"settings":
 			{
-				"buffer_size": 919,
+				"buffer_size": 1187,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
+			"contents": "<?php\n\nrequire_once 'vendor/autoload.php';\nrequire_once 'lib/csvToArray.php';\n\n$loader = new Twig_Loader_Filesystem('views');\n$twig = new Twig_Environment($loader);\n$boxes = csv_to_array('list.csv');\n\necho $twig->render('archiveViews.html',array(\n\t'tasks' => $boxes\n\t)\n);\n\n?>",
+			"file": "archiveLoadEngine.php",
+			"file_size": 291,
+			"file_write_time": 131986789646731913,
+			"settings":
+			{
+				"buffer_size": 275,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "<!-- Sidebar -->\n<ul id=\"slide-out\" class=\"sidenav\">\n\t<li>\n\t\t<div class=\"user-view\">\n\t\t\t<div class=\"background\">\n\t\t\t\t<img src=\"https://png.pngtree.com/thumb_back/fw800/back_pic/04/56/39/595865c6a86e7a6.jpg\">\n\t\t\t</div>\n\t\t\t<a href=\"#user\"><img class=\"circle\" src=\"img/profilepic.jpg\"></a>\n\t\t\t<span class=\"white-text name\">{{ name }}</span>\n\t\t</div>\n\t</li>\n\t<li><a href=\"#settingsModal\" class=\"waves-effect modal-trigger\"><i class=\"material-icons\">settings</i>Settings</a></li>\n\t<li><a href=\"#aboutUsModal\" class=\"waves-effect modal-trigger\"><i class=\"material-icons\">supervisor_account</i>About Us</a></li>\n\t<li><a href=\"#contactModal\" class=\"waves-effect modal-trigger\"><i class=\"material-icons\">message</i>Contact</a></li>\n\t<li><a href=\"#!\" class=\"waves-effect\"><i class=\"material-icons\">power_settings_new</i>Logout</a></li>\n\n\t<li>\n\t</li>\n\n\t<div class=\"divider\"></div>\n</li>\n<li><a class=\"subheader\">ToDoBoX</a></li>\n<li><a href=\"index.php\"><i class=\"material-icons\">check_box</i>Current</a></li>\n<li><a href=\"archive.php\"><i class=\"material-icons\">archive</i>Archive</a></li>\n</ul>\n\n<!-- Modal New Box -->\n<form method=\"post\" action=\"index.php\">\n\t<div id=\"newBox\" class=\"modal\">\n\t\t<div class=\"modal-content newBoxContent\">\n\t\t\t<h5>New Note</h5>\n\t\t\t<div class=\"row blue-text text-darken-2\">\n\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t<i class=\"material-icons prefix\">mode_edit</i>\n\t\t\t\t\t<textarea name=\"noteInput\" id=\"noteInput\" class=\"materialize-textarea\" data-length=\"120\"></textarea>\n\t\t\t\t\t<label for=\"noteInput\">What to do?</label>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t<i class=\"material-icons prefix\">date_range</i>\n\t\t\t\t\t<input type=\"date\" name=\"date\" id=\"date\">\n\t\t\t\t\t<label for=\"date\">Due by</label>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<div class=\"modal-footer\">\n\t\t\t<a href=\"#!\" class=\"modal-close btn-large waves-effect waves-red btn-flat transparent\">\n\t\t\t\t<i class=\"material-icons\">clear</i>\n\t\t\t</a>\n\t\t\t<button type=\"submit\" class=\"modal-close btn-large waves-effect waves-green btn-flat transparent\"><i class=\"material-icons\">check</i></button>\n\t\t</div>\n\t</div>\n</form>\n\n<!-- Modal Settings -->\n<div id=\"settingsModal\" class=\"modal\">\n\t<div class=\"modal-content\">\n\t\t<h5>Settings</h5>\n\t\t<ul class=\"collapsible\">\n\t\t\t<li>\n\t\t\t\t<div class=\"collapsible-header\">\n\t\t\t\t\t<i class=\"material-icons\">account_box</i>\n\t\t\t\t\tChange username\n\t\t\t\t</div>\n\t\t\t\t<div class=\"collapsible-body\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"input-field col s6\">\n\t\t\t\t\t\t\t<input id=\"new_name\" type=\"text\" class=\"validate\" value=\"{{ name }}\">\n\t\t\t\t\t\t\t<label for=\"new_name\">Name</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Change\n\t\t\t\t\t\t<i class=\"material-icons right\">edit</i>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t</li>\n\n\t\t\t<li>\n\t\t\t\t<div class=\"collapsible-header\">\n\t\t\t\t\t<i class=\"material-icons\">email</i>\n\t\t\t\t\tChange email address\n\t\t\t\t</div>\n\t\t\t\t<div class=\"collapsible-body\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"input-field col s6\">\n\t\t\t\t\t\t\t<input id=\"email\" type=\"email\" class=\"validate\" value=\"{{ email }}\">\n\t\t\t\t\t\t\t<label for=\"email\">Email</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Change\n\t\t\t\t\t\t<i class=\"material-icons right\">edit</i>\n\t\t\t\t\t</button>\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t\t<li>\n\t\t\t\t<div class=\"collapsible-header\">\n\t\t\t\t\t<i class=\"material-icons\">enhanced_encryption</i>\n\t\t\t\t\tChange password\n\t\t\t\t</div>\n\t\t\t\t<div class=\"collapsible-body\">\n\t\t\t\t\t<div class=\"row\">\n\t\t\t\t\t\t<div class=\"input-field col s6\">\n\t\t\t\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\" required>\n\t\t\t\t\t\t\t<label for=\"password\">New Password</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t\t<div class=\"input-field col s6\">\n\t\t\t\t\t\t\t<input id=\"password\" type=\"password\" class=\"validate\" required>\n\t\t\t\t\t\t\t<label for=\"password\">Confirm Password</label>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t\t<button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Change\n\t\t\t\t\t\t<i class=\"material-icons right\">edit</i>\n\t\t\t\t\t</button>\n\n\t\t\t\t</div>\n\t\t\t</li>\n\t\t</ul>\n\t</div>\n</div>\n\n<!-- Modal Contact -->\n<div id=\"contactModal\" class=\"modal\">\n\t<div class=\"modal-content\">\n\t\t<h5>Contact</h5>\n\t\t<div class=\"row\">\n\t\t\t<div class=\"input-field col s6\">\n\t\t\t\t<input id=\"new_name\" type=\"text\" class=\"validate\" value=\"{{ name }}\" required>\n\t\t\t\t<label for=\"new_name\">Name</label>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row\">\n\t\t\t<div class=\"input-field col s6\">\n\t\t\t\t<input id=\"email\" type=\"email\" class=\"validate\" value=\"{{ email }}\" required>\n\t\t\t\t<label for=\"email\">Contact Email</label>\n\t\t\t</div>\n\t\t</div>\n\n\t\t<div class=\"row\">\n\t\t\t<form class=\"col s12\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"input-field col s12\">\n\t\t\t\t\t\t<textarea id=\"textarea\" class=\"materialize-textarea\"></textarea>\n\t\t\t\t\t\t<label for=\"textarea\">Message</label>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</form>\n\t\t</div>\n\t\t<button class=\"btn waves-effect waves-light\" type=\"submit\" name=\"action\">Send\n\t\t\t<i class=\"material-icons right\">send</i>\n\t\t</button>\n\t</div>\n</div>\n\n<!-- Modal About Us -->\n<div id=\"aboutUsModal\" class=\"modal\">\n\t<div class=\"modal-content\">\n\t\t<h5>About Us</h5>\n\t\t<p>We are students of TTÜ with a passion for web technologies.<br>\n\t\t\tThis to-do box is proudly presented by Mexi-Hon.<br>\n\t\t\tArigracias!<br>\n\t\t</p>\n\t\t<img class=\"responsive-img\" src=\"img/mexjap.jpg\">\n\t</div>\n</div>\n\n<a class=\"btn-floating btn-large waves-effect waves-light light-blue darken-4 addButton modal-trigger\" href=\"#newBox\">\n\t<i class=\"material-icons\">add</i>\n</a>\n",
+			"file": "views/modalsViews.html",
+			"file_size": 7112,
+			"file_write_time": 131986806206042188,
+			"settings":
+			{
+				"buffer_size": 5452,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "{% for box in tasks %}\n{% if box.valid == '1' %}\n<div class=\"col s12 m3\">\n\t<div class=\"box z-depth-1\">\n\t\t<p class=\"boxContent\">\n\t\t\t{{ box.task }}\n\t\t</p>\n\n\t\t<div class=\"boxBottom\">\n\t\t\t{% if box.date %}\n\t\t\t<p class=\"date\">Due by: {{ box.date }}</p>\n\t\t\t{% endif %}\n\n\t\t</div>\n\n\t\t<a class=\"btn-floating btn-small waves-effect waves-light blue check\">\n\t\t\t<i class=\"material-icons\">check</i>\n\t\t</a>\n\n\t</div>\n</div>\n{% endif %}\n{% endfor %}",
 			"file": "views/boxViews.html",
+			"file_size": 454,
+			"file_write_time": 131986786257453259,
 			"settings":
 			{
-				"buffer_size": 450,
+				"buffer_size": 432,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "valid,date,task\n1,2019-04-17,\"Do my dishes\"\n1,2019-04-12,\"Web homework\"\n0,2019-04-12,\"Huehue\"\n1,2019-04-20,\"Get drunk\"\n1,2019-04-23,\"Send emails\"\n1,,\"Buy postcards\"\n1,,\"Buy postcards\"\n1,,Something\n1,,Something\n",
+			"file": "list.csv",
+			"file_size": 219,
+			"file_write_time": 131986914079733753,
+			"settings":
+			{
+				"buffer_size": 210,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "Manuel Trinidad,manuel.trinidad.mo@gmail.com,tereterevanakere1",
+			"file": "user.csv",
+			"file_size": 62,
+			"file_write_time": 131986780502313683,
+			"settings":
+			{
+				"buffer_size": 62,
 				"line_ending": "Windows"
 			}
 		}
@@ -274,8 +339,16 @@
 	},
 	"file_history":
 	[
+		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/todobox/Old/sendmail.php",
+		"/C/wamp64/www/labs/todobox/lib/getNotes.php",
+		"/C/wamp64/www/labs/todobox/user.csv",
+		"/C/wamp64/www/labs/todobox/lib/csvToArray.php",
+		"/C/wamp64/www/labs/todobox/css/style.css",
+		"/C/wamp64/www/labs/todobox/js/script.js",
+		"/C/wamp64/www/labs/todobox/list.csv",
 		"/C/wamp64/www/labs/temp/index.php",
 		"/C/wamp64/www/labs/temp/views/hello.html",
+		"/C/wamp64/www/labs/todobox/logic.php",
 		"/C/wamp64/www/labs/todobox/lib/boxLoadEngine.php",
 		"/C/wamp64/www/labs/todobox/style.css",
 		"/C/wamp64/www/labs/todobox/sendmail.php",
@@ -356,6 +429,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"manueru",
 			"note",
 			"z-depth-2",
 			"16px",
@@ -378,7 +452,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -387,15 +461,167 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 8362,
+						"buffer_size": 1221,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								588,
-								588
+								756,
+								756
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "modalsEngine.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 354,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								220,
+								220
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "views/archiveViews.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 442,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								442,
+								442
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "boxLoadEngine.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 271,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								157,
+								157
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "css/style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 684,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								128,
+								128
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "archive.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1187,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								932,
+								932
 							]
 						],
 						"settings":
@@ -408,93 +634,118 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 1,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 1,
-					"file": "css/style.css",
+					"buffer": 6,
+					"file": "archiveLoadEngine.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 581,
+						"buffer_size": 275,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								228,
+								228
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
+							"syntax": "Packages/PHP/PHP.sublime-syntax",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 7,
+					"file": "views/modalsViews.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								333,
+								333
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "views/boxViews.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 432,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								152,
+								152
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
 					"file": "list.csv",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 112,
+						"buffer_size": 210,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								112,
-								112
+								197,
+								197
 							]
 						],
 						"settings":
 						{
-							"auto_name": "1,4-5-2019,Do my dishes",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/script.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 13,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								13,
-								13
-							]
-						],
-						"settings":
-						{
-							"auto_name": "document.addEventListener('DOMContentLoaded', func",
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -504,87 +755,32 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "boxLoadEngine.php",
+					"buffer": 10,
+					"file": "user.csv",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 273,
+						"buffer_size": 62,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								269,
-								269
+								62,
+								62
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "lib/csvToArray.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 919,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								133,
-								133
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "views/boxViews.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 450,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								416,
-								416
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -618,7 +814,7 @@
 		"cols":
 		[
 			0.0,
-			0.522941144474,
+			0.451760588918,
 			1.0
 		],
 		"rows":
@@ -670,7 +866,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},
