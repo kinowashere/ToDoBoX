@@ -1,23 +1,23 @@
 {% for box in tasks %}
-	{% if box.valid == '1' %}
-	<div class="col s12 m3">
-		<div class="box z-depth-1">
-			<p class="boxContent">
-				{{ box.task }}
-			</p>
+{% if box.valid == '1' %}
+<div class="col s12 m3">
+	<div class="box z-depth-1">
+		<p class="boxContent">
+			{{ box.task }}
+		</p>
 
-			<div class="boxBottom">
-				{% if box.date %}
-				<p class="date">Due by: {{ box.date }}</p>
-				{% endif %}
-
-			</div>
-
-			<a class="btn-floating btn-small waves-effect waves-light blue check">
-				<i class="material-icons">check</i>
-			</a>
+		<div class="boxBottom">
+			{% if box.date %}
+			<p class="date">Due by: {{ box.date }}</p>
+			{% endif %}
 
 		</div>
+
+		<a class="btn-floating btn-small waves-effect waves-light blue check">
+			<i class="material-icons">check</i>
+		</a>
+
 	</div>
-	{% endif %}
+</div>
+{% endif %}
 {% endfor %}
