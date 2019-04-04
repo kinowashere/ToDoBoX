@@ -1,19 +1,10 @@
 <?php
+
+require "lib/openConnection.php";
+
 function randomNumber($length) {
   $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
   return substr(str_shuffle($chars),0,$length);
-}
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "todoDB";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
 }
 
 // Get data from POST
@@ -28,7 +19,6 @@ if (isset($_POST["noteInput"])) {
     $sql = "INSERT INTO boxes (Valid, BoxID, BoxData) VALUES (1,'".$boxID."','".$noteInput."')";
 
     if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }

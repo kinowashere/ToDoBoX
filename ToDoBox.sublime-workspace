@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"Box",
+				"BoxData"
+			],
+			[
+				"box",
+				"boxesArray"
+			],
+			[
+				"BoxD",
+				"BoxDate"
+			],
+			[
+				"rand",
+				"randomNumber"
+			],
+			[
 				"marg",
 				"margin\tproperty"
 			],
@@ -141,7 +157,25 @@
 			"file": "views/archiveViews.html",
 			"settings":
 			{
-				"buffer_size": 442,
+				"buffer_size": 558,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/boxViews.html",
+			"settings":
+			{
+				"buffer_size": 553,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "views/modalsViews.html",
+			"settings":
+			{
+				"buffer_size": 5452,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -150,7 +184,16 @@
 			"file": "boxLoadEngine.php",
 			"settings":
 			{
-				"buffer_size": 271,
+				"buffer_size": 921,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "lib/deleteBox.php",
+			"settings":
+			{
+				"buffer_size": 381,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -177,34 +220,16 @@
 			"file": "archiveLoadEngine.php",
 			"settings":
 			{
-				"buffer_size": 275,
+				"buffer_size": 925,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "views/modalsViews.html",
+			"file": "lib/postNotes.php",
 			"settings":
 			{
-				"buffer_size": 5452,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "views/boxViews.html",
-			"settings":
-			{
-				"buffer_size": 432,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "list.csv",
-			"settings":
-			{
-				"buffer_size": 196,
+				"buffer_size": 1685,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -267,6 +292,10 @@
 				"Indentation: Reindent Lines"
 			],
 			[
+				"reid",
+				"Indentation: Reindent Lines"
+			],
+			[
 				"re",
 				"Indentation: Reindent Lines"
 			],
@@ -312,13 +341,15 @@
 	},
 	"file_history":
 	[
+		"/C/wamp64/www/labs/lab5/index.php",
+		"/C/wamp64/www/labs/todobox/sql.php",
+		"/C/wamp64/www/labs/todobox/list.csv",
 		"/C/Users/Manuel/Documents/Workspace/Programming/Web Technologies/todobox/Old/sendmail.php",
 		"/C/wamp64/www/labs/todobox/lib/getNotes.php",
 		"/C/wamp64/www/labs/todobox/user.csv",
 		"/C/wamp64/www/labs/todobox/lib/csvToArray.php",
 		"/C/wamp64/www/labs/todobox/css/style.css",
 		"/C/wamp64/www/labs/todobox/js/script.js",
-		"/C/wamp64/www/labs/todobox/list.csv",
 		"/C/wamp64/www/labs/temp/index.php",
 		"/C/wamp64/www/labs/temp/views/hello.html",
 		"/C/wamp64/www/labs/todobox/logic.php",
@@ -332,7 +363,6 @@
 		"/C/wamp64/www/labs/todobox/contact.html",
 		"/C/wamp64/www/labs/todobox/about.html",
 		"/C/wamp64/www/labs/lab6/templates/test.php",
-		"/C/wamp64/www/labs/lab5/index.php",
 		"/C/wamp64/www/labs/lab6/styles/style.css",
 		"/C/wamp64/www/labs/lab6/courses.csv",
 		"/C/wamp64/www/labs/old/miles.php",
@@ -425,7 +455,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -441,8 +471,8 @@
 						"selection":
 						[
 							[
-								400,
-								400
+								968,
+								968
 							]
 						],
 						"settings":
@@ -455,7 +485,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -471,8 +501,8 @@
 						"selection":
 						[
 							[
-								220,
-								220
+								164,
+								164
 							]
 						],
 						"settings":
@@ -484,7 +514,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -493,15 +523,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 442,
+						"buffer_size": 558,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								147,
-								147
+								316,
+								316
 							]
 						],
 						"settings":
@@ -513,24 +543,89 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 3,
-					"file": "boxLoadEngine.php",
+					"file": "views/boxViews.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 271,
+						"buffer_size": 553,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								157,
-								157
+								354,
+								354
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 4,
+					"file": "views/modalsViews.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5452,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								327,
+								327
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "boxLoadEngine.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 921,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								742,
+								742
 							]
 						],
 						"settings":
@@ -542,17 +637,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 6,
-			"sheets":
-			[
+				},
 				{
-					"buffer": 4,
+					"buffer": 6,
+					"file": "lib/deleteBox.php",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 381,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								377,
+								377
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
 					"file": "css/style.css",
 					"semi_transient": false,
 					"settings":
@@ -581,7 +698,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 8,
 					"file": "archive.php",
 					"semi_transient": false,
 					"settings":
@@ -593,8 +710,8 @@
 						"selection":
 						[
 							[
-								610,
-								610
+								832,
+								832
 							]
 						],
 						"settings":
@@ -607,24 +724,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 9,
+					"stack_index": 8,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 9,
 					"file": "archiveLoadEngine.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 275,
+						"buffer_size": 925,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								275,
-								275
+								531,
+								531
 							]
 						],
 						"settings":
@@ -636,99 +753,39 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "views/modalsViews.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 5452,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								474,
-								474
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
 					"stack_index": 7,
 					"type": "text"
 				},
 				{
-					"buffer": 8,
-					"file": "views/boxViews.html",
+					"buffer": 10,
+					"file": "lib/postNotes.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 432,
+						"buffer_size": 1685,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								153,
-								153
+								1432,
+								1432
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
+							"syntax": "Packages/PHP/PHP.sublime-syntax"
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "list.csv",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 196,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								196,
-								196
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 105.056603774,
 						"zoom_level": 1.0
 					},
 					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 10,
+					"buffer": 11,
 					"file": "user.csv",
 					"semi_transient": false,
 					"settings":
@@ -753,7 +810,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 11,
 					"type": "text"
 				}
 			]
@@ -787,7 +844,7 @@
 		"cols":
 		[
 			0.0,
-			0.451760588918,
+			0.495464050866,
 			1.0
 		],
 		"rows":
