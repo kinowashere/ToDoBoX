@@ -1,6 +1,8 @@
 <?php
-session_start();
-
+if(!isset($_SESSION)) 
+{ 
+	session_start(); 
+}
 require_once 'vendor/autoload.php';
 require_once 'lib/csvToArray.php';
 
