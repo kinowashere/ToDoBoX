@@ -61,16 +61,17 @@
 					<i class="material-icons">account_box</i>
 					Change name
 				</div>
+
 				<div class="collapsible-body">
-					<div class="row">
-						<div class="input-field col s6">
-							<input id="new_name" type="text" class="validate" value="{{ name }}">
-							<label for="new_name">Name</label>
-						</div>
-					</div>
       <form action="index.php" method="post">
 
-					<button class="btn waves-effect waves-light" type="submit" name="name">Change
+					<div class="row">
+						<div class="input-field col s6">
+							<input id="name" type="text" class="validate" value="{{ name }}" name="new_name">
+							<label for="name">Name</label>
+						</div>
+					</div>
+					<button class="btn waves-effect waves-light" type="submit">Change
 						<i class="material-icons right">edit</i>
 					</button>
 			</form>
@@ -84,15 +85,19 @@
 					Change email address
 				</div>
 				<div class="collapsible-body">
+      <form action="index.php" method="post">
+				
 					<div class="row">
 						<div class="input-field col s6">
-							<input id="email" type="email" class="validate" value="{{ email }}">
+							<input id="email" type="email" class="validate" value="{{ email }}" name="new_email">
 							<label for="email">Email</label>
 						</div>
 					</div>
 					<button class="btn waves-effect waves-light" type="submit" name="action">Change
 						<i class="material-icons right">edit</i>
 					</button>
+			</form>
+
 				</div>
 			</li>
 			<li>
@@ -101,19 +106,23 @@
 					Change password
 				</div>
 				<div class="collapsible-body">
+      <form action="index.php" method="post">
+
 					<div class="row">
 						<div class="input-field col s6">
-							<input id="password" type="password" class="validate" required>
-							<label for="password">New Password</label>
+							<input id="password1" type="password" class="validate" name="new_password" required>
+							<label for="password1">New Password</label>
 						</div>
 						<div class="input-field col s6">
-							<input id="password" type="password" class="validate" required>
-							<label for="password">Confirm Password</label>
+							<input id="password2" type="password" class="validate" name="confirm_password" required>
+							<label for="password2">Confirm Password</label>
 						</div>
 					</div>
-					<button class="btn waves-effect waves-light" type="submit" name="action">Change
+					<button class="btn waves-effect waves-light" type="submit">Change
 						<i class="material-icons right">edit</i>
 					</button>
+			</form>
+
 
 				</div>
 			</li>
@@ -127,8 +136,8 @@
 		<h5>Contact</h5>
 		<div class="row">
 			<div class="input-field col s6">
-				<input id="new_name" type="text" class="validate" value="{{ name }}" required>
-				<label for="new_name">Name</label>
+				<input id="name" type="text" class="validate" value="{{ name }}" required>
+				<label for="name">Name</label>
 			</div>
 		</div>
 
@@ -157,7 +166,6 @@
 
 <!-- Modal About Us -->
 <div id="aboutUsModal" class="modal">
-<<<<<<< HEAD
     <div class="modal-content">
         <h5>About Us</h5>
         <p>ToDoBox is the best application to maintain your tasks.<br>
@@ -177,16 +185,6 @@
         <img class="responsive-img" src="img/mexjap.jpg">
         <small class="right">Developed by TTÜ students: Manuel Trinidad and Shiori Yamazaki.<br></small>
     </div>
-=======
-	<div class="modal-content">
-		<h5>About Us</h5>
-		<p>We are students of TTÜ with a passion for web technologies.<br>
-			This to-do box is proudly presented by Mexi-Hon.<br>
-			Arigracias!<br>
-		</p>
-		<img class="responsive-img" src="img/mexjap.jpg">
-	</div>
->>>>>>> acfdb7b8a39c8e0a873e64a42153a6cf2ba82290
 </div>
 
 <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 addButton modal-trigger" href="#newBox">

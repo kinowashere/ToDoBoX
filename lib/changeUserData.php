@@ -2,42 +2,57 @@
 
 require "lib/openConnection.php";
 
-if (isset($_POST["name"])) {
-  $name = $_POST["name"];
-  echo $name;
 
-  /*
-  NOT DONE YET
-  $email = $_POST["email"];
-  $password = $_POST["password"];
-  $password_hash = password_hash($password, PASSWORD_DEFAULT);
-  $userID = randomString(50);
+if (isset($_POST["new_name"]) and $_POST["new_name"] != "") {
+  $new_name = $_POST["new_name"];
 
-  //checks whether the email already exists
-  $sql = "select email from users where email = '{$email}'";
+  $sql = "update users set name='{$new_name}' where userID = '{$_SESSION['userID']}'";
   $retval = mysqli_query($conn, $sql);
   $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
-  if ($userInfo["email"] == $email) {
-    echo ("This email already exists.");
-  } else {
-    $sql = "INSERT INTO users (userID, name, email, password_hash) VALUES ('$userID', '$name', '$email', '$password_hash')";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-    }
 
-    $sql = "CREATE TABLE boxes_{$userID} (Valid INT, BoxID VARCHAR(255), BoxData VARCHAR(255), BoxDate date);";
+  if ($conn->query($sql) === TRUE) {
+    $last_id = $conn->insert_id;
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+} elseif (isset($_POST["new_email"]) and $_POST["new_email"] != "") {
+  $new_email = $_POST["new_email"];
+
+  $sql = "update users set email='{$new_email}' where userID = '{$_SESSION['userID']}'";
+  $retval = mysqli_query($conn, $sql);
+  $userInfo = array();
+  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+
+  if ($conn->query($sql) === TRUE) {
+    $last_id = $conn->insert_id;
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+} elseif (isset($_POST["new_password"]) and $_POST["confirm_password"]) {
+  $new_password = $_POST["new_password"];
+  $confirm_password = $_POST["confirm_password"];
+
+
+
+  if ($new_password != $confirm_password) {
+    echo "they don't match";
+  } else {
+    $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+    $sql = "update users set password_hash='{$new_password_hash}' where userID = '{$_SESSION['userID']}'";
+    $retval = mysqli_query($conn, $sql);
+    $userInfo = array();
+    $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    echo ("New account created!");
-    */
-} else {
-  echo "fail";
+  }
 }
+
+
 
 $conn->close();
