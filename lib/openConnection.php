@@ -1,7 +1,12 @@
 <?php
-
+/*
+$servername = "anysql.itcollege.ee";
+$username = "team1";
+$password = "Sk.00K7b4FY";
+$dbname = "WT_1";
+*/
 $servername = "localhost";
-$username = "todoroot";
+$username = "testroot";
 $password = "";
 $dbname = "todoDB";
 

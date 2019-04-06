@@ -8,7 +8,7 @@ function randomString($length)
   return substr(str_shuffle($chars), 0, $length);
 }
 
-if (isset($_POST)) {
+if (isset($_POST["email"]) and isset($_POST["password"])) {
   $email = $_POST["email"];
   $password = $_POST["password"];
 
