@@ -8,9 +8,9 @@ $twig = new Twig_Environment($loader);
 $userData = explode(",",file_get_contents("user.csv"));
 
 echo $twig->render('modalsViews.html', array(
-  "name" => $userData[0],
-  "email" => $userData[1],
-  "password" => $userData[2]
+	"name" => $userData[0],
+	"email" => $userData[1],
+	"password" => $userData[2]
 ));
 
 ?>
