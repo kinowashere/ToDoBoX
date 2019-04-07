@@ -23,12 +23,15 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
   if ($userInfo["email"] == $email) {
     echo ("This email already exists.");
   } else {
+    // Create the user's data in the user's table.
     $sql = "INSERT INTO users (userID, name, email, password_hash) VALUES ('$userID', '$name', '$email', '$password_hash')";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
+    // Create the user's table.
+    $boxID = randomString(32);
 
     $sql = "CREATE TABLE boxes_{$userID} (Valid INT, BoxID VARCHAR(255), BoxData VARCHAR(255), BoxDate date);";
     if ($conn->query($sql) === TRUE) {
@@ -36,10 +39,16 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
+
+    // Create the first box.
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Welcome to ToDoBoX! You can enter a new box with the icon on the bottom. Archive them with the check mark.');";
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
     echo ("New account created!");
   }
-} else {
-  echo "fail";
 }
 
 $conn->close();
