@@ -1,4 +1,5 @@
 <?php
+
 require_once 'vendor/autoload.php';
 require "lib/openConnection.php";
 
@@ -25,3 +26,5 @@ echo $twig->render('boxViews.html',array(
 );
 
 $conn->close();
+
+?>

@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 // checks if user is logged in.
 if (!isset($_SESSION['userID'])) {
   //if not, redirect to login.php
@@ -61,3 +59,5 @@ if (isset($_POST["noteInput"])) {
   }
 }
 $conn->close();
+
+?>
