@@ -33,8 +33,6 @@ if (isset($_POST["new_name"]) and $_POST["new_name"] != "") {
   $new_password = $_POST["new_password"];
   $confirm_password = $_POST["confirm_password"];
 
-
-
   if ($new_password != $confirm_password) {
     echo "they don't match";
   } else {
