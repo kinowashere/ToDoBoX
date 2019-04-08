@@ -17,6 +17,7 @@
 	<?php
 	require "lib/openSession.php";
 	require 'lib/postNotes.php';
+	require_once "lib/changeUserData.php";
 	?>
 
 	<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
@@ -33,8 +34,6 @@
 
 	<?php
 	require_once 'modalsEngine.php';
-	require_once "lib/changeUserData.php";
-
 	?>
 
 	<!--JavaScript at end of body for optimized loading-->

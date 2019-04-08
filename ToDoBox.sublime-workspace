@@ -250,7 +250,7 @@
 			"file": "lib/registerEngine.php",
 			"settings":
 			{
-				"buffer_size": 1802,
+				"buffer_size": 1865,
 				"encoding": "UTF-8",
 				"line_ending": "Unix"
 			}
@@ -538,7 +538,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 134.943396226,
+						"translation.y": 135.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 6,
@@ -599,7 +599,7 @@
 						"translation.y": 210.113207547,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -847,15 +847,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1802,
+						"buffer_size": 1865,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1780,
-								1780
+								1569,
+								1569
 							]
 						],
 						"settings":
@@ -865,10 +865,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 224.603773585,
+						"translation.y": 164.830188679,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
@@ -954,7 +954,7 @@
 		],
 		"width": 0.0
 	},
-	"selected_group": 0,
+	"selected_group": 1,
 	"settings":
 	{
 	},

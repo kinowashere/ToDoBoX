@@ -9,6 +9,7 @@ $userID = $_SESSION["userID"];
 $userInfo = array();
 $sql = "select userID, name, email, profile_photo from users where userID = '{$userID}'";
 $retval = mysqli_query($conn, $sql);
+echo($conn->error);
 $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
 // Twig
