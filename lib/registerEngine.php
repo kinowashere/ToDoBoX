@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require "lib/openConnection.php";
 
@@ -31,7 +32,7 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
     // Create the user's table.
-    $boxID = randomString(32);
+
 
     $sql = "CREATE TABLE boxes_{$userID} (Valid INT, BoxID VARCHAR(255), BoxData VARCHAR(255), BoxDate date);";
     if ($conn->query($sql) === TRUE) {
@@ -40,14 +41,48 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
 
-    // Create the first box.
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Welcome to ToDoBoX! You can enter a new box with the icon on the bottom. Archive them with the check mark.');";
+    $boxID = randomString(32);
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Welcome to ToDoBoX, {$name}!');";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
-    echo ("New account created!");
+
+    $boxID = randomString(32);
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'You can enter a new box with the icon in the bottom right.');";
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $boxID = randomString(32);
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Archive a box with the check mark.');";
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $boxID = randomString(32);
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Go to Archive in the menu to see archives.');";
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $boxID = randomString(32);
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (0, '{$boxID}', 'Delete a box with the delete mark.');";
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+
+    $_SESSION['userID'] = $userID;
+    header('Location: index.php');
   }
 }
 
