@@ -50,7 +50,7 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     }
 
     $boxID = randomString(32);
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'You can enter a new box with the icon in the bottom right.');";
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Create a new box with + icon in the bottom right.');";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
