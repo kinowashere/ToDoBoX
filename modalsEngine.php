@@ -12,6 +12,19 @@ $retval = mysqli_query($conn, $sql);
 echo($conn->error);
 $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
+// Check how many Shibas are there
+
+$dir = "img/shibas";
+$shibas_temp = scandir($dir);
+$shibas_array = array();
+$counter = 0;
+foreach ($shibas_temp as $file) {
+  if(strpos($file,"jpg") == true) {
+    $shibas_array[$counter] = $counter.".jpg";
+    $counter++;
+  }
+}
+
 // Twig
 
 $loader = new Twig_Loader_Filesystem('views');
@@ -22,20 +35,7 @@ echo $twig->render('modalsViews.html', array(
 	"name" => $userInfo['name'],
 	"email" => $userInfo['email'],
 	"profile_photo" => $userInfo['profile_photo'],
+  "shibas" => $shibas_array
 ));
-
-/*
-$shibaArray = array();
-for ($i = 0; $i < 24; $i++) {
-	$shibaArray[$i]["Number"] = $i;
-}
-
-echo $twig->render(
-	'shibaViews.html',
-	array(
-		'shibas' => $shibaArray
-	)
-);
-*/
 
 $conn->close();
