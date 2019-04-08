@@ -73,6 +73,16 @@ if (isset($_POST["new_name"]) and $_POST["new_name"] != "") {
   } else {
     echo ("Password isn't correct");
   }
+} elseif (isset($_POST["new_profile_photo"])) {
+  $new_profile_photo = $_POST["new_profile_photo"];
+
+  $sql = "update users set profile_photo = '{$new_profile_photo}' where userID = '{$_SESSION['userID']}';";
+
+  if ($conn->query($sql) === TRUE) {
+    $last_id = $conn->insert_id;
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
 }
 
 $conn->close();

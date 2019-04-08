@@ -7,7 +7,7 @@ require "lib/openConnection.php";
 
 $userID = $_SESSION["userID"];
 $userInfo = array();
-$sql = "select userID, name, email from users where userID = '{$userID}'";
+$sql = "select userID, name, email, profile_photo from users where userID = '{$userID}'";
 $retval = mysqli_query($conn, $sql);
 $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
@@ -17,12 +17,24 @@ $loader = new Twig_Loader_Filesystem('views');
 $twig = new Twig_Environment($loader);
 
 echo $twig->render('modalsViews.html', array(
-  "userID" => $_SESSION["userID"],
+	"userID" => $_SESSION["userID"],
 	"name" => $userInfo['name'],
 	"email" => $userInfo['email'],
-	"password" => $userInfo['name']
+	"profile_photo" => $userInfo['profile_photo'],
 ));
 
-$conn->close();
+/*
+$shibaArray = array();
+for ($i = 0; $i < 24; $i++) {
+	$shibaArray[$i]["Number"] = $i;
+}
 
-?>
+echo $twig->render(
+	'shibaViews.html',
+	array(
+		'shibas' => $shibaArray
+	)
+);
+*/
+
+$conn->close();

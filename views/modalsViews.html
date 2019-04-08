@@ -5,7 +5,7 @@
 			<div class="background">
 				<img src="img/background.jpg">
 			</div>
-			<a href="#profilePhotoModal" class="waves-effect modal-trigger"><img class="circle" src="img/shiba_0.jpg"></a>
+			<a href="#profilePhotoModal" class="waves-effect modal-trigger"><img class="circle" src="img/shiba_{{ profile_photo }}.jpg"></a>
 			<span class="white-text name">{{ name }}</span>
 		</div>
 	</li>
@@ -54,35 +54,85 @@
 <!-- Modal Profile Photo -->
 <div id="profilePhotoModal" class="modal">
     <div class="modal-content">
-
         <h5>Profile Photo</h5>
         <p>Pick the best shiba for you!<br><br></p>
-				<div class="center">
+
+				<div class="center shiba_photo">
+
+				<form action="index.php" method="post">
+				<button name="new_profile_photo" type="submit" value="0">
 				<img class="circle" src="img/shiba_0.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="1">
 				<img class="circle" src="img/shiba_1.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="2">
 				<img class="circle" src="img/shiba_2.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="3">
 				<img class="circle" src="img/shiba_3.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="4">
 				<img class="circle" src="img/shiba_4.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="5">
 				<img class="circle" src="img/shiba_5.jpg">
-				<img class="circle" src="img/shiba_6.jpeg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="6">
+				<img class="circle" src="img/shiba_6.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="7">
 				<img class="circle" src="img/shiba_7.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="8">
 				<img class="circle" src="img/shiba_8.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="9">
 				<img class="circle" src="img/shiba_9.jpg">
-				<img class="circle" src="img/shiba_10.jpeg">
-				<img class="circle" src="img/shiba_11.jpeg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="10">
+				<img class="circle" src="img/shiba_10.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="11">
+				<img class="circle" src="img/shiba_11.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="12">
 				<img class="circle" src="img/shiba_12.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="13">
 				<img class="circle" src="img/shiba_13.jpg">
-				<img class="circle" src="img/shiba_14.png">
+				</button>
+				<button name="new_profile_photo" type="submit" value="14">
+				<img class="circle" src="img/shiba_14.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="15">
 				<img class="circle" src="img/shiba_15.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="16">
 				<img class="circle" src="img/shiba_16.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="17">
 				<img class="circle" src="img/shiba_17.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="18">
 				<img class="circle" src="img/shiba_18.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="19">
 				<img class="circle" src="img/shiba_19.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="20">
 				<img class="circle" src="img/shiba_20.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="21">
 				<img class="circle" src="img/shiba_21.jpg">
-				<img class="circle" src="img/shiba_22.png">
-				<img class="circle" src="img/shiba_23.jpeg">
-				</div>
+				</button>
+				<button name="new_profile_photo" type="submit" value="22">
+				<img class="circle" src="img/shiba_22.jpg">
+				</button>
+				<button name="new_profile_photo" type="submit" value="23">
+				<img class="circle" src="img/shiba_23.jpg">
+				</button>
+				</form>
 
 		</div>
           
@@ -173,7 +223,14 @@
 					Delete account
 				</div>
 				<div class="collapsible-body">
-      <form action="index.php" method="post">
+				<script>
+    /* Alert */
+    function submitChk () {
+        var flag = confirm ( "Are you sure to delete this account?\nThis account will permanentely deleted.");
+        return flag;
+    }
+</script>
+      <form action="index.php" method="post" onsubmit="return submitChk()">
 							<p>NB! This process cannot be undone.</br></p>
 					<div class="row">
 						<div class="input-field col s6">
