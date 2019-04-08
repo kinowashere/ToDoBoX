@@ -22,7 +22,7 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
   $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
   if ($userInfo["email"] == $email) {
-    echo ("This email already exists.");
+    echo ('<p style="color:red">This email is already used.</p>');
   } else {
     // Create the user's data in the user's table.
     $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo) VALUES ('$userID', '$name', '$email', '$password_hash', 0)";

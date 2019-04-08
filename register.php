@@ -34,7 +34,7 @@
               </div>
               <div class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">vpn_key</i>
-                <input type="password" name="password" id="password" class="validate" required>
+                <input type="password" name="password" id="password" class="validate" minlength="8" required>
                 <label for="password">Password</label>
               </div>
             </div>

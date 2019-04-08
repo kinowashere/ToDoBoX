@@ -31,7 +31,7 @@ if (isset($_POST["email"]) and isset($_POST["password"])) {
     echo "<br>" . $_SESSION['name'];
     echo "<br>" . $_SESSION['email'];
   } else {
-    echo ("Wrong email or password");
+    echo ('<p style="color:red">Wrong email or password</p>');
   }
 
   if (isset($_SESSION['name'])) {
