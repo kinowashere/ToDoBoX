@@ -15,6 +15,7 @@
 
 <body>
 	<?php
+	require "lib/openSession.php";
 	require 'lib/postNotes.php';
 	?>
 	<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
@@ -38,4 +39,4 @@
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 
-</html> 
+</html>

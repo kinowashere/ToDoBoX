@@ -154,6 +154,32 @@
 
 				</div>
 			</li>
+
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">delete</i>
+					Delete account
+				</div>
+				<div class="collapsible-body">
+      <form action="index.php" method="post">
+							<p>NB! This process cannot be undone.</br></p>
+					<div class="row">
+						<div class="input-field col s6">
+
+							<input id="delete_password" type="password" class="validate" name="delete_password" required>
+							<label for="delete_password">Current Password</label>
+						</div>
+
+					</div>
+
+					<button class="btn waves-effect waves-light red" type="submit">DELETE
+						<i class="material-icons right">delete</i>
+					</button>
+			</form>
+
+
+				</div>
+			</li>
 		</ul>
 	</div>
 </div>
