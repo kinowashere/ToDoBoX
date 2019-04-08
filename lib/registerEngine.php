@@ -25,7 +25,7 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     echo ("This email already exists.");
   } else {
     // Create the user's data in the user's table.
-    $sql = "INSERT INTO users (userID, name, email, password_hash) VALUES ('$userID', '$name', '$email', '$password_hash')";
+    $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo) VALUES ('$userID', '$name', '$email', '$password_hash', 0)";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
