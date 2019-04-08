@@ -3,39 +3,51 @@
 require "lib/openConnection.php";
 
 
-if (isset($_POST["new_name"]) and $_POST["new_name"] != "") {
-  $new_name = $_POST["new_name"];
-  $sql = "update users set name = '{$new_name}' where userID = '{$_SESSION['userID']}';";
-
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
+if (isset($_POST["new_name"])) {
+  if ($_POST["new_name"] == "") {
+    echo ('<p style="color:red">Error: Invalid Name<br>Name cannot be empty.</p>');
   } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-} elseif (isset($_POST["new_email"]) and $_POST["new_email"] != "") {
-  $new_email = $_POST["new_email"];
-  $sql = "update users set email='{$new_email}' where userID = '{$_SESSION['userID']}'";
-
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
-} elseif (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
-  $new_password = $_POST["new_password"];
-  $confirm_password = $_POST["confirm_password"];
-
-  if ($new_password != $confirm_password) {
-    echo "they don't match";
-  } else {
-    $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
-
-    $sql = "update users set password_hash='{$new_password_hash}' where userID = '{$_SESSION['userID']}'";
+    $new_name = $_POST["new_name"];
+    $sql = "update users set name = '{$new_name}' where userID = '{$_SESSION['userID']}';";
 
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+  }
+} elseif (isset($_POST["new_email"])) {
+  if ($_POST["new_email"] == "") {
+    echo ('<p style="color:red">Error: Invalid Email<br>Email cannot be empty.</p>');
+  } else {
+    $new_email = $_POST["new_email"];
+    $sql = "update users set email='{$new_email}' where userID = '{$_SESSION['userID']}'";
+
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+  }
+} elseif (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
+  if (strlen($_POST["new_password"]) < 8) {
+    echo ('<p style="color:red">Error: Invalid Password<br>Password has to contain at least 8 characters.</p>');
+  } else {
+    $new_password = $_POST["new_password"];
+    $confirm_password = $_POST["confirm_passwoerd"];
+
+    if ($new_password != $confirm_password) {
+      echo "they don't match";
+    } else {
+      $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+      $sql = "update users set password_hash='{$new_password_hash}' where userID = '{$_SESSION['userID']}'";
+
+      if ($conn->query($sql) === TRUE) {
+        $last_id = $conn->insert_id;
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
   }
 } elseif (isset($_POST["delete_password"])) {
