@@ -15,7 +15,6 @@
 
 <body>
   <?php
-
   // セッション開始
   session_start();
   // セッション変数を全て削除
@@ -26,8 +25,21 @@
   }
   // セッションの登録データを削除
   session_destroy();
-  echo "Thank you for use! Successfully logged out.";
   ?>
+  <div class="container">
+    <div class="row center">
+      <div class="col s12 m6 offset-m3">
+        <div class="logoutContainer z-depth-1">
+          <div class="btn-floating shibaLogout">
+          </div>
+          <h3 style="font-weight: bold;">ToDoBoX</h3>
+          <br>
+          <h5>Logged out successfully!</h5>
+          <h5>See you soon!</h5>
+        </div>
+      </div>
+    </div>
+  </div>
   <script>
     mnt = 3; // 3 seconds to redirect
     url = "login.php";
@@ -36,7 +48,6 @@
       location.href = url;
     }
     setTimeout("jumpPage()", mnt * 1000)
-    //-->
   </script>
 </body>
 
