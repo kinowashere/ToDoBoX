@@ -18,25 +18,24 @@ if (isset($_POST["email"]) and isset($_POST["recovery_code"])) {
   $retval = mysqli_query($conn, $sql);
   $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
-  if ($userInfo["email"] != $email) {
-    echo ('<p style="color:red">This email is not registered.</p>');
-    //checks whether recovery code is correct
-  } elseif ($userInfo["recovery_code"] != $recovery_code) {
-    echo ('<p style="color:red">This recovery code is not correct.</p>');
-  } else {
+  try {
+    //Incorrect input
+    if ($userInfo["email"] != $email or $userInfo["recovery_code"] != $recovery_code) {
+      throw new Exception('<p style="color:red">Wrong email or recovery code</p>');
+    }
+
     $generated_password = randomString(8);
     //todo send the password to the user via email
-    echo $generated_password . "<br>";
-
+    //echo $generated_password . "<br>";
     $generated_password_hash = password_hash($generated_password, PASSWORD_DEFAULT);
-
     $sql = "update users set password_hash='{$generated_password_hash}' where email = '{$email}'";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-      echo ('New password has been sent to your email');
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
+    echo "Password sent to {$email}.";
+  } catch (Exception $e) {
+    echo $e->getMessage();
   }
 }
 

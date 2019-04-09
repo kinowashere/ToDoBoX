@@ -23,68 +23,65 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
   $retval = mysqli_query($conn, $sql);
   $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
-  if ($userInfo["email"] == $email) {
-    echo ('<p style="color:red">This email is already used.</p>');
-  } else {
-    // Create the user's data in the user's table.
+
+  try {
+    // Email Already Exists
+    if ($userInfo["email"] == $email) {
+      throw new Exception('<p style="color:red">This email is already used.</p>');
+    }
+    // insert user data
     $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo, recovery_code) VALUES ('$userID', '$name', '$email', '$password_hash', '$profile_photo', '$recovery_code')";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-    // Create the user's table.
-
-
+    // create user box
     $sql = "CREATE TABLE boxes_{$userID} (Valid INT, BoxID VARCHAR(255), BoxData VARCHAR(255), BoxDate date);";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-
+    // create first box in current
     $boxID = randomString(32);
     $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Welcome to ToDoBoX, {$name}!');";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-
+    // create second box in current
     $boxID = randomString(32);
     $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Create a new box with + icon in the bottom right.');";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-
+    // create third box in current
     $boxID = randomString(32);
     $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Archive a box with the check mark.');";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-
+    // create fourth box in current
     $boxID = randomString(32);
     $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, '{$boxID}', 'Go to Archive in the menu to see archives.');";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-
+    // create first box in archive
     $boxID = randomString(32);
     $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (0, '{$boxID}', 'Delete a box with the delete mark.');";
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-
+    // session
     $_SESSION['userID'] = $userID;
+    // jump to index
     header('Location: index.php');
+  } catch (Exception $e) {
+    echo $e->getMessage();
   }
 }
 
