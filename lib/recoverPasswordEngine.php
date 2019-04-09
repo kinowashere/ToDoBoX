@@ -33,7 +33,7 @@ if (isset($_POST["email"]) and isset($_POST["recovery_code"])) {
     $sql = "update users set password_hash='{$generated_password_hash}' where email = '{$email}'";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
-      echo ('New password has been sent to your email');
+      echo ('<p>New password has been sent to your email</p>');
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
