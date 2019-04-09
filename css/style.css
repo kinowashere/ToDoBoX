@@ -52,8 +52,14 @@ p {
 #aboutUsModal {
 	max-width: 40%;
 }
+#contactModal {
+	max-width: 40%;
+}
 @media only screen and (max-width: 992px) {
 	#aboutUsModal {
+		max-width: 100%;
+	}
+	#contactModal {
 		max-width: 100%;
 	}
 }

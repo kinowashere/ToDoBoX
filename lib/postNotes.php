@@ -6,7 +6,6 @@ if (!isset($_SESSION['userID'])) {
   header('Location: login.php');
 }
 
-
 require "lib/openConnection.php";
 
 function randomNumber($length)
@@ -39,6 +38,7 @@ if (isset($_POST["noteInput"])) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
+  header("Location: index.php");
 } elseif (isset($_POST["boxIDArchive"])) {
   $boxID = $_POST["boxIDArchive"];
   $sql = "delete from boxes_{$_SESSION['userID']} where BoxID='{$boxID}'";
@@ -57,6 +57,7 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+  header("Location: index.php");
 }
 $conn->close();
 
