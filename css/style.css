@@ -73,3 +73,23 @@ Modals
 	width: 100px;
 	height: 100px;
 }
+
+/*
+
+Logout
+
+*/
+
+.logoutContainer {
+	margin-top: 100px;
+	background-color: #FFF;
+	border-radius: 8px;
+	padding: 64px;
+}
+.shibaLogout {
+	width: 150px;
+	height: 150px;
+	background-image: url('../img/shibas/15.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
