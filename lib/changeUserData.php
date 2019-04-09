@@ -8,6 +8,8 @@ function randomString($length)
   return substr(str_shuffle($chars), 0, $length);
 }
 
+// POST
+
 if (isset($_POST["new_name"])) {
   try {
     // Empty Name
@@ -137,7 +139,7 @@ if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($
   } catch (Exception $e) {
     echo $e->getMessage();
   }
-  header("Location: index.php");
+  header("Location: index.php?email_success=1");
 }
 
 $conn->close();
