@@ -26,15 +26,14 @@ if (isset($_POST["email"]) and isset($_POST["recovery_code"])) {
   } else {
     $generated_password = randomString(8);
     //todo send the password to the user via email
-    echo $generated_password;
+    echo $generated_password . "<br>";
 
     $generated_password_hash = password_hash($generated_password, PASSWORD_DEFAULT);
-    echo $generated_password_hash;
-
 
     $sql = "update users set password_hash='{$generated_password_hash}' where email = '{$email}'";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
+      echo ('New password has been sent to your email');
     } else {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
