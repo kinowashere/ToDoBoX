@@ -20,23 +20,20 @@ if (isset($_POST["email"]) and isset($_POST["password"])) {
 
   // returns true if typed password and stored password are the same
   $auth = password_verify($password, $userInfo["password_hash"]);
-
-  if ($auth) {
-
-    echo ("Login success <br>");
+  try {
+    if (!$auth) {
+      throw new Exception('<p style="color:red">Wrong email or password</p>');
+    }
     $_SESSION['userID'] = $userInfo["userID"];
     $_SESSION['name'] = $userInfo['name'];
     $_SESSION['email'] = $userInfo['email'];
-    echo "Sessions<br>" . $_SESSION['userID'];
-    echo "<br>" . $_SESSION['name'];
-    echo "<br>" . $_SESSION['email'];
-  } else {
-    echo ('<p style="color:red">Wrong email or password</p>');
+  } catch (Exception $e) {
+    echo $e->getMessage();
   }
+}
 
-  if (isset($_SESSION['name'])) {
-    header("Location: index.php");
-  }
+if (isset($_SESSION['name'])) {
+  header("Location: index.php");
 }
 
 $conn->close();
