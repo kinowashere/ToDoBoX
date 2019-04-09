@@ -24,6 +24,7 @@ if (isset($_POST["new_name"])) {
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  header("Location: index.php");
 }
 
 if (isset($_POST["new_email"])) {
@@ -42,6 +43,7 @@ if (isset($_POST["new_email"])) {
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  header("Location: index.php");
 }
 
 if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
@@ -66,6 +68,7 @@ if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  header("Location: index.php");
 }
 
 if (isset($_POST["delete_account"])) {
@@ -115,6 +118,7 @@ if (isset($_POST["new_profile_photo"])) {
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  header("Location: index.php");
 }
 
 if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($_POST["contact_message"])) {
@@ -132,6 +136,7 @@ if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  header("Location: index.php");
 }
 
 $conn->close();
