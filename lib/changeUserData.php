@@ -1,6 +1,5 @@
 <?php
-session_start();
-
+require "openSession.php";
 require "lib/openConnection.php";
 
 function randomString($length)
