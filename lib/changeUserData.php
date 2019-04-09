@@ -1,5 +1,13 @@
 <?php
+session_start();
+
 require "lib/openConnection.php";
+
+function randomString($length)
+{
+  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  return substr(str_shuffle($chars), 0, $length);
+}
 
 if (isset($_POST["new_name"])) {
   try {
@@ -102,6 +110,23 @@ if (isset($_POST["new_profile_photo"])) {
   $sql = "update users set profile_photo = '{$new_profile_photo}' where userID = '{$_SESSION['userID']}';";
   try {
     // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
+    }
+  } catch (Exception $e) {
+    echo $e->getMessage();
+  }
+}
+
+if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($_POST["contact_message"])) {
+  $contactID = randomString(50);
+  $contact_name = $_POST["contact_name"];
+  $contact_email = $_POST["contact_email"];
+  $contact_message = $_POST["contact_message"];
+  // insert contact data
+  $sql = "INSERT INTO contact (contactID, contact_name, contact_email, contact_message, userID) VALUES ('{$contactID}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["userID"]}');";
+  // Connection Error
+  try {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }

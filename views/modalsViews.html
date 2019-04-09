@@ -183,40 +183,6 @@
 	</div>
 </div>
 
-<!-- Modal Contact -->
-<div id="contactModal" class="modal">
-	<div class="modal-content">
-		<h5>Contact</h5>
-		<div class="row">
-			<div class="input-field col s6">
-				<input id="name" type="text" class="validate" value="{{ name }}" required>
-				<label for="name">Name</label>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="input-field col s6">
-				<input id="email" type="email" class="validate" value="{{ email }}" required>
-				<label for="email">Contact Email</label>
-			</div>
-		</div>
-
-		<div class="row">
-			<form class="col s12">
-				<div class="row">
-					<div class="input-field col s12">
-						<textarea id="textarea" class="materialize-textarea"></textarea>
-						<label for="textarea">Message</label>
-					</div>
-				</div>
-			</form>
-		</div>
-		<button class="btn waves-effect waves-light" type="submit" name="action">Send
-			<i class="material-icons right">send</i>
-		</button>
-	</div>
-</div>
-
 <!-- Modal About Us -->
 <div id="aboutUsModal" class="modal">
 	<div class="modal-content center aboutContainer">
@@ -251,3 +217,39 @@
 <a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 addButton modal-trigger" href="#newBox">
 	<i class="material-icons">add</i>
 </a>
+
+<!-- Modal Contact -->
+<div id="contactModal" class="modal">
+	<div class="modal-content">
+		<h5>Contact</h5>
+			<form action="index.php" method="post">
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="contact_name" name="contact_name" type="text" class="validate" value="{{ name }}" required>
+				<label for="contact_name">Name</label>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="input-field col s6">
+				<input id="contact_email" name="contact_email" type="email" class="validate" value="{{ email }}" required>
+				<label for="contact_email">Contact Email</label>
+			</div>
+		</div>
+
+		<div class="row">
+
+					<div class="input-field col s12">
+						<textarea id="contact_message" name="contact_message" class="materialize-textarea" required></textarea>
+						<label for="contact_message">Message</label>
+					</div>
+
+
+		</div>
+		<button class="btn waves-effect waves-light" type="submit">Send
+			<i class="material-icons right">send</i>
+		</button>
+			</form>
+
+	</div>
+</div>
