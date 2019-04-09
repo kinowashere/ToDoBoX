@@ -119,3 +119,23 @@ Logout
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+/*
+
+Logout
+
+*/
+
+.deletedContainer {
+	margin-top: 100px;
+	background-color: #FFF;
+	border-radius: 8px;
+	padding: 64px;
+}
+.shibaDeleted {
+	width: 150px;
+	height: 150px;
+	background-image: url('../img/shibas/10.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}

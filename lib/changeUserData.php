@@ -14,7 +14,7 @@ if (isset($_POST["new_name"])) {
   try {
     // Empty Name
     if ($_POST["new_name"] == "") {
-      throw new Exception('<p style="color:red">Error: Invalid Name<br>Name cannot be empty.</p>');
+      throw new Exception("empty_name");
     }
     $new_name = $_POST["new_name"];
     $sql = "update users set name = '{$new_name}' where userID = '{$_SESSION['userID']}';";
@@ -22,18 +22,19 @@ if (isset($_POST["new_name"])) {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-    $last_id = $conn->insert_id;
+    header("Location: index.php?update_name");
   } catch (Exception $e) {
-    echo $e->getMessage();
+    if(strcmp($e->getMessage(),"empty_name") == 0 ) {
+      header("Location: index.php?empty_name");
+    }
   }
-  header("Location: index.php");
 }
 
 if (isset($_POST["new_email"])) {
   try {
     // Empty Name
     if ($_POST["new_email"] == "") {
-      throw new Exception('<p style="color:red">Error: Invalid Email<br>Email cannot be empty.</p>');
+      throw new Exception("empty_email");
     }
     $new_email = $_POST["new_email"];
     $sql = "update users set email = '{$new_email}' where userID = '{$_SESSION['userID']}';";
@@ -41,24 +42,25 @@ if (isset($_POST["new_email"])) {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
-    $last_id = $conn->insert_id;
+    header("Location: index.php?update_email");
   } catch (Exception $e) {
-    echo $e->getMessage();
+    if(strcmp($e->getMessage(),"empty_email") == 0 ) {
+      header("Location: index.php?empty_email");
+    }
   }
-  header("Location: index.php");
 }
 
 if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
   try {
     // Password Too Short
     if (strlen($_POST["new_password"]) < 8) {
-      throw new Exception('<p style="color:red">Error: Invalid Password<br>Password has to contain at least 8 characters.</p>');
+      throw new Exception("password_too_short");
     }
     $new_password = $_POST["new_password"];
-    $confirm_password = $_POST["confirm_passwoerd"];
+    $confirm_password = $_POST["confirm_password"];
     // Password Not Match
     if ($new_password != $confirm_password) {
-      throw new Exception('<p style="color:red">Error: Different Passwords<br>Passwords do not match.</p>');
+      throw new Exception("different_passwords");
     }
     $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
     $sql = "update users set password_hash='{$new_password_hash}' where userID = '{$_SESSION['userID']}'";
@@ -67,10 +69,14 @@ if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     $last_id = $conn->insert_id;
+    header("Location: index.php?updated_password");
   } catch (Exception $e) {
-    echo $e->getMessage();
+    if(strcmp($e->getMessage(),"password_too_short") == 0 ) {
+      header("Location: index.php?password_too_short");
+    } elseif(strcmp($e->getMessage(),"different_passwords") == 0 ) {
+      header("Location: index.php?different_passwords");
+    }
   }
-  header("Location: index.php");
 }
 
 if (isset($_POST["delete_account"])) {
@@ -85,7 +91,7 @@ if (isset($_POST["delete_account"])) {
   try {
     // Incorrect Password
     if (!$auth) {
-      throw new Exception('<p style="color:red">Error: Incorrect Password<br>Password is not correct.</p>');
+      throw new Exception("incorrect_password_delete");
     }
     // delete table for user's boxes
     $sql = "DROP TABLE boxes_{$_SESSION['userID']}";
@@ -103,9 +109,11 @@ if (isset($_POST["delete_account"])) {
     session_unset();
     session_destroy();
     // redirect to login.php
-    header('Location: login.php');
+    header('Location: deleted_account.php');
   } catch (Exception $e) {
-    echo $e->getMessage();
+    if(strcmp($e->getMessage(),"incorrect_password_delete") == 0 ) {
+      header("Location: index.php?incorrect_password_delete");
+    }
   }
 }
 

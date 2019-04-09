@@ -13,10 +13,6 @@
 	<li><a href="#aboutUsModal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
 	<li><a href="#contactModal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
 	<li><a href="logout.php" class="waves-effect"><i class="material-icons">power_settings_new</i>Logout</a></li>
-
-	<li>
-	</li>
-
 	<div class="divider"></div>
 </li>
 <li><a class="subheader">ToDoBoX</a></li>
@@ -32,7 +28,7 @@
 			<div class="row blue-text text-darken-2">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">mode_edit</i>
-					<textarea name="noteInput" id="noteInput" class="materialize-textarea" data-length="120"></textarea>
+					<textarea name="noteInput" id="noteInput" class="materialize-textarea" data-length="120" required></textarea>
 					<label for="noteInput">What to do?</label>
 				</div>
 				<div class="input-field col s12">
@@ -81,13 +77,11 @@
 					<i class="material-icons">account_box</i>
 					Change name
 				</div>
-
 				<div class="collapsible-body">
 					<form action="index.php" method="post">
-
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="name" type="text" class="validate" value="{{ name }}" name="new_name">
+								<input id="name" type="text" class="validate" value="{{ name }}" name="new_name" required>
 								<label for="name">Name</label>
 							</div>
 						</div>
@@ -95,10 +89,8 @@
 							<i class="material-icons right">edit</i>
 						</button>
 					</form>
-
 				</div>
 			</li>
-
 			<li>
 				<div class="collapsible-header">
 					<i class="material-icons">email</i>
@@ -106,10 +98,9 @@
 				</div>
 				<div class="collapsible-body">
 					<form action="index.php" method="post">
-
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="email" type="email" class="validate" value="{{ email }}" name="new_email">
+								<input id="email" type="email" class="validate" value="{{ email }}" name="new_email" required>
 								<label for="email">Email</label>
 							</div>
 						</div>
@@ -117,7 +108,6 @@
 							<i class="material-icons right">edit</i>
 						</button>
 					</form>
-
 				</div>
 			</li>
 			<li>
@@ -127,14 +117,13 @@
 				</div>
 				<div class="collapsible-body">
 					<form action="index.php" method="post">
-
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="password1" type="password" class="validate" name="new_password" required>
+								<input id="password1" type="password" class="validate" name="new_password" minlength="8" required>
 								<label for="password1">New Password</label>
 							</div>
 							<div class="input-field col s6">
-								<input id="password2" type="password" class="validate" name="confirm_password" required>
+								<input id="password2" type="password" class="validate" name="confirm_password" minlength="8" required>
 								<label for="password2">Confirm Password</label>
 							</div>
 						</div>
@@ -142,11 +131,8 @@
 							<i class="material-icons right">edit</i>
 						</button>
 					</form>
-
-
 				</div>
 			</li>
-
 			<li>
 				<div class="collapsible-header">
 					<i class="material-icons">delete</i>
@@ -164,19 +150,14 @@
 						<p>NB! This process cannot be undone.</br></p>
 						<div class="row">
 							<div class="input-field col s6">
-
 								<input id="delete_account" type="password" class="validate" name="delete_account" required>
 								<label for="delete_account">Current Password</label>
 							</div>
-
 						</div>
-
 						<button class="btn waves-effect waves-light red" type="submit">DELETE
 							<i class="material-icons right">delete</i>
 						</button>
 					</form>
-
-
 				</div>
 			</li>
 		</ul>
@@ -229,16 +210,13 @@
 					<label for="contact_name">Name</label>
 				</div>
 			</div>
-
 			<div class="row">
 				<div class="input-field col s6">
 					<input id="contact_email" name="contact_email" type="email" class="validate" value="{{ email }}" required>
 					<label for="contact_email">Contact Email</label>
 				</div>
 			</div>
-
 			<div class="row">
-
 				<div class="input-field col s12">
 					<textarea id="contact_message" name="contact_message" class="materialize-textarea" required></textarea>
 					<label for="contact_message">Message</label>

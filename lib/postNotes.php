@@ -38,7 +38,7 @@ if (isset($_POST["noteInput"])) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
-  header("Location: index.php");
+  header("Location: index.php?create_box");
 } elseif (isset($_POST["boxIDArchive"])) {
   $boxID = $_POST["boxIDArchive"];
   $sql = "delete from boxes_{$_SESSION['userID']} where BoxID='{$boxID}'";
@@ -48,6 +48,7 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+  header("Location: archive.php?delete_box");
 } elseif (isset($_POST["boxID"])) {
   $boxID = $_POST["boxID"];
   $sql = "update boxes_{$_SESSION['userID']} set Valid=0 where BoxID='{$boxID}'";
@@ -57,7 +58,7 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-  header("Location: index.php");
+  header("Location: archive.php?archive_box");
 }
 $conn->close();
 
