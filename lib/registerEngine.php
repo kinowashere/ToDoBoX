@@ -15,6 +15,8 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
   $password = $_POST["password"];
   $password_hash = password_hash($password, PASSWORD_DEFAULT);
   $userID = randomString(50);
+  $profile_photo = 0;
+  $recovery_code = randomString(6);
 
   //checks whether the email already exists
   $sql = "select email from users where email = '{$email}'";
@@ -25,7 +27,7 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     echo ('<p style="color:red">This email is already used.</p>');
   } else {
     // Create the user's data in the user's table.
-    $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo) VALUES ('$userID', '$name', '$email', '$password_hash', 0)";
+    $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo, recovery_code) VALUES ('$userID', '$name', '$email', '$password_hash', '$profile_photo', '$recovery_code')";
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
     } else {
