@@ -129,6 +129,7 @@ if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($
   // insert contact data
   $sql = "INSERT INTO contact (contactID, contact_name, contact_email, contact_message, userID) VALUES ('{$contactID}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["userID"]}');";
   // Connection Error
+  echo("M.toast({html: 'I am a toast'})");
   try {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');

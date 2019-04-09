@@ -6,7 +6,7 @@
 				<img src="img/background.jpg">
 			</div>
 			<a href="#profilePhotoModal" class="waves-effect modal-trigger"><img class="circle" src="img/shibas/{{ profile_photo }}.jpg"></a>
-			<span class="white-text name">{{ name }}</span>
+			<span class="white-text name" style="font-weight: bold">{{ name }}</span>
 		</div>
 	</li>
 	<li><a href="#settingsModal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
@@ -222,34 +222,31 @@
 <div id="contactModal" class="modal">
 	<div class="modal-content">
 		<h5>Send us a Woof</h5>
-			<form action="index.php" method="post">
-		<div class="row">
-			<div class="input-field col s6">
-				<input id="contact_name" name="contact_name" type="text" class="validate" value="{{ name }}" required>
-				<label for="contact_name">Name</label>
+		<form action="index.php" method="post">
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="contact_name" name="contact_name" type="text" class="validate" value="{{ name }}" required>
+					<label for="contact_name">Name</label>
+				</div>
 			</div>
-		</div>
 
-		<div class="row">
-			<div class="input-field col s6">
-				<input id="contact_email" name="contact_email" type="email" class="validate" value="{{ email }}" required>
-				<label for="contact_email">Contact Email</label>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="contact_email" name="contact_email" type="email" class="validate" value="{{ email }}" required>
+					<label for="contact_email">Contact Email</label>
+				</div>
 			</div>
-		</div>
 
-		<div class="row">
+			<div class="row">
 
-					<div class="input-field col s12">
-						<textarea id="contact_message" name="contact_message" class="materialize-textarea" required></textarea>
-						<label for="contact_message">Message</label>
-					</div>
-
-
-		</div>
-		<button class="btn waves-effect waves-light" type="submit">Send
-			<i class="material-icons right">send</i>
-		</button>
-			</form>
-
+				<div class="input-field col s12">
+					<textarea id="contact_message" name="contact_message" class="materialize-textarea" required></textarea>
+					<label for="contact_message">Message</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit">Send
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
 	</div>
 </div>
