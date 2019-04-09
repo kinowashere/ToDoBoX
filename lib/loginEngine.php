@@ -9,7 +9,7 @@ function randomString($length)
 }
 
 if (isset($_POST["email"]) and isset($_POST["password"])) {
-  $email = $_POST["email"];
+  $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
   $password = $_POST["password"];
 
   //checks whether the email already exists
