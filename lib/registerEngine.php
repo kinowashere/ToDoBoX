@@ -27,7 +27,7 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
   try {
     // Email Already Exists
     if ($userInfo["email"] == $email) {
-      throw new Exception('<p style="color:red">This email is already used.</p>');
+      throw new Exception("register_email_exists"); // email already exists
     }
     // insert user data
     $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo, recovery_code) VALUES ('$userID', '$name', '$email', '$password_hash', '$profile_photo', '$recovery_code')";
@@ -81,7 +81,9 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     // jump to index
     header('Location: index.php');
   } catch (Exception $e) {
-    echo $e->getMessage();
+    if(strcmp($e->getMessage(),"register_email_exists") == 0 ) {
+      header("Location: register.php?register_email_exists");
+    }
   }
 }
 

@@ -26,7 +26,7 @@
     $javascript = '<script> M.toast({html: \'Password was not set because it is too short\'}); </script>';
   }
   elseif (isset($_GET["different_passwords"])) {
-    $javascript = '<script> M.toast({html: \'Passwords were not set because they are the same!\'}); </script>';
+    $javascript = '<script> M.toast({html: \'Password was not set because they do not match!\'}); </script>';
   }
   elseif (isset($_GET["updated_password"])) {
     $javascript = '<script> M.toast({html: \'Password updated!\'}); </script>';
@@ -34,7 +34,12 @@
   elseif (isset($_GET["incorrect_password_delete"])) {
     $javascript = '<script> M.toast({html: \'Could not delete because password is incorrect!\'}); </script>';
   }
-
+  elseif (isset($_GET["login_incorrect"])) {
+    $javascript = '<script> M.toast({html: \'Wrong email or password.\'}); </script>';
+  }
+  elseif (isset($_GET["register_email_exists"])) {
+    $javascript = '<script> M.toast({html: \'Email already exists.\'}); </script>';
+  }
   if(isset($javascript)) {
     echo($javascript);
   }

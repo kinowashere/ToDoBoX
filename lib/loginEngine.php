@@ -22,13 +22,15 @@ if (isset($_POST["email"]) and isset($_POST["password"])) {
   $auth = password_verify($password, $userInfo["password_hash"]);
   try {
     if (!$auth) {
-      throw new Exception('<p style="color:red">Wrong email or password</p>');
+      throw new Exception("login_incorrect");
     }
     $_SESSION['userID'] = $userInfo["userID"];
     $_SESSION['name'] = $userInfo['name'];
     $_SESSION['email'] = $userInfo['email'];
   } catch (Exception $e) {
-    echo $e->getMessage();
+    if(strcmp($e->getMessage(),"login_incorrect") == 0 ) {
+      header("Location: login.php?login_incorrect");
+    }
   }
 }
 
