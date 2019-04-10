@@ -58,7 +58,7 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
-  header("Location: archive.php?archive_box");
+  header("Location: index.php?archive_box");
 }
 $conn->close();
 
