@@ -12,7 +12,7 @@ if(isset($_SESSION["recovery_active"]) and $_SESSION["recovery_active"] == 1) {
   $conn -> close();
   
   // Twig Engine
-  $loader = new Twig_Loader_Filesystem("views");
+  $loader = new Twig_Loader_Filesystem("lib/templates/views");
   $twig = new Twig_Environment($loader);
 
   echo $twig->render("recoveryViews.html",$userInfo);

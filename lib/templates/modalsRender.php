@@ -27,7 +27,7 @@ foreach ($shibas_temp as $file) {
 
 // Twig
 
-$loader = new Twig_Loader_Filesystem('views');
+$loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
 echo $twig->render('modalsViews.html', array(

@@ -4,7 +4,7 @@
 <head>
 	<title>ToDoBoX</title>
 	<?php
-	require "headerEngine.php";
+	require "lib/templates/headerRender.php";
 	?>
 </head>
 
@@ -22,13 +22,13 @@
 	<div class="container">
 		<div class="row">
 			<?php
-			require_once 'boxLoadEngine.php';
+			require_once 'lib/templates/mainBoxRender.php';
 			?>
 		</div>
 	</div>
 
 	<?php
-	require_once 'modalsEngine.php';
+	require_once 'lib/templates/modalsRender.php';
 	?>
 
 	<!--JavaScript at end of body for optimized loading-->
