@@ -164,50 +164,6 @@
 	"buffers":
 	[
 		{
-			"file": "index.php",
-			"settings":
-			{
-				"buffer_size": 1291,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "register.php",
-			"settings":
-			{
-				"buffer_size": 2421,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "lib/postNotes.php",
-			"settings":
-			{
-				"buffer_size": 1828,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "lib/registerEngine.php",
-			"settings":
-			{
-				"buffer_size": 3728,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "login.php",
-			"settings":
-			{
-				"buffer_size": 2192,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "lib/loginEngine.php",
 			"settings":
 			{
@@ -216,11 +172,10 @@
 			}
 		},
 		{
-			"file": "get.php",
+			"file": "lib/registerEngine.php",
 			"settings":
 			{
-				"buffer_size": 1882,
-				"encoding": "UTF-8",
+				"buffer_size": 3728,
 				"line_ending": "Windows"
 			}
 		}
@@ -322,29 +277,37 @@
 	},
 	"file_history":
 	[
+		"/C/wamp64/www/labs/todobox/login.php",
+		"/C/wamp64/www/labs/todobox/register.php",
+		"/C/wamp64/www/labs/todobox/logout.php",
+		"/C/wamp64/www/labs/todobox/deleted_account.php",
+		"/C/wamp64/www/labs/todobox/archive.php",
+		"/C/wamp64/www/labs/todobox/index.php",
+		"/C/wamp64/www/labs/todobox/views/headerViews.html",
+		"/C/wamp64/www/labs/todobox/modalsEngine.php",
+		"/C/wamp64/www/labs/todobox/lib/registerEngine.php",
+		"/C/wamp64/www/labs/todobox/views/boxViews.html",
+		"/C/wamp64/www/labs/todobox/boxLoadEngine.php",
+		"/C/wamp64/www/labs/todobox/headerEngine.php",
+		"/C/wamp64/www/labs/todobox/lib/headerEngine.php",
+		"/C/wamp64/www/labs/todobox/lib/basic_header.php",
 		"/C/wamp64/www/labs/todobox/views/modalsViews.html",
+		"/C/wamp64/www/labs/todobox/get.php",
+		"/C/wamp64/www/labs/todobox/lib/loginEngine.php",
+		"/C/wamp64/www/labs/todobox/.gitignore",
 		"/C/wamp64/www/labs/todobox/lib/postNotes.php",
+		"/C/wamp64/www/labs/todobox/.DS_Store",
 		"/C/wamp64/www/labs/todobox/css/style.css",
 		"/C/wamp64/www/labs/todobox/archiveLoadEngine.php",
 		"/C/wamp64/www/labs/todobox/lib/changeUserData.php",
-		"/C/wamp64/www/labs/todobox/modalsEngine.php",
-		"/C/wamp64/www/labs/todobox/deleted_account.php",
-		"/C/wamp64/www/labs/todobox/archive.php",
-		"/C/wamp64/www/labs/todobox/login.php",
-		"/C/wamp64/www/labs/todobox/lib/loginEngine.php",
-		"/C/wamp64/www/labs/todobox/get.php",
-		"/C/wamp64/www/labs/todobox/views/boxViews.html",
-		"/C/wamp64/www/labs/todobox/boxLoadEngine.php",
 		"/C/wamp64/www/labs/todobox/lib/openConnection.php",
 		"/C/wamp64/www/labs/todobox/lib/openSession.php",
 		"/C/wamp64/www/labs/todobox/.git/MERGE_MSG",
-		"/C/wamp64/www/labs/todobox/register.php",
 		"/C/wamp64/www/labs/todobox/views/shibaViews.html",
 		"/C/wamp64/www/test/index.php",
 		"/C/wamp64/www/test/sugar-counter.php",
 		"/C/wamp64/www/labs/todobox/user.csv",
 		"/C/wamp64/www/labs/todobox/lib/deleteBox.php",
-		"/C/wamp64/www/labs/todobox/lib/registerEngine.php",
 		"/C/wamp64/www/labs/movies/lib/loadingEngine.php",
 		"/C/wamp64/www/labs/movies/index.php",
 		"/C/wamp64/www/labs/movies/lib/openConnection.php",
@@ -463,167 +426,11 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1291,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1250,
-								1250
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "register.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2421,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1548,
-								1548
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 285.283018868,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "lib/postNotes.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1828,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1787,
-								1787
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 240.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 3,
-			"sheets":
-			[
-				{
-					"buffer": 3,
-					"file": "lib/registerEngine.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3728,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3669,
-								3669
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 795.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "login.php",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2192,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2175,
-								2142
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/PHP/PHP.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 150.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
 					"file": "lib/loginEngine.php",
 					"semi_transient": false,
 					"settings":
@@ -635,8 +442,8 @@
 						"selection":
 						[
 							[
-								1012,
-								1125
+								970,
+								970
 							]
 						],
 						"settings":
@@ -649,24 +456,24 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "get.php",
+					"buffer": 1,
+					"file": "lib/registerEngine.php",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1882,
+						"buffer_size": 3728,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1249,
-								1249
+								0,
+								0
 							]
 						],
 						"settings":
@@ -676,12 +483,17 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 15.3962264151,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 0,
 					"type": "text"
 				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],

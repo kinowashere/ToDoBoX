@@ -15,7 +15,39 @@
 				<i class="material-icons">check</i>
 			</button>
 		</form>
+		<a class="btn-small btn-flat waves-effect waves-light transparent edit modal-trigger" href="#edit{{ box.BoxID }}">
+			<i class="material-icons">edit</i>
+		</a>
 	</div>
 </div>
+{% endif %}
+{% endfor %}
+{% for box in tasks %}
+{% if box.Valid == '1' %}
+<form method="post" action="index.php">
+	<div class="modal editModal" id="edit{{ box.BoxID }}">
+		<div class="modal-content">
+			<h5>Edit box</h5>
+			<div class="row blue-text text-darken-2">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">mode_edit</i>
+					<textarea name="editNoteInput" id="editNoteInput" class="materialize-textarea" data-length="120"></textarea>
+					<label for="editNoteInput">Edit Content</label>
+				</div>
+				<div class="input-field col s12">
+					<i class="material-icons prefix">date_range</i>
+					<input type="date" name="editDate" id="editDate">
+					<label for="editDate">Edit Date</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-close btn-large waves-effect waves-red btn-flat transparent">
+					<i class="material-icons">clear</i>
+				</a>
+				<button type="submit" name="boxIDEdit" value="{{box.BoxID}}" class="modal-close btn-large waves-effect waves-green btn-flat transparent"><i class="material-icons">check</i></button>
+			</div>
+		</div>
+	</div>
+</form>
 {% endif %}
 {% endfor %}

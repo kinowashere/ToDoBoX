@@ -40,6 +40,9 @@
   elseif (isset($_GET["register_email_exists"])) {
     $javascript = '<script> M.toast({html: \'Email already exists.\'}); </script>';
   }
+  elseif (isset($_GET["edited_note"])) {
+    $javascript = '<script> M.toast({html: \'Note edited.\'}); </script>';
+  }
   if(isset($javascript)) {
     echo($javascript);
   }
