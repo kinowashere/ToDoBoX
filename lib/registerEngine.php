@@ -78,8 +78,9 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     }
     // session
     $_SESSION['userID'] = $userID;
+    $_SESSION["recovery_active"] = 1;
     // jump to index
-    header('Location: index.php');
+    header('Location: recovery_code.php');
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"register_email_exists") == 0 ) {
       header("Location: register.php?register_email_exists");

@@ -11,7 +11,6 @@
 <body>
   <div class="container">
     <div class="row center">
-
       <div class="col s12 m8 offset-m2">
         <div class="loginContainer z-depth-1">
           <h3>ToDoBoX</h3>
@@ -48,7 +47,6 @@
           <br>
         </div>
       </div>
-
     </div>
   </div>
 
