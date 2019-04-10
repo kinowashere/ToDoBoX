@@ -43,6 +43,9 @@
   elseif (isset($_GET["edited_note"])) {
     $javascript = '<script> M.toast({html: \'Note edited.\'}); </script>';
   }
+   elseif (isset($_GET["archive_restore"])) {
+    $javascript = '<script> M.toast({html: \'Note restored.\'}); </script>';
+  }
   if(isset($javascript)) {
     echo($javascript);
   }

@@ -82,6 +82,16 @@ if (isset($_POST["noteInput"])) {
     }
   }
   header("Location: index.php?edited_note");
+} elseif (isset($_POST["boxIDArchiveRestore"])) {
+  $boxID = $_POST["boxIDArchiveRestore"];
+  $userID = $_SESSION["userID"];
+  $sql = "update boxes_{$userID} set Valid = 1 where BoxID = '{$boxID}';";
+  if ($conn->query($sql) === TRUE) {
+    $last_id = $conn->insert_id;
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  header("Location: archive.php?archive_restore");
 }
 $conn->close();
 
