@@ -16,6 +16,11 @@ while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 	$counter++;
 }
 
+// Check Due Dates (tomorrow, today, overdue)
+
+$today = new DateTime();
+
+
 // Twig Engine
 $loader = new Twig_Loader_Filesystem('views');
 $twig = new Twig_Environment($loader);
