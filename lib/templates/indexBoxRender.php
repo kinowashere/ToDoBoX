@@ -24,7 +24,7 @@ $today = new DateTime();
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
-echo $twig->render('boxViews.html',array(
+echo $twig->render('indexBoxViews.html',array(
 	'tasks' => $boxesArray
 )
 );

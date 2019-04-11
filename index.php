@@ -12,23 +12,11 @@
 	<?php
 	require "lib/openSession.php";
 	require "lib/SQLConnection.php";
+	//Get POST Data
 	require 'lib/postNotes.php';
 	require_once "lib/changeUserData.php";
-	?>
-
-	<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
-		<i class="material-icons">menu</i>
-	</a>
-
-	<div class="container">
-		<div class="row">
-			<?php
-			require_once 'lib/templates/mainBoxRender.php';
-			?>
-		</div>
-	</div>
-
-	<?php
+	// Render website
+	require_once 'lib/templates/indexBoxRender.php';
 	require_once 'lib/templates/modalsRender.php';
 	?>
 

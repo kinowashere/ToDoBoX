@@ -20,7 +20,7 @@ while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
-echo $twig->render('archiveViews.html',array(
+echo $twig->render('archiveBoxViews.html',array(
 	'tasks' => $boxesArray
 )
 );

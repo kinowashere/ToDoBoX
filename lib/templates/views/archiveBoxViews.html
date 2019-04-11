@@ -1,0 +1,31 @@
+<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
+	<i class="material-icons">menu</i>
+</a>
+<div class="container">
+	<div class="row">
+		{% for box in tasks %}
+		{% if box.Valid == '0' %}
+		<div class="col s12 m3">
+			<div class="box z-depth-1">
+				<p class="boxContent">
+					{{ box.BoxData }}
+				</p>
+				<div class="boxBottom">
+					{% if box.BoxDate %}
+					<p class="date">Due by: {{ box.BoxDate }}</p>
+					{% endif %}
+				</div>
+				<form method="post" action="archive.php">
+					<button class="btn-floating btn-small waves-effect waves-light red lighten-2 check" name="boxIDArchive" value="{{ box.BoxID }}">
+						<i class="material-icons">delete</i>
+					</button>
+					<button class="btn-small btn-flat waves-effect waves-light transparent edit" name="boxIDArchiveRestore" value="{{ box.BoxID }}">
+						<i class="material-icons">undo</i>
+					</button>
+				</form>
+			</div>
+		</div>
+		{% endif %}
+		{% endfor %}
+	</div>
+</div>

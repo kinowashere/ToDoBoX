@@ -12,30 +12,19 @@
 	<?php
 	require "lib/openSession.php";
 	require "lib/SQLConnection.php";
+	//Get POST data
 	require 'lib/postNotes.php';
-	?>
-	<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
-		<i class="material-icons">menu</i>
-	</a>
-
-	<div class="container">
-		<div class="row">
-			<?php
-			require_once 'lib/templates/archiveBoxRender.php';
-			?>
-		</div>
-	</div>
-
-	<?php
+	// Render website
+	require 'lib/templates/archiveBoxRender.php';
 	require 'lib/templates/modalsRender.php';
 	?>
 
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript" src="js/materialize.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
-  <?php
-  require "lib/toasts/archiveToasts.php";
-  ?>
+	<?php
+	require "lib/toasts/archiveToasts.php";
+	?>
 </body>
 
 </html>
