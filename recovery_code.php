@@ -9,6 +9,7 @@
 <body>
   <?php
   require "lib/openSession.php";
+  require "lib/SQLConnection.php";
   require "lib/templates/recoveryRender.php";
   ?>
 </body>

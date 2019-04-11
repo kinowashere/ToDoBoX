@@ -1,6 +1,6 @@
 <?php
 require "openSession.php";
-require "lib/openConnection.php";
+$conn = open_connection();
 
 function randomString($length)
 {
@@ -22,9 +22,11 @@ if (isset($_POST["new_name"])) {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
+    close_connection($conn);
     header("Location: index.php?update_name");
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"empty_name") == 0 ) {
+      close_connection($conn);
       header("Location: index.php?empty_name");
     }
   }
@@ -42,9 +44,11 @@ if (isset($_POST["new_email"])) {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
+    close_connection($conn);
     header("Location: index.php?update_email");
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"empty_email") == 0 ) {
+      close_connection($conn);
       header("Location: index.php?empty_email");
     }
   }
@@ -69,11 +73,14 @@ if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     $last_id = $conn->insert_id;
+    close_connection($conn);
     header("Location: index.php?updated_password");
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"password_too_short") == 0 ) {
+      close_connection($conn);
       header("Location: index.php?password_too_short");
     } elseif(strcmp($e->getMessage(),"different_passwords") == 0 ) {
+      close_connection($conn);
       header("Location: index.php?different_passwords");
     }
   }
@@ -109,9 +116,11 @@ if (isset($_POST["delete_account"])) {
     session_unset();
     session_destroy();
     // redirect to login.php
+    close_connection($conn);
     header('Location: deleted_account.php');
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"incorrect_password_delete") == 0 ) {
+      close_connection($conn);
       header("Location: index.php?incorrect_password_delete");
     }
   }
@@ -128,6 +137,7 @@ if (isset($_POST["new_profile_photo"])) {
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  close_connection($conn);
   header("Location: index.php");
 }
 
@@ -147,7 +157,6 @@ if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($
   } catch (Exception $e) {
     echo $e->getMessage();
   }
+  close_connection($conn);
   header("Location: index.php?email_success=1");
 }
-
-$conn->close();

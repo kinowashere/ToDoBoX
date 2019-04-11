@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-require "lib/openConnection.php";
+$conn = open_connection();
 
 // Retrieve SQL User Info
 
@@ -38,4 +38,4 @@ echo $twig->render('modalsViews.html', array(
   "shibas" => $shibas_array
 ));
 
-$conn->close();
+close_connection($conn);

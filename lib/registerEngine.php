@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "lib/openConnection.php";
+$conn = open_connection();
 
 function randomString($length)
 {
@@ -80,12 +80,12 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     $_SESSION['userID'] = $userID;
     $_SESSION["recovery_active"] = 1;
     // jump to index
+    close_connection($conn);
     header('Location: recovery_code.php');
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"register_email_exists") == 0 ) {
+      close_connection($conn);
       header("Location: register.php?register_email_exists");
     }
   }
 }
-
-$conn->close();

@@ -11,6 +11,7 @@
 <body>
 	<?php
 	require "lib/openSession.php";
+	require "lib/SQLConnection.php";
 	require 'lib/postNotes.php';
 	require_once "lib/changeUserData.php";
 	?>

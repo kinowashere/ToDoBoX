@@ -7,7 +7,6 @@
   require "lib/templates/headerRender.php";
   ?>
 </head>
-
 <body>
   <div class="container">
     <div class="row center">

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "lib/openConnection.php";
+$conn = open_connection();
 
 function randomString($length)
 {
@@ -38,4 +38,4 @@ if (isset($_SESSION['name'])) {
   header("Location: index.php");
 }
 
-$conn->close();
+close_connection($conn);

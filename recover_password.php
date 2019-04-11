@@ -7,6 +7,9 @@
   ?>
 </head>
 <body>
+  <?php
+  require "lib/SQLConnection.php";
+  ?>
   <div class="container">
     <div class="row center">
       <div class="col s12 m8 offset-m2">

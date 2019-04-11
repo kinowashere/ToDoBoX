@@ -6,7 +6,7 @@ if (!isset($_SESSION['userID'])) {
   header('Location: login.php');
 }
 
-require "lib/openConnection.php";
+$conn = open_connection();
 
 function randomNumber($length)
 {
@@ -38,6 +38,7 @@ if (isset($_POST["noteInput"])) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
+  close_connection($conn);
   header("Location: index.php?create_box");
 } elseif (isset($_POST["boxIDArchive"])) {
   $boxID = $_POST["boxIDArchive"];
@@ -48,6 +49,7 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+  close_connection($conn);
   header("Location: archive.php?delete_box");
 } elseif (isset($_POST["boxID"])) {
   $boxID = $_POST["boxID"];
@@ -58,6 +60,7 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+  close_connection($conn);
   header("Location: index.php?archive_box");
 } elseif (isset($_POST["boxIDEdit"])) {
   $boxID = $_POST["boxIDEdit"];
@@ -90,6 +93,7 @@ if (isset($_POST["noteInput"])) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
+  close_connection($conn);
   header("Location: index.php?edited_note");
 } elseif (isset($_POST["boxIDArchiveRestore"])) {
   $boxID = $_POST["boxIDArchiveRestore"];
@@ -100,8 +104,8 @@ if (isset($_POST["noteInput"])) {
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
+  close_connection($conn);
   header("Location: archive.php?archive_restore");
 }
-$conn->close();
-
+close_connection($conn);
 ?>

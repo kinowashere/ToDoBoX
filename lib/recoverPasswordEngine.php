@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require "lib/openConnection.php";
+$conn = open_connection();
 
 function randomString($length)
 {
@@ -39,4 +39,4 @@ if (isset($_POST["email"]) and isset($_POST["recovery_code"])) {
   }
 }
 
-$conn->close();
+close_connection($conn);
