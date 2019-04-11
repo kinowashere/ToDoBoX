@@ -54,7 +54,7 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <?php
-  require "get.php";
+  require "lib/toasts/loginAndRegisterToasts.php";
   ?>
 </body>
 

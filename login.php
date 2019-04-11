@@ -35,7 +35,7 @@
           </form>
           <br>
 
-          <p><a href="recoverPassword.php">Forgot password?</a></p>
+          <p><a href="recover_password.php">Forgot password?</a></p>
           <p><a href="register.php">You have not registered?</a></p>
 
           <br>
@@ -52,7 +52,7 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <?php
-  require "get.php";
+  require "lib/toats/indexToasts.php";
   ?>
 </body>
 
