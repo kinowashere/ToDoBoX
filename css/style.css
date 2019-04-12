@@ -175,3 +175,16 @@ Recovery Code
 	background-repeat: no-repeat;
 	background-size: cover;
 }
+
+/*
+
+Setup Wizard
+
+*/
+
+.setupWizardContainer {
+	margin-top: 48px;
+	background-color: #FFF;
+	border-radius: 8px;
+	padding: 48px;
+}

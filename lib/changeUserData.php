@@ -141,10 +141,16 @@ if (isset($_POST["new_profile_photo"])) {
   header("Location: index.php");
 }
 
-if (isset($_POST["contact_name"]) and isset($_POST["contact_email"]) and isset($_POST["contact_message"])) {
+if (isset($_POST["contact_message"])) {
+  $userID = $_SESSION["userID"];
+  $sql = "select name, email from users where userID = '{$userID}'";
+  $retval = mysqli_query($conn, $sql);
+  $userInfo = array();
+  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+
   $contactID = randomString(50);
-  $contact_name = $_POST["contact_name"];
-  $contact_email = $_POST["contact_email"];
+  $contact_name = $userInfo["name"];
+  $contact_email = $userInfo["email"];
   $contact_message = $_POST["contact_message"];
   // insert contact data
   $sql = "INSERT INTO contact (contactID, contact_name, contact_email, contact_message, userID) VALUES ('{$contactID}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["userID"]}');";

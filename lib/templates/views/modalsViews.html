@@ -208,13 +208,13 @@
 		<form action="index.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="contact_name" name="contact_name" type="text" class="validate" value="{{ name }}" required>
+					<input disabled value="{{ name }}" id="disabled" name="contact_name" type="text" required>
 					<label for="contact_name">Name</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input id="contact_email" name="contact_email" type="email" class="validate" value="{{ email }}" required>
+					<input disabled value="{{ email }}" id="disabled" name="contact_email" type="email" required>
 					<label for="contact_email">Contact Email</label>
 				</div>
 			</div>
