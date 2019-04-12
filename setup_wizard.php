@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>ToDoBoX | Wizard</title>
   <?php
   require "lib/templates/headerRender.php";
   ?>
 </head>
+
 <body>
   <?php
   require "lib/SQLConnection.php";
@@ -39,19 +41,19 @@
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="servername" type="text" name="servername">
+                    <input id="serverName" type="text" name="server_name">
                     <label for="server">Server Name</label>
                   </div>
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="serverUsername" type="text" class="validate" name="serverUsername" required>
+                    <input id="serverUsername" type="text" class="validate" name="server_username" required>
                     <label for="serverUsername">Server Username</label>
                   </div>
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="serverPassword" type="password" name="serverPassword">
+                    <input id="serverPassword" type="password" name="server_password">
                     <label for="serverPassword">Server Password</label>
                   </div>
 
@@ -72,7 +74,7 @@
                     <label for="password">Admin Password</label>
                   </div>
 
-                  <button type="submit" name="submit" class="btn-large waves-effect blue">
+                  <button type="submit" name="install" class="btn-large waves-effect blue">
                     <i class="material-icons left">check</i>Install database and tables
                   </button>
                 </div>
@@ -95,8 +97,9 @@
   <?php
   if (isset($_GET["hello"])) {
     // Box has been deleted from database
-    echo("Hello");
+    echo ("Hello");
   }
   ?>
 </body>
+
 </html>
