@@ -9,9 +9,6 @@ function randomString($length)
   return substr(str_shuffle($chars), 0, $length);
 }
 
-
-
-
 if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"])) {
   $name = $_POST["name"];
   $email = $_POST["email"];
@@ -32,7 +29,6 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     if ($userInfo["email"] == $email) {
       throw new Exception("register_email_exists"); // email already exists
     }
-
     // wrong aptcha
     require 'securimage/securimage.php';
     $securimage = new Securimage();
