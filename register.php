@@ -7,6 +7,7 @@
   require "lib/templates/headerRender.php";
   ?>
 </head>
+
 <body>
   <?php
   require "lib/SQLConnection.php";
@@ -33,6 +34,18 @@
                 <input type="password" name="password" id="password" class="validate" minlength="8" required>
                 <label for="password">Password</label>
               </div>
+
+              <div class="input-field col s8 offset-s2">
+                <i class="material-icons prefix">spellcheck</i>
+                <input type="text" name="captcha_code" id="captcha_code" class="validate" required>
+                <label for="captcha_code">Captcha</label>
+
+                <img id="captcha" src="lib/securimage/securimage_show.php">
+                <i class="material-icons suffix" onclick="document.getElementById('captcha').src = 'lib/securimage/securimage_show.php?' + Math.random(); return false;">autorenew</i>
+
+              </div>
+
+
             </div>
             <button class="btn waves-effect waves-light blue" type="submit">Register
               <i class="material-icons right">add</i>

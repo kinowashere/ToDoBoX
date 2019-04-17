@@ -9,6 +9,9 @@ function randomString($length)
   return substr(str_shuffle($chars), 0, $length);
 }
 
+
+
+
 if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"])) {
   $name = $_POST["name"];
   $email = $_POST["email"];
@@ -28,6 +31,13 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     // Email Already Exists
     if ($userInfo["email"] == $email) {
       throw new Exception("register_email_exists"); // email already exists
+    }
+
+    // wrong aptcha
+    require 'securimage/securimage.php';
+    $securimage = new Securimage();
+    if ($securimage->check($_POST['captcha_code']) == false) {
+      throw new Exception("wrong_captcha"); // wrong captcha
     }
     // insert user data
     $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo, recovery_code) VALUES ('$userID', '$name', '$email', '$password_hash', '$profile_photo', '$recovery_code')";
@@ -83,9 +93,13 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     close_connection($conn);
     header('Location: recovery_code.php');
   } catch (Exception $e) {
-    if(strcmp($e->getMessage(),"register_email_exists") == 0 ) {
+    if (strcmp($e->getMessage(), "register_email_exists") == 0) {
       close_connection($conn);
       header("Location: register.php?register_email_exists");
+    }
+    if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
+      close_connection($conn);
+      header("Location: register.php?wrong_captcha");
     }
   }
 }
