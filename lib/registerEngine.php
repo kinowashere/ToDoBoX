@@ -24,7 +24,7 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
       throw new Exception("register_email_exists"); // email already exists
     }
 
-    // Captcha was wrong
+    // wrong captcha
     require 'securimage/securimage.php';
     $securimage = new Securimage();
     if ($securimage->check($_POST['captcha_code']) == false) {
@@ -41,40 +41,40 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $recovery_code = randomString(6);
 
     $user = new User($conn);
-    $user -> user_register($user_id, $name, $email, $password_hash, $recovery_code);
+    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, 0);
 
     // Create Starter / Tutorial Boxes
 
     // First Box in Current
     $box = new Box($user_id, $conn);
-    $box -> box_set_data("Welcome to ToDoBoX, {$name}!");
-    $box -> box_set_category("Tutorial");
+    $box->box_set_data("Welcome to ToDoBoX, {$name}!");
+    $box->box_set_category("Tutorial");
     unset($box);
-    
+
     // Second Box in Current
     $box = new Box($user_id, $conn);
-    $box -> box_set_data("Create a new box with + icon in the bottom right.");
-    $box -> box_set_category("Tutorial");
+    $box->box_set_data("Create a new box with + icon in the bottom right.");
+    $box->box_set_category("Tutorial");
     unset($box);
 
     // Third Box in Current
     $box = new Box($user_id, $conn);
-    $box -> box_set_data("Archive a box with the check mark.");
-    $box -> box_set_category("Tutorial");
+    $box->box_set_data("Archive a box with the check mark.");
+    $box->box_set_category("Tutorial");
     unset($box);
-   
+
     // Fourth Box in Current
     $box = new Box($user_id, $conn);
-    $box -> box_set_data("Go to Archive in the menu to see your archived boxes.");
-    $box -> box_set_category("Tutorial");
+    $box->box_set_data("Go to Archive in the menu to see your archived boxes.");
+    $box->box_set_category("Tutorial");
     unset($box);
-    
+
     // First Box in Archive
     $box = new Box($user_id, $conn);
-    $box -> box_set_data("Delete a box with the delete mark.");
-    $box -> box_set_category("Tutorial");
+    $box->box_set_data("Delete a box with the delete mark.");
+    $box->box_set_category("Tutorial");
     unset($box);
-   
+
     // Create the Session
     $_SESSION['userID'] = $userID;
     $_SESSION["recovery_active"] = 1;
@@ -83,7 +83,6 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
 
     close_connection($conn);
     header('Location: recovery_code.php');
-
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
       close_connection($conn);

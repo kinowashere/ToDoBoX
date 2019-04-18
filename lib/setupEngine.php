@@ -4,7 +4,7 @@ if (isset($_POST['install'])) {
   $server_username = $_POST['server_username'];
   $server_password = $_POST['server_password'];
 
-  // save server name, username, password, dbname in a PHP file
+  // saves server name, username, password, dbname in a PHP file
   $var_server_name = var_export($server_name, true);
   $var_server_username = var_export($server_username, true);
   $var_server_password = var_export($server_password, true);
@@ -15,11 +15,11 @@ if (isset($_POST['install'])) {
     \$dbname = 'todoDB';
     ?>";
   file_put_contents('lib/SQLdata.php', $var);
-  // import database data
+  // imports database data
   require 'lib/SQLdata.php';
 
   $conn = new mysqli($server_name, $server_username, $server_password);
-  // Check connection
+  // checks connection
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
@@ -69,6 +69,47 @@ if (isset($_POST['install'])) {
     $last_id = $conn->insert_id;
   } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+
+  try {
+
+    // If the email already exists
+    if ($userInfo["email"] == $email_check) {
+      throw new Exception("register_email_exists"); // email already exists
+    }
+
+    // wrong captcha
+    require 'securimage/securimage.php';
+    $securimage = new Securimage();
+    if ($securimage->check($_POST['captcha_code']) == false) {
+      throw new Exception("wrong_captcha"); // wrong captcha
+    }
+
+    // Insert user data
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $user_id = random_string(50);
+    $profile_photo = 0;
+    $recovery_code = randomString(6);
+
+    $user = new User($conn);
+    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, 1);
+
+    // Jump to index
+
+    close_connection($conn);
+    header('Location: recovery_code.php');
+  } catch (Exception $e) {
+    if (strcmp($e->getMessage(), "register_email_exists") == 0) {
+      close_connection($conn);
+      // header("Location: register.php?register_email_exists");
+    }
+    if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
+      close_connection($conn);
+      // header("Location: register.php?wrong_captcha");
+    }
   }
 }
 

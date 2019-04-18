@@ -151,12 +151,12 @@ if (isset($_POST["contact_message"])) {
   $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
-  $contactID = randomString(50);
+  $contact_id = randomString(50);
   $contact_name = $userInfo["name"];
   $contact_email = $userInfo["email"];
   $contact_message = $_POST["contact_message"];
   // insert contact data
-  $sql = "INSERT INTO contact (contactID, contact_name, contact_email, contact_message, userID) VALUES ('{$contactID}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["userID"]}');";
+  $sql = "INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, userID) VALUES ('{$contact_id}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["userID"]}');";
   // Connection Error
   echo ("M.toast({html: 'I am a toast'})");
   try {
