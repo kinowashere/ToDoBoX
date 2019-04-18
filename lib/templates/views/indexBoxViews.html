@@ -7,8 +7,28 @@
 		{% for box in tasks %}
 		{% if box.Valid == '1' %}
 		<div class="col s12 m3">
-					
-			<div class="box z-depth-1 tooltipped" data-position="top" data-tooltip="aaa">
+			<!-- notice for OVERDUE, TODAY, TOMORROW-->
+			{% if box.BoxDate %}
+				{% if 'now'|date('Y-m-d') > box.BoxDate %}
+					<a class="btn red">
+						OVERDUE
+					</a>
+				{% elseif 'now'|date('Y-m-d') == box.BoxDate %}
+					<a class="btn orange">
+						TODAY
+					</a>
+				{% elseif 'now'|date_modify("+1 day")|date('Y-m-d') == box.BoxDate %}
+					<a class="btn green">
+						TOMORROW
+					</a>
+				{% else %}
+					<div style="padding:18px;"></div>
+				{% endif %}
+			{% else %}
+				<div style="padding:18px;"></div>
+				
+			{% endif %}
+			<div class="box z-depth-1">
 				<p class="boxContent">
 					{{ box.BoxData }}
 				</p>
@@ -29,22 +49,14 @@
 					<i class="material-icons">edit</i>
 				</a>
 			</div>
-			<!-- notice for OVERDUE, TODAY, TOMORROW-->
-			{% if box.BoxDate %}
-				{% if 'now'|date('Y-m-d') > box.BoxDate %}
-					<a class="btn red">
-						OVERDUE
+
+				<a class="btn-floating btn-flat waves-effect waves-light right">
+					<i class="material-icons grey-text">arrow_forward</i>
+				</a>
+					<a class="btn-floating btn-flat waves-effect waves-light right">
+						<i class="material-icons grey-text">arrow_back</i>
 					</a>
-				{% elseif 'now'|date('Y-m-d') == box.BoxDate %}
-					<a class="btn orange">
-						TODAY
-					</a>
-				{% elseif 'now'|date_modify("+1 day")|date('Y-m-d') == box.BoxDate %}
-					<a class="btn green">
-						TOMORROW
-					</a>
-				{% endif %}
-			{% endif %}
+
 
 
 		</div>
