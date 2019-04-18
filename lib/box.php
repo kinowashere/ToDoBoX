@@ -52,7 +52,7 @@ class Box extends User {
     return $this -> sql_query($this -> conn, $sql);
   }
 
-  // Set new values for the boxes
+  // Set especific values for the boxes
   public function box_set_data($new_box_data) {
     $sql = "UPDATE {$this -> user_boxes_table} SET box_data = '{$new_box_data}' WHERE box_id = {$this -> box_id};";
     return $this -> sql_query($this -> conn, $sql);

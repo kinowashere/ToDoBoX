@@ -11,7 +11,7 @@ class User {
   private $user_recovery_code;
 
   function __construct($general_conn, $session_user_id = NULL) {
-    // If the user exists
+    // If the user exists, set all the variables to the class
     if($session_user_id != NULL) {
       $user_info = array();
       $this -> user_id = $session_user_id;
@@ -78,7 +78,7 @@ class User {
     return($this -> user_photo);
   }
 
-  // Set values
+  // Functions to set values
 
   // Sets the user name in the database
   public function user_set_name($new_user_name) {
