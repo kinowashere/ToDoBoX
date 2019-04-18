@@ -64,7 +64,7 @@
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_box</i>
-                    <input id="name" type="text" class="validate" name="username" required>
+                    <input id="name" type="text" class="validate" name="name" required>
                     <label for="name">Admin Name</label>
                   </div>
                   <div class="input-field col s8 offset-s2">

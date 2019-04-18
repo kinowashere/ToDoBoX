@@ -1,4 +1,11 @@
 <?php
+
+function random_string($length)
+{
+  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  return substr(str_shuffle($chars), 0, $length);
+}
+
 if (isset($_POST['install'])) {
   $server_name = $_POST['server_name'];
   $server_username = $_POST['server_username'];
@@ -71,12 +78,21 @@ if (isset($_POST['install'])) {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
+  $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+  //checks whether the email already exists
+  $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
+  $retval = mysqli_query($conn, $sql);
+  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+
   try {
 
+    echo ("1");
     // If the email already exists
     if ($userInfo["email"] == $email_check) {
       throw new Exception("register_email_exists"); // email already exists
     }
+
+    echo ("2");
 
     // wrong captcha
     require 'securimage/securimage.php';
@@ -85,20 +101,22 @@ if (isset($_POST['install'])) {
       throw new Exception("wrong_captcha"); // wrong captcha
     }
 
+    echo ("3");
+
     // Insert user data
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $user_id = random_string(50);
-    $profile_photo = 0;
-    $recovery_code = randomString(6);
-
+    $recovery_code = random_string(6);
+    echo ("4");
     $user = new User($conn);
-    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, 1);
+    echo ("5");
+    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, '0');
+    echo ("6");
 
     // Jump to index
-
     close_connection($conn);
     header('Location: recovery_code.php');
   } catch (Exception $e) {

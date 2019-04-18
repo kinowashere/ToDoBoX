@@ -38,10 +38,10 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $user_id = random_string(50);
     $profile_photo = 0;
-    $recovery_code = randomString(6);
+    $recovery_code = random_string(6);
 
     $user = new User($conn);
-    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, 0);
+    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, '0');
 
     // Create Starter / Tutorial Boxes
 
