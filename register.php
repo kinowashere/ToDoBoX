@@ -41,10 +41,8 @@
                 <i class="material-icons prefix">spellcheck</i>
                 <input type="text" name="captcha_code" id="captcha_code" class="validate" required>
                 <label for="captcha_code">Captcha</label>
-
                 <img id="captcha" src="lib/securimage/securimage_show.php">
                 <i class="material-icons suffix" onclick="document.getElementById('captcha').src = 'lib/securimage/securimage_show.php?' + Math.random(); return false;">autorenew</i>
-
               </div>
 
 

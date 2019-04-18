@@ -63,17 +63,27 @@
                   <h5 class="col s12 grey-text text-darken-4">Admin User Data</h5>
 
                   <div class="input-field col s8 offset-s2">
-                    <i class="material-icons prefix">account_circle</i>
-                    <input id="username" type="text" class="validate" name="username" required>
-                    <label for="username">Admin Username</label>
+                    <i class="material-icons prefix">account_box</i>
+                    <input id="name" type="text" class="validate" name="username" required>
+                    <label for="name">Admin Name</label>
                   </div>
-
+                  <div class="input-field col s8 offset-s2">
+                    <i class="material-icons prefix">mail</i>
+                    <input type="text" name="email" id="email" class="validate" required>
+                    <label for="email">Email</label>
+                  </div>
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
                     <input id="password" type="password" name="password">
                     <label for="password">Admin Password</label>
                   </div>
-
+                  <div class="input-field col s8 offset-s2">
+                    <i class="material-icons prefix">spellcheck</i>
+                    <input type="text" name="captcha_code" id="captcha_code" class="validate" required>
+                    <label for="captcha_code">Captcha</label>
+                    <img id="captcha" src="lib/securimage/securimage_show.php">
+                    <i class="material-icons suffix" onclick="document.getElementById('captcha').src = 'lib/securimage/securimage_show.php?' + Math.random(); return false;">autorenew</i>
+                  </div>
                   <button type="submit" name="install" class="btn-large waves-effect blue">
                     <i class="material-icons left">check</i>Install database and tables
                   </button>
