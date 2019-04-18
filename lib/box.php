@@ -13,7 +13,7 @@ class Box extends User
   {
 
     // Construct User parent Class
-    parent::__construct($session_user_id, $general_conn);
+    parent::__construct($general_conn, $session_user_id);
 
     // If the Box doesn't exist, create it
     if ($box_id == NULL) {
@@ -51,6 +51,7 @@ class Box extends User
     return $this->sql_query($this->conn, $sql);
   }
 
+  // Restore an archived Box
   public function box_restore()
   {
     $sql = "UPDATE {$this->user_boxes_table} SET valid = 1 WHERE box_id = {$this->box_id};";
@@ -58,6 +59,7 @@ class Box extends User
   }
 
   // Set especific values for the boxes
+  
   public function box_set_data($new_box_data)
   {
     $sql = "UPDATE {$this->user_boxes_table} SET box_data = '{$new_box_data}' WHERE box_id = {$this->box_id};";
@@ -73,6 +75,11 @@ class Box extends User
   public function box_set_date($new_box_date)
   {
     $sql = "UPDATE {$this->user_boxes_table} SET box_date = '{$new_box_date}' WHERE box_id = {$this->box_id};";
+    return $this->sql_query($this->conn, $sql);
+  }
+  public function box_unset_date()
+  {
+    $sql = "UPDATE {$this->user_boxes_table} SET box_date = NULL WHERE box_id = {$this->box_id};";
     return $this->sql_query($this->conn, $sql);
   }
 }

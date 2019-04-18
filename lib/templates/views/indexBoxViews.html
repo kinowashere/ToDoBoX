@@ -5,19 +5,19 @@
 <div class="container">
 	<div class="row">
 		{% for box in tasks %}
-		{% if box.Valid == '1' %}
+		{% if box.valid == '1' %}
 		<div class="col s12 m3">
 			<!-- notice for OVERDUE, TODAY, TOMORROW-->
-			{% if box.BoxDate %}
-				{% if 'now'|date('Y-m-d') > box.BoxDate %}
+			{% if box.box_date %}
+				{% if 'now'|date('Y-m-d') > box.box_date %}
 					<a class="btn red">
 						OVERDUE
 					</a>
-				{% elseif 'now'|date('Y-m-d') == box.BoxDate %}
+				{% elseif 'now'|date('Y-m-d') == box.box_date %}
 					<a class="btn orange">
 						TODAY
 					</a>
-				{% elseif 'now'|date_modify("+1 day")|date('Y-m-d') == box.BoxDate %}
+				{% elseif 'now'|date_modify("+1 day")|date('Y-m-d') == box.box_date %}
 					<a class="btn green">
 						TOMORROW
 					</a>
@@ -30,22 +30,22 @@
 			{% endif %}
 			<div class="box z-depth-1">
 				<p class="boxContent">
-					{{ box.BoxData }}
+					{{ box.box_data }}
 				</p>
 				<div class="boxBottom">
-					{% if box.BoxCategory %}
-					<p class="blue-text text-darken-2">{{ box.BoxCategory }}</p>
+					{% if box.box_category %}
+					<p class="blue-text text-darken-2">{{ box.box_category }}</p>
 					{% endif %}
-					{% if box.BoxDate %}
-					<p class="date">Due {{ box.BoxDate }}</p>
+					{% if box.box_date %}
+					<p class="date">Due {{ box.box_date }}</p>
 					{% endif %}
 				</div>
 				<form method="post" action="index.php">
-					<button class="btn-floating btn-small waves-effect waves-light blue check" name="boxID" value="{{ box.BoxID }}" type="submit">
+					<button class="btn-floating btn-small waves-effect waves-light blue check" name="boxID" value="{{ box.box_id }}" type="submit">
 						<i class="material-icons">check</i>
 					</button>
 				</form>
-				<a class="btn-small btn-flat waves-effect waves-light transparent edit modal-trigger" href="#edit{{ box.BoxID }}">
+				<a class="btn-small btn-flat waves-effect waves-light transparent edit modal-trigger" href="#edit{{ box.box_id }}">
 					<i class="material-icons">edit</i>
 				</a>
 			</div>
@@ -65,15 +65,15 @@
 	</div>
 </div>
 {% for box in tasks %}
-{% if box.Valid == '1' %}
+{% if box.valid == '1' %}
 <form method="post" action="index.php">
-	<div class="modal editModal" id="edit{{ box.BoxID }}">
+	<div class="modal editModal" id="edit{{ box.box_id }}">
 		<div class="modal-content">
 			<h5>Edit box</h5>
 			<div class="row blue-text text-darken-2">
 				<div class="input-field col s12">
 					<i class="material-icons prefix">mode_edit</i>
-					<textarea name="editNoteInput" id="editNoteInput" class="materialize-textarea" data-length="120">{{ box.BoxData }}</textarea>
+					<textarea name="editNoteInput" id="editNoteInput" class="materialize-textarea" data-length="120">{{ box.box_data }}</textarea>
 					<label for="editNoteInput">Edit Content</label>
 				</div>
 				<div class="input-field col s12">
@@ -83,7 +83,7 @@
 				</div>
 				<div class="input-field col s12">
 					<i class="material-icons prefix">widgets</i>
-					<input type="text" name="editCategory" id="editCategory" value="{{ box.BoxCategory }}">
+					<input type="text" name="editCategory" id="editCategory" value="{{ box.box_category }}">
 					<label for="editCatgory">Edit Category</label>
 				</div>
 				<label>
@@ -95,7 +95,7 @@
 				<a href="#!" class="modal-close btn-large waves-effect waves-red btn-flat transparent">
 					<i class="material-icons">clear</i>
 				</a>
-				<button type="submit" name="boxIDEdit" value="{{box.BoxID}}" class="modal-close btn-large waves-effect waves-green btn-flat transparent"><i class="material-icons">check</i></button>
+				<button type="submit" name="boxIDEdit" value="{{box.box_id}}" class="modal-close btn-large waves-effect waves-green btn-flat transparent"><i class="material-icons">check</i></button>
 			</div>
 		</div>
 	</div>
