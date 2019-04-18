@@ -10,9 +10,8 @@
 
 <body>
   <?php
-  require "lib/SQLConnection.php";
-  require "lib/toasts/toastEngine.php";
   require "lib/setupEngine.php";
+  require "lib/user.php";
   ?>
   <div class="container">
     <div class="row center">
@@ -40,19 +39,19 @@
                   <h5 class="col s12 grey-text text-darken-4">Server Data</h5>
 
                   <div class="input-field col s8 offset-s2">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix">computer</i>
                     <input id="server_name" type="text" name="server_name">
                     <label for="server_name">Server Name</label>
                   </div>
 
                   <div class="input-field col s8 offset-s2">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix">account_box</i>
                     <input id="server_username" type="text" class="validate" name="server_username" required>
                     <label for="server_username">Server Username</label>
                   </div>
 
                   <div class="input-field col s8 offset-s2">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix">vpn_key</i>
                     <input id="server_password" type="password" name="server_password">
                     <label for="server_password">Server Password</label>
                   </div>
@@ -73,7 +72,7 @@
                     <label for="email">Email</label>
                   </div>
                   <div class="input-field col s8 offset-s2">
-                    <i class="material-icons prefix">account_circle</i>
+                    <i class="material-icons prefix">vpn_key</i>
                     <input id="password" type="password" name="password">
                     <label for="password">Admin Password</label>
                   </div>
