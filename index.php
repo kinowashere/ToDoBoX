@@ -12,6 +12,9 @@
 	<?php
 	require "lib/openSession.php";
 	require "lib/SQLConnection.php";
+	//Classes
+	require 'lib/user.php';
+	require 'lib/box.php';
 	//Get POST Data
 	require 'lib/postNotes.php';
 	require_once "lib/changeUserData.php";

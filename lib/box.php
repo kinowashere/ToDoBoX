@@ -69,16 +69,4 @@ class Box extends User {
   }
 }
 
-$servername = "localhost";
-$username = "testroot";
-$password = "";
-$dbname = "todoDB";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-$user = new User($conn);
-$user -> user_register('1234abcd', 'Manueru Desu', 'abc@abc', '12345678', '09876543');
-echo($user -> user_get_name());
-
-$conn -> close();
-
 ?>

@@ -1,8 +1,8 @@
 <?php
 
-// checks if user is logged in.
-if (!isset($_SESSION['userID'])) {
-  //if not, redirect to login.php
+// Checks if user is logged in
+// If not, redirect to login
+if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
 }
 
@@ -11,14 +11,14 @@ $conn = open_connection();
 // Get data from POST
 
 if (isset($_POST["noteInput"])) {
-  $noteInput = filter_var($_POST['noteInput'], FILTER_SANITIZE_STRING);
-  $date = $_POST['date'];
-  $category = $_POST['category'];
+  $box_data_input = filter_var($_POST['noteInput'], FILTER_SANITIZE_STRING);
+  $box_date_input = $_POST['date'];
+  $category = filter_var($_POST['category'], FILTER_SANITIZE_STRING);
 
-  if ($date == "") {
+  if ($box_date_input == "") {
     if ($category == "") {
       // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData) VALUES (1,'" . $noteInput . "');";
+      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData) VALUES (1,'" . $box_data_input . "');";
 
       if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id;
@@ -27,7 +27,7 @@ if (isset($_POST["noteInput"])) {
       }
     } else {
       // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxCategory) VALUES (1,'" . $noteInput . "','" . $category . "');";
+      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData, BoxCategory) VALUES (1,'" . $box_data_input . "','" . $category . "');";
 
       if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id;
@@ -39,7 +39,7 @@ if (isset($_POST["noteInput"])) {
     if ($category == "") {
 
       // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxDate) VALUES (1,'" . $noteInput . "','" . $date . "')";
+      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData, BoxDate) VALUES (1,'" . $box_data_input . "','" . $box_date_input . "')";
 
       if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id;
@@ -48,7 +48,7 @@ if (isset($_POST["noteInput"])) {
       }
     } else {
       // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxDate, BoxCategory) VALUES (1,'" . $noteInput . "','" . $date . "','" . $category . "');";
+      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData, BoxDate, BoxCategory) VALUES (1,'" . $box_data_input . "','" . $box_date_input . "','" . $category . "');";
 
       if ($conn->query($sql) === TRUE) {
         $last_id = $conn->insert_id;
@@ -64,7 +64,7 @@ if (isset($_POST["noteInput"])) {
   header("Location: index.php?create_box");
 } elseif (isset($_POST["boxIDArchive"])) {
   $boxID = $_POST["boxIDArchive"];
-  $sql = "delete from boxes_{$_SESSION['userID']} where BoxID='{$boxID}'";
+  $sql = "delete from boxes_{$_SESSION['user_id']} where BoxID='{$boxID}'";
 
   if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
@@ -75,7 +75,7 @@ if (isset($_POST["noteInput"])) {
   header("Location: archive.php?delete_box");
 } elseif (isset($_POST["boxID"])) {
   $boxID = $_POST["boxID"];
-  $sql = "update boxes_{$_SESSION['userID']} set Valid=0 where BoxID='{$boxID}'";
+  $sql = "update boxes_{$_SESSION['user_id']} set Valid=0 where BoxID='{$boxID}'";
 
   if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
@@ -87,8 +87,8 @@ if (isset($_POST["noteInput"])) {
 } elseif (isset($_POST["boxIDEdit"])) {
   $boxID = $_POST["boxIDEdit"];
   if ($_POST["editNoteInput"] != "") {
-    $noteInput = $_POST['editNoteInput'];
-    $sql = "update boxes_{$_SESSION['userID']} set BoxData = '{$noteInput}' where BoxID='{$boxID}'";
+    $box_data_input = $_POST['editNoteInput'];
+    $sql = "update boxes_{$_SESSION['user_id']} set BoxData = '{$box_data_input}' where BoxID='{$boxID}'";
 
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
@@ -98,7 +98,7 @@ if (isset($_POST["noteInput"])) {
   }
   if (isset($_POST["editDate"])) {
     $boxDate = $_POST["editDate"];
-    $sql = "update boxes_{$_SESSION['userID']} set BoxDate = '{$boxDate}' where BoxID='{$boxID}'";
+    $sql = "update boxes_{$_SESSION['user_id']} set BoxDate = '{$boxDate}' where BoxID='{$boxID}'";
 
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
@@ -108,7 +108,7 @@ if (isset($_POST["noteInput"])) {
   }
   if (isset($_POST["editCategory"])) {
     $boxCategory = $_POST["editCategory"];
-    $sql = "update boxes_{$_SESSION['userID']} set BoxCategory = '{$boxCategory}' where BoxID='{$boxID}'";
+    $sql = "update boxes_{$_SESSION['user_id']} set BoxCategory = '{$boxCategory}' where BoxID='{$boxID}'";
 
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
@@ -117,7 +117,7 @@ if (isset($_POST["noteInput"])) {
     }
   }
   if (isset($_POST["unsetDate"])) {
-    $sql = "update boxes_{$_SESSION['userID']} set BoxDate = NULL where BoxID='{$boxID}'";
+    $sql = "update boxes_{$_SESSION['user_id']} set BoxDate = NULL where BoxID='{$boxID}'";
 
     if ($conn->query($sql) === TRUE) {
       $last_id = $conn->insert_id;
@@ -129,8 +129,8 @@ if (isset($_POST["noteInput"])) {
   header("Location: index.php?edited_note");
 } elseif (isset($_POST["boxIDArchiveRestore"])) {
   $boxID = $_POST["boxIDArchiveRestore"];
-  $userID = $_SESSION["userID"];
-  $sql = "update boxes_{$userID} set Valid = 1 where BoxID = '{$boxID}';";
+  $user_id = $_SESSION["user_id"];
+  $sql = "update boxes_{$user_id} set Valid = 1 where BoxID = '{$boxID}';";
   if ($conn->query($sql) === TRUE) {
     $last_id = $conn->insert_id;
   } else {

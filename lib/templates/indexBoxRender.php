@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 $conn = open_connection();
 
-$sql = "SELECT valid, box_data, box_date, box_id, box_category FROM boxes_{$_SESSION['userID']}";
+$sql = "SELECT valid, box_data, box_date, box_id, box_category FROM boxes_{$_SESSION['user_id']}";
 $retval = mysqli_query($conn, $sql);
 
 $boxesArray = array();
