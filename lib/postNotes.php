@@ -13,24 +13,53 @@ $conn = open_connection();
 if (isset($_POST["noteInput"])) {
   $noteInput = $_POST['noteInput'];
   $date = $_POST['date'];
+  $category = $_POST['category'];
 
   if ($date == "") {
-    // Insert data
-    $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData) VALUES (1,'" . $noteInput . "')";
+    if ($category == "") {
+      // Insert data
+      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData) VALUES (1,'" . $noteInput . "');";
 
-    if ($conn->query($sql) === TRUE) { } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      if ($conn->query($sql) === TRUE) {
+        $last_id = $conn->insert_id;
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
+    } else {
+      // Insert data
+      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxCategory) VALUES (1,'" . $noteInput . "','" . $category . "');";
+
+      if ($conn->query($sql) === TRUE) {
+        $last_id = $conn->insert_id;
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
   } else {
-    // Insert data
-    $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxDate) VALUES (1,'" . $noteInput . "','" . $date . "')";
+    if ($category == "") {
 
-    if ($conn->query($sql) === TRUE) {
-      $last_id = $conn->insert_id;
+      // Insert data
+      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxDate) VALUES (1,'" . $noteInput . "','" . $date . "')";
+
+      if ($conn->query($sql) === TRUE) {
+        $last_id = $conn->insert_id;
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
+      // Insert data
+      $sql = "INSERT INTO boxes_{$_SESSION['userID']} (Valid, BoxData, BoxDate, BoxCategory) VALUES (1,'" . $noteInput . "','" . $date . "','" . $category . "');";
+
+      if ($conn->query($sql) === TRUE) {
+        $last_id = $conn->insert_id;
+      } else {
+        echo "Error: " . $sql . "<br>" . $conn->error;
+      }
     }
   }
+
+
+
   close_connection($conn);
   header("Location: index.php?create_box");
 } elseif (isset($_POST["boxIDArchive"])) {

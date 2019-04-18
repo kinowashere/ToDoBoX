@@ -39,40 +39,41 @@ if (isset($_POST["name"]) and isset($_POST["password"]) and isset($_POST["email"
     $sql = "INSERT INTO users (userID, name, email, password_hash, profile_photo, recovery_code) VALUES ('$userID', '$name', '$email', '$password_hash', '$profile_photo', '$recovery_code')";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
+
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     // create table for user box
-    $sql = "CREATE TABLE boxes_{$userID} (Valid TINYINT, BoxID int NOT NULL AUTO_INCREMENT, BoxData VARCHAR(255), BoxDate date, PRIMARY KEY (BoxID));";
+    $sql = "CREATE TABLE boxes_{$userID} (Valid TINYINT, BoxID INT NOT NULL AUTO_INCREMENT, BoxData VARCHAR(255), BoxDate date, BoxCategory VARCHAR(255), PRIMARY KEY (BoxID));";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     // create first box in current
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, DEFAULT, 'Welcome to ToDoBoX, {$name}!');";
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData, BoxCategory) VALUES (1, DEFAULT, 'Welcome to ToDoBoX, {$name}!', 'tutorial');";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     // create second box in current
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, DEFAULT, 'Create a new box with + icon in the bottom right.');";
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData, BoxCategory) VALUES (1, DEFAULT, 'Create a new box with + icon in the bottom right.', 'tutorial');";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     // create third box in current
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, DEFAULT, 'Archive a box with the check mark.');";
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData, BoxCategory) VALUES (1, DEFAULT, 'Archive a box with the check mark.', 'tutorial');";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     // create fourth box in current
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (1, DEFAULT, 'Go to Archive in the menu to see archives.');";
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData, BoxCategory) VALUES (1, DEFAULT, 'Go to Archive in the menu to see archives.', 'tutorial');";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
     // create first box in archive
-    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData) VALUES (0, DEFAULT, 'Delete a box with the delete mark.');";
+    $sql = "INSERT INTO boxes_{$userID} (Valid, BoxID, BoxData, BoxCategory) VALUES (0, DEFAULT, 'Delete a box with the delete mark.', 'tutorial');";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
