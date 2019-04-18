@@ -3,7 +3,7 @@
 require_once 'vendor/autoload.php';
 $conn = open_connection();
 
-$sql = "select Valid, BoxData, BoxDate, BoxID from boxes_{$_SESSION['userID']}";
+$sql = "select Valid, BoxData, BoxDate, BoxID, BoxCategory from boxes_{$_SESSION['userID']}";
 $retval = mysqli_query($conn, $sql);
 
 $boxesArray = array();
@@ -13,6 +13,7 @@ while($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 	$boxesArray[$counter]["BoxData"] = $row["BoxData"];
 	$boxesArray[$counter]["BoxDate"] = $row["BoxDate"];
 	$boxesArray[$counter]["BoxID"] = $row["BoxID"];
+	$boxesArray[$counter]["BoxCategory"] = $row["BoxCategory"];
 	$counter++;
 }
 
@@ -26,4 +27,3 @@ echo $twig->render('archiveBoxViews.html',array(
 );
 
 close_connection($conn);
-?>
