@@ -25,7 +25,7 @@ if (isset($_POST["new_name"])) {
     close_connection($conn);
     header("Location: index.php?update_name");
   } catch (Exception $e) {
-    if(strcmp($e->getMessage(),"empty_name") == 0 ) {
+    if (strcmp($e->getMessage(), "empty_name") == 0) {
       close_connection($conn);
       header("Location: index.php?empty_name");
     }
@@ -47,7 +47,7 @@ if (isset($_POST["new_email"])) {
     close_connection($conn);
     header("Location: index.php?update_email");
   } catch (Exception $e) {
-    if(strcmp($e->getMessage(),"empty_email") == 0 ) {
+    if (strcmp($e->getMessage(), "empty_email") == 0) {
       close_connection($conn);
       header("Location: index.php?empty_email");
     }
@@ -76,10 +76,10 @@ if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
     close_connection($conn);
     header("Location: index.php?updated_password");
   } catch (Exception $e) {
-    if(strcmp($e->getMessage(),"password_too_short") == 0 ) {
+    if (strcmp($e->getMessage(), "password_too_short") == 0) {
       close_connection($conn);
       header("Location: index.php?password_too_short");
-    } elseif(strcmp($e->getMessage(),"different_passwords") == 0 ) {
+    } elseif (strcmp($e->getMessage(), "different_passwords") == 0) {
       close_connection($conn);
       header("Location: index.php?different_passwords");
     }
@@ -100,18 +100,21 @@ if (isset($_POST["delete_account"])) {
     if (!$auth) {
       throw new Exception("incorrect_password_delete");
     }
-    // delete table for user's boxes
-    $sql = "DROP TABLE boxes_{$_SESSION['userID']}";
-    // Connection Error
-    if ($conn->query($sql) !== TRUE) {
-      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
-    }
+
     // delete user data from table users
     $sql = "DELETE FROM users WHERE userID = '{$_SESSION['userID']}'";
     // Connection Error
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
     }
+
+    // delete table for user's boxes
+    $sql = "DROP TABLE boxes_{$_SESSION['userID']}";
+    // Connection Error
+    if ($conn->query($sql) !== TRUE) {
+      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
+    }
+
     // delete sessions
     session_unset();
     session_destroy();
@@ -119,7 +122,7 @@ if (isset($_POST["delete_account"])) {
     close_connection($conn);
     header('Location: deleted_account.php');
   } catch (Exception $e) {
-    if(strcmp($e->getMessage(),"incorrect_password_delete") == 0 ) {
+    if (strcmp($e->getMessage(), "incorrect_password_delete") == 0) {
       close_connection($conn);
       header("Location: index.php?incorrect_password_delete");
     }
@@ -155,7 +158,7 @@ if (isset($_POST["contact_message"])) {
   // insert contact data
   $sql = "INSERT INTO contact (contactID, contact_name, contact_email, contact_message, userID) VALUES ('{$contactID}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["userID"]}');";
   // Connection Error
-  echo("M.toast({html: 'I am a toast'})");
+  echo ("M.toast({html: 'I am a toast'})");
   try {
     if ($conn->query($sql) !== TRUE) {
       throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
