@@ -10,6 +10,7 @@ class User
   protected $user_photo;
   private $user_password_hash;
   private $user_recovery_code;
+  private $user_is_admin;
 
   function __construct($general_conn, $session_user_id = NULL)
   {
@@ -56,7 +57,7 @@ class User
     $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
     password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
     '{$this->user_name}', '{$this->user_email}', 
-    '{$this->user_recovery_code}', '{$this->user_password_hash}', '{$this->user_is_admin}');";
+    '{$this->user_recovery_code}', '{$this->user_password_hash}', 0, '{$this->user_is_admin}');";
 
     if ($this->sql_query($this->conn, $sql) == false) {
       return false;
