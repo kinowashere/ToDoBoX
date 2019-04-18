@@ -13,55 +13,15 @@ $conn = open_connection();
 if (isset($_POST["noteInput"])) {
   $box_data_input = filter_var($_POST['noteInput'], FILTER_SANITIZE_STRING);
   $box_date_input = $_POST['date'];
-  $category = filter_var($_POST['category'], FILTER_SANITIZE_STRING);
+  $box_category_input = filter_var($_POST['category'], FILTER_SANITIZE_STRING);
 
-  if ($box_date_input == "") {
-    if ($category == "") {
-      // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData) VALUES (1,'" . $box_data_input . "');";
-
-      if ($conn->query($sql) === TRUE) {
-        $last_id = $conn->insert_id;
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    } else {
-      // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData, BoxCategory) VALUES (1,'" . $box_data_input . "','" . $category . "');";
-
-      if ($conn->query($sql) === TRUE) {
-        $last_id = $conn->insert_id;
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    }
-  } else {
-    if ($category == "") {
-
-      // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData, BoxDate) VALUES (1,'" . $box_data_input . "','" . $box_date_input . "')";
-
-      if ($conn->query($sql) === TRUE) {
-        $last_id = $conn->insert_id;
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    } else {
-      // Insert data
-      $sql = "INSERT INTO boxes_{$_SESSION['user_id']} (Valid, BoxData, BoxDate, BoxCategory) VALUES (1,'" . $box_data_input . "','" . $box_date_input . "','" . $category . "');";
-
-      if ($conn->query($sql) === TRUE) {
-        $last_id = $conn->insert_id;
-      } else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
-      }
-    }
+  if($box_date_input != '') {
+    
   }
-
-
 
   close_connection($conn);
   header("Location: index.php?create_box");
+
 } elseif (isset($_POST["boxIDArchive"])) {
   $boxID = $_POST["boxIDArchive"];
   $sql = "delete from boxes_{$_SESSION['user_id']} where BoxID='{$boxID}'";
