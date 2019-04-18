@@ -106,6 +106,16 @@ if (isset($_POST["noteInput"])) {
       echo "Error: " . $sql . "<br>" . $conn->error;
     }
   }
+  if (isset($_POST["editCategory"])) {
+    $boxCategory = $_POST["editCategory"];
+    $sql = "update boxes_{$_SESSION['userID']} set BoxCategory = '{$boxCategory}' where BoxID='{$boxID}'";
+
+    if ($conn->query($sql) === TRUE) {
+      $last_id = $conn->insert_id;
+    } else {
+      echo "Error: " . $sql . "<br>" . $conn->error;
+    }
+  }
   if (isset($_POST["unsetDate"])) {
     $sql = "update boxes_{$_SESSION['userID']} set BoxDate = NULL where BoxID='{$boxID}'";
 
