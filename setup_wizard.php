@@ -41,20 +41,20 @@
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="serverName" type="text" name="server_name">
-                    <label for="server">Server Name</label>
+                    <input id="server_name" type="text" name="server_name">
+                    <label for="server_name">Server Name</label>
                   </div>
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="serverUsername" type="text" class="validate" name="server_username" required>
-                    <label for="serverUsername">Server Username</label>
+                    <input id="server_username" type="text" class="validate" name="server_username" required>
+                    <label for="server_username">Server Username</label>
                   </div>
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">account_circle</i>
-                    <input id="serverPassword" type="password" name="server_password">
-                    <label for="serverPassword">Server Password</label>
+                    <input id="server_password" type="password" name="server_password">
+                    <label for="server_password">Server Password</label>
                   </div>
 
                   <br>
@@ -95,10 +95,6 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <?php
-  if (isset($_GET["hello"])) {
-    // Box has been deleted from database
-    echo ("Hello");
-  }
   ?>
 </body>
 

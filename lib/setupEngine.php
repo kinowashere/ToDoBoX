@@ -1,24 +1,33 @@
 <?php
+$servername = "localhost";
+$username = "testroot";
+$password = "";
+$dbname = "todoDB";
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
 if (isset($_POST['install'])) {
-  $servername = "localhost";
-  $username = "testroot";
-  $password = "";
-  $dbname = "todoDB";
-  $conn = new mysqli($servername, $username, $password, $dbname);
-    // Check connection
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
+  echo "Tere";
+  $text = "Anything";
+  $var_str = var_export($text, true);
+  $var = "<?php\n\n\$text = $var_str;\n\n?>";
+  file_put_contents('SQLdata.php', $var);
+}
+/*
 
   // create a php file to write. overwrites when it already exists.
   $myfile = fopen("lib/SQLdata.php", "w") or die("Unable to open file!");
   $data = '
   <?php
-  $server_name = \'{$_POST[\'server_name\']}\';
-  $server_username = \'{$_POST[\'server_username\']}\';
-  $server_password = \'{$_POST[\'server_password\']}\';
+  $server_name = $_POST[\'server_name\'];
+  $server_username = $_POST[\'server_username\'];
+  $server_password = $_POST[\'server_password\'];
   $dbname = \'todoDB\';
-  ?>';
+  ?>
+  ';
   // writes $data in $myfile
   $myfile = fwrite($myfile, $data);
 
@@ -72,6 +81,8 @@ if (isset($_POST['install'])) {
   } else {
     echo ('error');
   }
-  $conn -> close();
+
+$conn->close();
 }
-header(" Location: setup_wizard . php ? done ");
+header(" Location: setup_wizard.php?done");
+  */
