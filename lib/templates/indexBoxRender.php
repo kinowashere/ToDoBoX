@@ -3,17 +3,17 @@
 require_once 'vendor/autoload.php';
 $conn = open_connection();
 
-$sql = "select Valid, BoxData, BoxDate, BoxID, BoxCategory from boxes_{$_SESSION['userID']}";
+$sql = "SELECT valid, box_data, box_date, box_id, box_category FROM boxes_{$_SESSION['userID']}";
 $retval = mysqli_query($conn, $sql);
 
 $boxesArray = array();
 $counter = 0;
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-	$boxesArray[$counter]["Valid"] = $row["Valid"];
-	$boxesArray[$counter]["BoxData"] = $row["BoxData"];
-	$boxesArray[$counter]["BoxDate"] = $row["BoxDate"];
-	$boxesArray[$counter]["BoxID"] = $row["BoxID"];
-	$boxesArray[$counter]["BoxCategory"] = $row["BoxCategory"];
+	$boxesArray[$counter]['valid'] = $row['valid'];
+	$boxesArray[$counter]['box_data'] = $row['box_data'];
+	$boxesArray[$counter]['box_date'] = $row['box_date'];
+	$boxesArray[$counter]['box_id'] = $row['box_id'];
+	$boxesArray[$counter]['box_category'] = $row['box_category'];
 	$counter++;
 }
 

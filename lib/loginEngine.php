@@ -13,7 +13,7 @@ if (isset($_POST["email"]) and isset($_POST["password"])) {
   $password = $_POST["password"];
 
   //checks whether the email already exists
-  $sql = "select userID, name, email, password_hash from users where email = '{$email}'";
+  $sql = "select user_id, name, email, password_hash from users where email = '{$email}'";
   $retval = mysqli_query($conn, $sql);
   $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
@@ -24,7 +24,7 @@ if (isset($_POST["email"]) and isset($_POST["password"])) {
     if (!$auth) {
       throw new Exception("login_incorrect");
     }
-    $_SESSION['userID'] = $userInfo["userID"];
+    $_SESSION['user_id'] = $userInfo["user_id"];
     $_SESSION['name'] = $userInfo['name'];
     $_SESSION['email'] = $userInfo['email'];
   } catch (Exception $e) {

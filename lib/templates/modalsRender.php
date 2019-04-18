@@ -5,9 +5,9 @@ $conn = open_connection();
 
 // Retrieve SQL User Info
 
-$userID = $_SESSION["userID"];
+$user_id = $_SESSION["user_id"];
 $userInfo = array();
-$sql = "select userID, name, email, profile_photo from users where userID = '{$userID}'";
+$sql = "SELECT user_id, name, email, profile_photo FROM users WHERE user_id = '{$user_id}'";
 $retval = mysqli_query($conn, $sql);
 echo($conn->error);
 $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
@@ -31,7 +31,7 @@ $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
 echo $twig->render('modalsViews.html', array(
-	"userID" => $_SESSION["userID"],
+	"user_id" => $_SESSION["user_id"],
 	"name" => $userInfo['name'],
 	"email" => $userInfo['email'],
 	"profile_photo" => $userInfo['profile_photo'],

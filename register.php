@@ -11,6 +11,8 @@
 <body>
   <?php
   require "lib/SQLConnection.php";
+  require 'lib/user.php';
+  require 'lib/box.php';
   ?>
   <div class="container">
     <div class="row center">
