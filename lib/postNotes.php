@@ -11,7 +11,7 @@ $conn = open_connection();
 // Get data from POST
 
 if (isset($_POST["noteInput"])) {
-  $noteInput = $_POST['noteInput'];
+  $noteInput = filter_var($_POST['noteInput'], FILTER_SANITIZE_STRING);
   $date = $_POST['date'];
   $category = $_POST['category'];
 

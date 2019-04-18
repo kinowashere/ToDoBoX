@@ -1,6 +1,14 @@
 <?php
 if (isset($_POST['install'])) {
-  $conn = new mysqli();
+  $servername = "localhost";
+  $username = "testroot";
+  $password = "";
+  $dbname = "todoDB";
+  $conn = new mysqli($servername, $username, $password, $dbname);
+    // Check connection
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
 
   // create a php file to write. overwrites when it already exists.
   $myfile = fopen("lib/SQLdata.php", "w") or die("Unable to open file!");
@@ -63,8 +71,7 @@ if (isset($_POST['install'])) {
     echo ('works');
   } else {
     echo ('error');
-  };
+  }
+  $conn -> close();
 }
-
-close_connection($conn);
 header(" Location: setup_wizard . php ? done ");
