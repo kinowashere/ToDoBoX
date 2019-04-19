@@ -62,18 +62,23 @@ class User
     $this->user_recovery_code = $this->random_string(6);
     $this->user_is_admin = $new_user_is_admin;
     
-    $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
-    password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
-    '{$this->user_name}', '{$this->user_email}', 
-    '{$this->user_recovery_code}', '{$this->user_password_hash}', 0, {$this->user_is_admin});";
+    $sql = "INSERT INTO users (
+    user_id, name, email, recovery_code, 
+    password_hash, profile_photo, is_admin) 
+    VALUES (
+    '{$this->user_id}', '{$this->user_name}', '{$this->user_email}', 
+    '{$this->user_recovery_code}', '{$this->user_password_hash}', 
+    0, {$this->user_is_admin});";
     
     if ($this->sql_query($this->conn, $sql) == false) {
       return false;
     }
+
     $sql = "CREATE TABLE {$this->user_boxes_table} 
-           (box_id INT(11) NOT NULL AUTO_INCREMENT, valid INT(11), 
-           box_data VARCHAR(255), box_category VARCHAR(255), 
-           box_date DATE, PRIMARY KEY (box_id));";
+    (box_id INT(11) NOT NULL AUTO_INCREMENT, valid INT(11), 
+    box_data VARCHAR(255), box_category VARCHAR(255), 
+    box_date DATE, PRIMARY KEY (box_id));";
+    
     return $this->sql_query($this->conn, $sql);
   }
 
