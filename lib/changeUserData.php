@@ -126,7 +126,8 @@ if (isset($_POST["delete_account"])) {
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "incorrect_password_delete") == 0) {
       close_connection($conn);
-      header("Location: index.php?incorrect_password_delete");
+      header("Location: index.php?incorrect_password_del
+      eete");
     }
   }
 }
