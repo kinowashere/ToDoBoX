@@ -1,11 +1,4 @@
 <?php
-
-function random_string($length)
-{
-  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  return substr(str_shuffle($chars), 0, $length);
-}
-
 if (isset($_POST['install'])) {
 
   // Initial connection to SQL
@@ -23,7 +16,7 @@ if (isset($_POST['install'])) {
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   if (!$conn->connect_error) {
-    $conn -> close();
+    $conn->close();
     header("Location: setup_wizard.php?database_exists");
   }
 
@@ -40,8 +33,8 @@ if (isset($_POST['install'])) {
   $var_server_name = var_export($server_name, true);
   $var_server_username = var_export($server_username, true);
   $var_server_password = var_export($server_password, true);
-  $var = 
-  "<?php
+  $var =
+    "<?php
     \$server_name = $var_server_name;
     \$server_username = $var_server_username;
     \$server_password = $var_server_password;
@@ -58,7 +51,7 @@ if (isset($_POST['install'])) {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
-  $conn -> close();
+  $conn->close();
 
   // New connection with DB selected
 
@@ -118,18 +111,16 @@ if (isset($_POST['install'])) {
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $user_id = random_string(50);
-    $recovery_code = random_string(6);
 
     $user = new User($conn);
-    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, '0');
+    $user->user_register($name, $email, $password_hash, '0');
 
     // Jump to index
-    $conn -> close();
-    echo('Success!');
+    $conn->close();
+    echo ('Success!');
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: setup_wizard.php?wrong_captcha");
     }
   }
