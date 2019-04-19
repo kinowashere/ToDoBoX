@@ -32,8 +32,8 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);
-    $user_id = $user->user_get_user_id();
     $user->user_register($name, $email, $password_hash);
+    $user_id = $user->user_get_user_id();
 
     // Create Starter / Tutorial Boxes
 
