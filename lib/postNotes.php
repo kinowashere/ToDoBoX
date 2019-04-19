@@ -54,7 +54,7 @@ elseif (isset($_POST["boxIDArchive"])) {
   unset($box);
   
   close_connection($conn);
-  header("Location: archive.php?delete_box");
+  header("Location: index.php?archive&delete_box");
 } 
 
 // Archive a Box
@@ -125,7 +125,7 @@ elseif (isset($_POST["boxIDArchiveRestore"])) {
 
   unset($box);
   close_connection($conn);
-  header("Location: archive.php?archive_restore");
+  header("Location: index.php?archive&archive_restore");
 }
 
 close_connection($conn);

@@ -10,15 +10,25 @@ if(isset($_GET['category'])) {
   $user_id = $_SESSION['user_id'];
   $sql = "SELECT valid, box_data, box_date, box_id, box_category 
   FROM boxes_{$user_id} 
-  WHERE box_category = '{$category}'";
+  WHERE box_category = '{$category}';";
 }
 
-// If there was no categorie for query
+// If we're looking for the Archive
+
+elseif(isset($_GET['archive'])) {
+  $user_id = $_SESSION['user_id'];
+  $sql = "SELECT valid, box_data, box_date, box_id, box_category 
+  FROM boxes_{$user_id} 
+  WHERE valid = 0;";
+}
+
+// If we're just looking for current ones
+// No query (GET)
 
 else {
   $user_id = $_SESSION['user_id'];
   $sql = "SELECT valid, box_data, box_date, box_id, box_category 
-  FROM boxes_{$_SESSION['user_id']}";
+  FROM boxes_{$_SESSION['user_id']};";
 }
 
 $retval = mysqli_query($conn, $sql);
@@ -38,7 +48,13 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
-echo $twig->render('indexBoxViews.html', array(
+if(isset($_GET['archive'])) {
+  $views = 'archive_box_views.html';
+} else {
+  $views = 'current_box_views.html';
+}
+
+echo $twig->render($views, array(
  'tasks' => $boxesArray
 )
 );
