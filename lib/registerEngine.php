@@ -33,7 +33,8 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $profile_photo = 0;
 
     $user = new User($conn);
-    $user->user_register($name, $email, $password_hash, '0');
+    $user->user_register($name, $email, $password_hash, 0);
+    $user_id = $user -> user_get_user_id();
 
     // Create Starter / Tutorial Boxes
 
