@@ -62,7 +62,7 @@ if (isset($_POST['new_email'])) {
   }
 }
 // Change password
-if (isset($_POST["new_password"]) and isset($_POST["confirm_password"])) {
+if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
   $new_password = filter_var($_POST['new_password'], FILTER_SANITIZE_STRING);
   $confirm_password = filter_var($_POST['confirm_password'], FILTER_SANITIZE_STRING);
   try {
@@ -99,35 +99,24 @@ if (isset($_POST['new_profile_photo'])) {
   header("Location: index.php");
 }
 
+// Delete account
 if (isset($_POST["delete_account"])) {
-  $delete_account = $_POST["delete_account"];
-  //checks whether the email already exists
-  $sql = "select password_hash from users where user_id = '{$_SESSION["user_id"]}'";
+  $delete_account = filter_var($_POST['delete_account'], FILTER_SANITIZE_STRING);
+  // Checks if password is correct
+  $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = array();
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+
+
   // returns true if typed password and stored password are the same
   $auth = password_verify($delete_account, $userInfo["password_hash"]);
   try {
-    // Incorrect Password
+    // Checks if password is correct
     if (!$auth) {
       throw new Exception("incorrect_password_delete");
     }
-
-    // delete user data from table users
-    $sql = "DELETE FROM users WHERE user_id = '{$_SESSION['user_id']}'";
-    // Connection Error
-    if ($conn->query($sql) !== TRUE) {
-      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
-    }
-
-    // delete table for user's boxes
-    $sql = "DROP TABLE boxes_{$_SESSION['user_id']}";
-    // Connection Error
-    if ($conn->query($sql) !== TRUE) {
-      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
-    }
-
+    $user = new User($conn, $_SESSION['user_id']);
+    $user->user_delete($_SESSION['user_id']);
     // delete sessions
     session_unset();
     session_destroy();

@@ -59,7 +59,6 @@ class User
     password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
     '{$this->user_name}', '{$this->user_email}', 
     '{$this->user_recovery_code}', '{$this->user_password_hash}', 0, '{$this->user_is_admin}');";
-
     if ($this->sql_query($this->conn, $sql) == false) {
       return false;
     }
@@ -91,7 +90,7 @@ class User
 
   // Functions to set values
 
-  // Sets the user name in the database
+  // Set newname
   public function user_set_name($new_user_name)
   {
     $this->user_name = $new_user_name;
@@ -99,7 +98,7 @@ class User
     return $this->sql_query($this->conn, $sql);
   }
 
-  // Sets the email of the user in the database
+  // Set new email
   public function user_set_email($new_user_email)
   {
     $this->user_email = $new_user_email;
@@ -107,7 +106,7 @@ class User
     return $this->sql_query($this->conn, $sql);
   }
 
-  // Sets the email of the user in the database
+  // Set new password
   public function user_set_password($new_user_password)
   {
     $this->user_password = $new_user_password;
@@ -115,11 +114,22 @@ class User
     return $this->sql_query($this->conn, $sql);
   }
 
-  // Sets the photo of the user in the database
+  // Set new profile photo
   public function user_set_photo($new_user_photo)
   {
     $this->user_photo = $new_user_photo;
     $sql = "UPDATE users SET profile_photo = '{$this->user_photo}' WHERE user_id = '{$this->user_id}';";
+    return $this->sql_query($this->conn, $sql);
+  }
+
+  // delete account and box
+  public function user_delete($user_id)
+  {
+    $sql = "DELETE FROM users WHERE user_id = '{$this->user_id}';";
+    if ($this->sql_query($this->conn, $sql) == false) {
+      return false;
+    }
+    $sql = "DROP TABLE boxes_{$this->user_id};";
     return $this->sql_query($this->conn, $sql);
   }
 }
