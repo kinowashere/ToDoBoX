@@ -21,7 +21,7 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
 
     // If the email already exists
     if ($userInfo["email"] == $email_check) {
-      throw new Exception("register_email_exists"); // email already exists
+      throw new Exception("register_email_exists");
     }
 
     // wrong captcha
@@ -76,7 +76,7 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     unset($box);
 
     // Create the Session
-    $_SESSION['userID'] = $userID;
+    $_SESSION['user_id'] = $user_id;
     $_SESSION["recovery_active"] = 1;
 
     // Jump to index

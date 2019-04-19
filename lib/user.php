@@ -7,6 +7,7 @@ class User
   protected $user_boxes_table;
   protected $user_name;
   protected $user_email;
+  protected $user_password;
   protected $user_photo;
   private $user_password_hash;
   private $user_recovery_code;
@@ -94,7 +95,7 @@ class User
   public function user_set_name($new_user_name)
   {
     $this->user_name = $new_user_name;
-    $sql = "UPDATE users SET name = '{$this->user_name}' WHERE userID = '{$this->user_id}';";
+    $sql = "UPDATE users SET name = '{$this->user_name}' WHERE user_id = '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
   }
 
@@ -102,7 +103,15 @@ class User
   public function user_set_email($new_user_email)
   {
     $this->user_email = $new_user_email;
-    $sql = "UPDATE users SET email = '{$this->user_email}' WHERE userID = '{$this->user_id}';";
+    $sql = "UPDATE users SET email = '{$this->user_email}' WHERE user_id = '{$this->user_id}';";
+    return $this->sql_query($this->conn, $sql);
+  }
+
+  // Sets the email of the user in the database
+  public function user_set_password($new_user_password)
+  {
+    $this->user_password = $new_user_password;
+    $sql = "UPDATE users SET password_hash = '{$this->user_password}' WHERE user_id = '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
   }
 
@@ -110,7 +119,7 @@ class User
   public function user_set_photo($new_user_photo)
   {
     $this->user_photo = $new_user_photo;
-    $sql = "UPDATE users SET profile_photo = '{$this->user_photo}' WHERE userID = '{$this->user_id}';";
+    $sql = "UPDATE users SET profile_photo = '{$this->user_photo}' WHERE user_id = '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
   }
 }

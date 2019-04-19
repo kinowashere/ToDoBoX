@@ -4,8 +4,8 @@ require_once 'vendor/autoload.php';
 
 if(isset($_SESSION["recovery_active"]) and $_SESSION["recovery_active"] == 1) {
   $conn = open_connection();
-  $userID = $_SESSION["userID"];
-  $sql = "select recovery_code from users where userID = '{$userID}'";
+  $user_id = $_SESSION["user_id"];
+  $sql = "select recovery_code from users where user_id = '{$user_id}'";
   $retval = mysqli_query($conn, $sql);
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
   $_SESSION["recovery_active"] = 0;
@@ -20,4 +20,3 @@ if(isset($_SESSION["recovery_active"]) and $_SESSION["recovery_active"] == 1) {
 } else {
   header("location: index.php");
 }
-?>
