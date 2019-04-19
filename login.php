@@ -10,7 +10,7 @@
 
 <body>
   <?php
-  require "lib/SQLConnection.php";
+  require "lib/sql_data.php";
   ?>
   <div class="container">
     <div class="row center">
