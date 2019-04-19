@@ -3,12 +3,6 @@ session_start();
 
 $conn = open_connection();
 
-function random_string($length)
-{
-  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  return substr(str_shuffle($chars), 0, $length);
-}
-
 if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'])) {
   $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
@@ -36,12 +30,10 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $user_id = random_string(50);
     $profile_photo = 0;
-    $recovery_code = random_string(6);
 
     $user = new User($conn);
-    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, '0');
+    $user->user_register($name, $email, $password_hash, '0');
 
     // Create Starter / Tutorial Boxes
 
