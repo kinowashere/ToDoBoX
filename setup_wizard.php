@@ -10,8 +10,11 @@
 
 <body>
   <?php
-  require "lib/setupEngine.php";
-  require "lib/user.php";
+  require 'lib/sql_data.php';
+  require 'lib/user.php';
+  require 'lib/box.php';
+  require 'lib/setup_install_engine.php';
+  require 'lib/setup_update_engine.php';
   ?>
   <div class="container">
     <div class="row center">

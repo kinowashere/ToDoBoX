@@ -7,49 +7,71 @@ function random_string($length)
 }
 
 if (isset($_POST['install'])) {
+
+  // Initial connection to SQL
+  // This is done to create the database
+  // Then a full connection with database is done
+
   $server_name = $_POST['server_name'];
   $server_username = $_POST['server_username'];
   $server_password = $_POST['server_password'];
+  $db_name = 'todoDB';
 
-  // saves server name, username, password, dbname in a PHP file
-  $var_server_name = var_export($server_name, true);
-  $var_server_username = var_export($server_username, true);
-  $var_server_password = var_export($server_password, true);
-  $var = "<?php
-    \$server_name = $var_server_name;
-    \$server_username = $var_server_username;
-    \$server_password = $var_server_password;
-    \$dbname = 'todoDB';
-    ?>";
-  file_put_contents('lib/SQLdata.php', $var);
-  // imports database data
-  require 'lib/SQLdata.php';
+  // Test if database exists
+  // If it exists, install cannot be done
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
+  if (!$conn->connect_error) {
+    $conn -> close();
+    header("Location: setup_wizard.php?database_exists");
+  }
+
+  // Perform the initial connection if the test is passed
 
   $conn = new mysqli($server_name, $server_username, $server_password);
-  // checks connection
+
   if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  //creates a DB
-  $sql = "CREATE DATABASE IF NOT EXISTS {$dbname};";
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
+  // Saves all server info to a PHP file
+
+  $var_server_name = var_export($server_name, true);
+  $var_server_username = var_export($server_username, true);
+  $var_server_password = var_export($server_password, true);
+  $var = 
+  "<?php
+    \$server_name = $var_server_name;
+    \$server_username = $var_server_username;
+    \$server_password = $var_server_password;
+    \$db_name = 'todoDB';
+  ?>";
+
+  file_put_contents('lib/sql_data.php', $var);
+
+  // Creates the DB and closes old connection
+
+  $sql = "CREATE DATABASE IF NOT EXISTS {$db_name};";
+
+  if ($conn->query($sql) != true) {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
-  //select a DB
-  $sql = "USE todoDB;";
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+  $conn -> close();
+
+  // New connection with DB selected
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
   }
 
-  // creates table users
-  $sql = "CREATE TABLE IF NOT EXISTS users
-  (user_id VARCHAR(100) NOT NULL,
+  // Creates table users
+
+  $sql = "CREATE TABLE IF NOT EXISTS users (
+  user_id VARCHAR(100) NOT NULL,
   name VARCHAR(100) NOT NULL, 
   email VARCHAR(100) NOT NULL, 
   password_hash VARCHAR(100) NOT NULL, 
@@ -57,24 +79,22 @@ if (isset($_POST['install'])) {
   recovery_code VARCHAR(10) NOT NULL, 
   is_admin TINYINT(1) NOT NULL DEFAULT '0',
   PRIMARY KEY(user_id));";
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
+
+  if ($conn->query($sql) != true) {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
-  // create table Contact
-  $sql = "CREATE TABLE IF NOT EXISTS contact
-  (
+  // Creates table contacts
+
+  $sql = "CREATE TABLE IF NOT EXISTS contact (
   user_id VARCHAR(100) NOT NULL,
   contact_id VARCHAR(100) NOT NULL,
   contact_name VARCHAR(100) NOT NULL, 
   contact_email VARCHAR(100) NOT NULL, 
   contact_message VARCHAR(100) NOT NULL, 
   PRIMARY KEY(contact_id));";
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
+
+  if ($conn->query($sql) != true) {
     echo "Error: " . $sql . "<br>" . $conn->error;
   }
 
@@ -86,22 +106,12 @@ if (isset($_POST['install'])) {
 
   try {
 
-    echo ("1");
-    // If the email already exists
-    if ($userInfo["email"] == $email_check) {
-      throw new Exception("register_email_exists"); // email already exists
-    }
-
-    echo ("2");
-
-    // wrong captcha
+    // Test CAPTCHA
     require 'securimage/securimage.php';
     $securimage = new Securimage();
     if ($securimage->check($_POST['captcha_code']) == false) {
-      throw new Exception("wrong_captcha"); // wrong captcha
+      throw new Exception("wrong_captcha");
     }
-
-    echo ("3");
 
     // Insert user data
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
@@ -110,25 +120,17 @@ if (isset($_POST['install'])) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $user_id = random_string(50);
     $recovery_code = random_string(6);
-    echo ("4");
+
     $user = new User($conn);
-    echo ("5");
     $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, '0');
-    echo ("6");
 
     // Jump to index
-    close_connection($conn);
-    header('Location: recovery_code.php');
+    $conn -> close();
+    echo('Success!');
   } catch (Exception $e) {
-    if (strcmp($e->getMessage(), "register_email_exists") == 0) {
-      close_connection($conn);
-      // header("Location: register.php?register_email_exists");
-    }
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      close_connection($conn);
-      // header("Location: register.php?wrong_captcha");
+      $conn -> close();
+      header("Location: setup_wizard.php?wrong_captcha");
     }
   }
 }
-
-$conn->close();
