@@ -65,6 +65,7 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $box = new Box($user_id, $conn);
     $box->box_set_data("Delete a box with the delete mark.");
     $box->box_set_category("Tutorial");
+    $box->box_archive();
     unset($box);
 
     // Create the Session

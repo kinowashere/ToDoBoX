@@ -4,7 +4,6 @@ require_once 'vendor/autoload.php';
 
 if(isset($_SESSION["recovery_active"]) and $_SESSION["recovery_active"] == 1) {
   $conn = open_connection();
-  print_r($_SESSION);
   $user_id = $_SESSION['user_id'];
   $sql = "select recovery_code from users where user_id = '{$user_id}'";
   $retval = mysqli_query($conn, $sql);
