@@ -92,10 +92,6 @@ class User
 
   // Get values from the class
 
-  public function user_get_user_id()
-  {
-    return ($this->user_id);
-  }
   public function user_get_name()
   {
     return ($this->user_name);
