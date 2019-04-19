@@ -17,19 +17,13 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 	$counter++;
 }
 
-// Check Due Dates (tomorrow, today, overdue)
-
-$today = new DateTime();
-
 // Twig Engine
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
-echo $twig->render(
-	'indexBoxViews.html',
-	array(
-		'tasks' => $boxesArray
-	)
+echo $twig->render('indexBoxViews.html', array(
+	'tasks' => $boxesArray
+)
 );
 
 close_connection($conn);

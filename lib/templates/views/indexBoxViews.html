@@ -9,24 +9,24 @@
 		<div class="col s12 m3">
 			<!-- notice for OVERDUE, TODAY, TOMORROW-->
 			{% if box.box_date %}
-				{% if 'now'|date('Y-m-d') > box.box_date %}
-					<a class="btn red">
-						OVERDUE
-					</a>
-				{% elseif 'now'|date('Y-m-d') == box.box_date %}
-					<a class="btn orange">
-						TODAY
-					</a>
-				{% elseif 'now'|date_modify("+1 day")|date('Y-m-d') == box.box_date %}
-					<a class="btn green">
-						TOMORROW
-					</a>
-				{% else %}
-					<div style="padding:18px;"></div>
-				{% endif %}
+			{% if 'now'|date('Y-m-d') > box.box_date %}
+			<a class="btn red">
+				OVERDUE
+			</a>
+			{% elseif 'now'|date('Y-m-d') == box.box_date %}
+			<a class="btn orange">
+				TODAY
+			</a>
+			{% elseif 'now'|date_modify("+1 day")|date('Y-m-d') == box.box_date %}
+			<a class="btn green">
+				TOMORROW
+			</a>
 			{% else %}
-				<div style="padding:18px;"></div>
-				
+			<div style="padding:18px;"></div>
+			{% endif %}
+			{% else %}
+			<div style="padding:18px;"></div>
+
 			{% endif %}
 			<div class="box z-depth-1">
 				<p class="boxContent">
@@ -50,15 +50,12 @@
 				</a>
 			</div>
 
-				<a class="btn-floating btn-flat waves-effect waves-light right">
-					<i class="material-icons grey-text">arrow_forward</i>
-				</a>
-					<a class="btn-floating btn-flat waves-effect waves-light right">
-						<i class="material-icons grey-text">arrow_back</i>
-					</a>
-
-
-
+			<a class="btn-floating btn-flat waves-effect waves-light right">
+				<i class="material-icons grey-text">arrow_forward</i>
+			</a>
+			<a class="btn-floating btn-flat waves-effect waves-light right">
+				<i class="material-icons grey-text">arrow_back</i>
+			</a>
 		</div>
 		{% endif %}
 		{% endfor %}
