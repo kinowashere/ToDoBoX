@@ -1,5 +1,4 @@
 <?php
-
 class User
 {
   public $user_id;
@@ -33,6 +32,13 @@ class User
     }
   }
 
+  // Generate random string
+  function random_string($length)
+  {
+    $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    return substr(str_shuffle($chars), 0, $length);
+  }
+
   // SQL Check
 
   public function sql_query($conn, $sql)
@@ -46,14 +52,14 @@ class User
 
   // Register the user
 
-  public function user_register($new_user_id, $new_user_name, $new_user_email, $new_user_password_hash, $new_user_recovery_code, $new_user_is_admin)
+  public function user_register($new_user_name, $new_user_email, $new_user_password_hash, $new_user_is_admin)
   {
-    $this->user_id = $new_user_id;
+    $this->user_id = $this->random_string(50);
     $this->user_boxes_table = 'boxes_' . $this->user_id;
     $this->user_name = $new_user_name;
     $this->user_email = $new_user_email;
     $this->user_password_hash = $new_user_password_hash;
-    $this->user_recovery_code = $new_user_recovery_code;
+    $this->user_recovery_code = $this->random_string(6);
     $this->user_is_admin = $new_user_is_admin;
     $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
     password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
@@ -122,7 +128,7 @@ class User
     return $this->sql_query($this->conn, $sql);
   }
 
-  // delete account and box
+  // Delete account and box
   public function user_delete($user_id)
   {
     $sql = "DELETE FROM users WHERE user_id = '{$this->user_id}';";
@@ -130,6 +136,14 @@ class User
       return false;
     }
     $sql = "DROP TABLE boxes_{$this->user_id};";
+    return $this->sql_query($this->conn, $sql);
+  }
+
+  // Send contact
+  public function send_contact($contact_message)
+  {
+    $contact_id = $this->random_string(50);
+    $sql = "INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, user_id) VALUES ('{$contact_id}', '{$this->user_name}', '{$this->user_email}', '{$contact_message}', '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
   }
 }

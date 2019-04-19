@@ -2,12 +2,6 @@
 require "openSession.php";
 $conn = open_connection();
 
-function randomString($length)
-{
-  $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-  return substr(str_shuffle($chars), 0, $length);
-}
-
 // POST
 
 // Change name
@@ -126,34 +120,16 @@ if (isset($_POST["delete_account"])) {
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "incorrect_password_delete") == 0) {
       close_connection($conn);
-      header("Location: index.php?incorrect_password_del
-      eete");
+      header("Location: index.php?incorrect_password_delete");
     }
   }
 }
 
-if (isset($_POST["contact_message"])) {
-  $user_id = $_SESSION["user_id"];
-  $sql = "select name, email from users where user_id = '{$user_id}'";
-  $retval = mysqli_query($conn, $sql);
-  $userInfo = array();
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
-
-  $contact_id = randomString(50);
-  $contact_name = $userInfo["name"];
-  $contact_email = $userInfo["email"];
-  $contact_message = $_POST["contact_message"];
-  // insert contact data
-  $sql = "INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, user_id) VALUES ('{$contact_id}', '{$contact_name}', '{$contact_email}', '{$contact_message}', '{$_SESSION["user_id"]}');";
-  // Connection Error
-  echo ("M.toast({html: 'I am a toast'})");
-  try {
-    if ($conn->query($sql) !== TRUE) {
-      throw new Exception('<p style="color:red">Error:' . $sql . "<br>" . $conn->error . '</p>');
-    }
-  } catch (Exception $e) {
-    echo $e->getMessage();
-  }
+if (isset($_POST['contact_message'])) {
+  $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
+  $user = new User($conn, $_SESSION['user_id']);
+  echo ($user->send_contact($contact_message));
+  unset($user);
   close_connection($conn);
   header("Location: index.php?email_success=1");
 }
