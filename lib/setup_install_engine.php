@@ -120,7 +120,6 @@ if (isset($_POST['install'])) {
 
     // Jump to admin_panel
     $conn->close();
-    header("Location: admin_panel.php");
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
       $conn->close();
