@@ -30,10 +30,10 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $profile_photo = 0;
 
     $user = new User($conn);
-    $user->user_register($name, $email, $password_hash, '0');
+    $user_id = $user->user_get_user_id();
+    $user->user_register($name, $email, $password_hash);
 
     // Create Starter / Tutorial Boxes
 
@@ -72,7 +72,6 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $_SESSION["recovery_active"] = 1;
 
     // Jump to index
-
     close_connection($conn);
     header('Location: recovery_code.php');
   } catch (Exception $e) {

@@ -40,7 +40,6 @@ class User
   }
 
   // SQL Check
-
   public function sql_query($conn, $sql)
   {
     if ($conn->query($sql)) {
@@ -50,9 +49,8 @@ class User
     }
   }
 
-  // Register the user
-
-  public function user_register($new_user_name, $new_user_email, $new_user_password_hash, $new_user_is_admin)
+  // Register user
+  public function user_register($new_user_name, $new_user_email, $new_user_password_hash)
   {
     $this->user_id = $this->random_string(50);
     $this->user_boxes_table = 'boxes_' . $this->user_id;
@@ -60,11 +58,10 @@ class User
     $this->user_email = $new_user_email;
     $this->user_password_hash = $new_user_password_hash;
     $this->user_recovery_code = $this->random_string(6);
-    $this->user_is_admin = $new_user_is_admin;
     $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
     password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
     '{$this->user_name}', '{$this->user_email}', 
-    '{$this->user_recovery_code}', '{$this->user_password_hash}', 0, '{$this->user_is_admin}');";
+    '{$this->user_recovery_code}', '{$this->user_password_hash}', '0', '0');";
     if ($this->sql_query($this->conn, $sql) == false) {
       return false;
     }
@@ -75,8 +72,28 @@ class User
     return $this->sql_query($this->conn, $sql);
   }
 
+  // Register admin
+  public function admin_register($new_user_name, $new_user_email, $new_user_password_hash)
+  {
+    $this->user_id = $this->random_string(50);
+    $this->user_boxes_table = 'boxes_' . $this->user_id;
+    $this->user_name = $new_user_name;
+    $this->user_email = $new_user_email;
+    $this->user_password_hash = $new_user_password_hash;
+    $this->user_recovery_code = $this->random_string(6);
+    $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
+    password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
+    '{$this->user_name}', '{$this->user_email}', 
+    '{$this->user_recovery_code}', '{$this->user_password_hash}', '0', '1');";
+    return $this->sql_query($this->conn, $sql);
+  }
+
   // Get values from the class
 
+  public function user_get_user_id()
+  {
+    return ($this->user_id);
+  }
   public function user_get_name()
   {
     return ($this->user_name);
@@ -113,9 +130,17 @@ class User
   }
 
   // Set new password
-  public function user_set_password($new_user_password)
+  public function user_set_password($new_user_password_hash)
   {
-    $this->user_password = $new_user_password;
+    $this->user_password = $new_user_password_hash;
+    $sql = "UPDATE users SET password_hash = '{$this->user_password}' WHERE user_id = '{$this->user_id}';";
+    return $this->sql_query($this->conn, $sql);
+  }
+
+  // Recover password
+  public function user_recover_password()
+  {
+    $this->user_password = password_hash($this->random_string(8), PASSWORD_DEFAULT);
     $sql = "UPDATE users SET password_hash = '{$this->user_password}' WHERE user_id = '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
   }

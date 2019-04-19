@@ -113,11 +113,14 @@ if (isset($_POST['install'])) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);
-    $user->user_register($name, $email, $password_hash, '1');
+    $user->admin_register($name, $email, $password_hash);
 
-    // Jump to index
+    // Create the Session
+    $_SESSION['user_id'] = $user->user_get_user_id();
+
+    // Jump to admin_panel
     $conn->close();
-    echo ('Success!');
+    header("Location: admin_panel.php");
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
       $conn->close();
