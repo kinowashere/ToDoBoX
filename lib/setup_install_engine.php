@@ -113,7 +113,7 @@ if (isset($_POST['install'])) {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);
-    $user->user_register($name, $email, $password_hash, '0');
+    $user->user_register($name, $email, $password_hash, '1');
 
     // Jump to index
     $conn->close();
