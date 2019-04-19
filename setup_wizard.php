@@ -94,7 +94,11 @@
             </div>
 
             <div id="updateTables" class="col s12">
-
+              <form method="post" action="setup_wizard.php">
+                <button type="submit" name="update" class="btn-large waves-effect blue">
+                    <i class="material-icons left">check</i>Update tables
+                  </button>
+              </form>
             </div>
 
           </div>

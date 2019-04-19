@@ -117,7 +117,7 @@ if (isset($_POST['install'])) {
 
     // Jump to index
     $conn->close();
-    echo ('Success!');
+    header("Location: setup_wizard.php?install_success");
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
       $conn->close();
