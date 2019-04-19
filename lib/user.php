@@ -50,7 +50,7 @@ class User
   }
 
   // Register user
-  public function user_register($new_user_name, $new_user_email, $new_user_password_hash)
+  public function user_register($new_user_name, $new_user_email, $new_user_password_hash, $user_is_admin = '0')
   {
     $this->user_id = $this->random_string(50);
     $this->user_boxes_table = 'boxes_' . $this->user_id;
@@ -58,10 +58,11 @@ class User
     $this->user_email = $new_user_email;
     $this->user_password_hash = $new_user_password_hash;
     $this->user_recovery_code = $this->random_string(6);
+    $this->user_is_admin = $user_is_admin;
     $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
     password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
     '{$this->user_name}', '{$this->user_email}', 
-    '{$this->user_recovery_code}', '{$this->user_password_hash}', '0', '0');";
+    '{$this->user_recovery_code}', '{$this->user_password_hash}', '0', {$this->user_is_admin});";
     if ($this->sql_query($this->conn, $sql) == false) {
       return false;
     }
@@ -71,22 +72,6 @@ class User
     box_data VARCHAR(255), box_category VARCHAR(255), 
     box_date DATE, PRIMARY KEY (box_id));";
 
-    return $this->sql_query($this->conn, $sql);
-  }
-
-  // Register admin
-  public function admin_register($new_user_name, $new_user_email, $new_user_password_hash)
-  {
-    $this->user_id = $this->random_string(50);
-    $this->user_boxes_table = 'boxes_' . $this->user_id;
-    $this->user_name = $new_user_name;
-    $this->user_email = $new_user_email;
-    $this->user_password_hash = $new_user_password_hash;
-    $this->user_recovery_code = $this->random_string(6);
-    $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
-    password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
-    '{$this->user_name}', '{$this->user_email}', 
-    '{$this->user_recovery_code}', '{$this->user_password_hash}', '0', '1');";
     return $this->sql_query($this->conn, $sql);
   }
 
