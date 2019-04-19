@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-$conn = open_connection();
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // If there is a category to be queried from
 
@@ -59,4 +59,4 @@ echo $twig->render($views, array(
 )
 );
 
-close_connection($conn);
+$conn -> close();

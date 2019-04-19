@@ -1,6 +1,6 @@
 <?php
 require "openSession.php";
-$conn = open_connection();
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // POST
 
@@ -14,11 +14,11 @@ if (isset($_POST['new_name'])) {
     }
     $user = new User($conn, $_SESSION['user_id']);
     $user->user_set_name($new_name);
-    close_connection($conn);
+    $conn -> close();
     header("Location: index.php?update_name");
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "empty_name") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: index.php?empty_name");
     }
   }
@@ -43,14 +43,14 @@ if (isset($_POST['new_email'])) {
     }
     $user = new User($conn, $_SESSION['user_id']);
     $user->user_set_email($new_email);
-    close_connection($conn);
+    $conn -> close();
     header("Location: index.php?update_email");
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "empty_email") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: index.php?empty_email");
     } elseif (strcmp($e->getMessage(), "email_already_exists") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: index.php?email_already_exists");
     }
   }
@@ -71,14 +71,14 @@ if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
     $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
     $user = new User($conn, $_SESSION['user_id']);
     $user->user_set_password($new_password_hash);
-    close_connection($conn);
+    $conn -> close();
     header("Location: index.php?updated_password");
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "password_too_short") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: index.php?password_too_short");
     } elseif (strcmp($e->getMessage(), "different_passwords") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: index.php?different_passwords");
     }
   }
@@ -89,7 +89,7 @@ if (isset($_POST['new_profile_photo'])) {
   $new_profile_photo = filter_var($_POST['new_profile_photo'], FILTER_SANITIZE_NUMBER_INT);
   $user = new User($conn, $_SESSION['user_id']);
   $user->user_set_photo($new_profile_photo);
-  close_connection($conn);
+  $conn -> close();
   header("Location: index.php");
 }
 
@@ -115,11 +115,11 @@ if (isset($_POST["delete_account"])) {
     session_unset();
     session_destroy();
     // redirect to login.php
-    close_connection($conn);
+    $conn -> close();
     header('Location: deleted_account.php');
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "incorrect_password_delete") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: index.php?incorrect_password_delete");
     }
   }
@@ -130,6 +130,6 @@ if (isset($_POST['contact_message'])) {
   $user = new User($conn, $_SESSION['user_id']);
   echo ($user->send_contact($contact_message));
   unset($user);
-  close_connection($conn);
+  $conn -> close();
   header("Location: index.php?email_success=1");
 }

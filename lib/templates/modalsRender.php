@@ -1,7 +1,7 @@
 <?php
 
 require_once 'vendor/autoload.php';
-$conn = open_connection();
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // Retrieve SQL User Info
 
@@ -53,4 +53,4 @@ echo $twig->render('modalsViews.html', array(
   'categories' => $categories_array
 ));
 
-close_connection($conn);
+$conn -> close();
