@@ -65,10 +65,12 @@ class User
     if ($this->sql_query($this->conn, $sql) == false) {
       return false;
     }
+
     $sql = "CREATE TABLE {$this->user_boxes_table} 
-           (box_id INT(11) NOT NULL AUTO_INCREMENT, valid INT(11), 
-           box_data VARCHAR(255), box_category VARCHAR(255), 
-           box_date DATE, PRIMARY KEY (box_id));";
+    (box_id INT(11) NOT NULL AUTO_INCREMENT, valid INT(11), 
+    box_data VARCHAR(255), box_category VARCHAR(255), 
+    box_date DATE, PRIMARY KEY (box_id));";
+
     return $this->sql_query($this->conn, $sql);
   }
 
@@ -109,6 +111,10 @@ class User
   public function user_get_photo()
   {
     return ($this->user_photo);
+  }
+  public function user_get_user_id()
+  {
+    return ($this->user_id);
   }
 
   // Functions to set values

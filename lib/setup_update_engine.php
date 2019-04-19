@@ -6,25 +6,9 @@
 
 function table_column_updater($conn, $table, $column_name, $column_datatype, $extra_info = "") {
 
-  // Create the empty table if it doesn't exist
-
-  $sql = "CREATE TABLE IF NOT EXISTS {$table} ();";
-  if ($conn->query($sql) != true) {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    return false;
-  }
-
   // Add column if it doesn't exist
 
-  $sql = "ALTER TABLE {$table} ADD COLUMN IF NOT EXISTS {$column_name};";
-  if ($conn->query($sql) != true) {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-    return false;
-  }
-
-  // Add the datatype and extra info
-
-  $sql = "ALTER TABLE {$table} MODIFY COLUMN {$column_name} {$column_datatype} {$extra_info};";
+  $sql = "ALTER TABLE {$table} ADD COLUMN {$column_name} {$column_datatype} {$extra_info};";
   if ($conn->query($sql) != true) {
     echo "Error: " . $sql . "<br>" . $conn->error;
     return false;
@@ -32,6 +16,8 @@ function table_column_updater($conn, $table, $column_name, $column_datatype, $ex
 
   return true;
 }
+
+// If the POST is update
 
 if (isset($_POST['update'])) {
 
@@ -47,6 +33,10 @@ if (isset($_POST['update'])) {
 
   // Updates table users
 
+  $sql = "CREATE TABLE IF NOT EXISTS users (user_id VARCHAR(100) NOT NULL);";
+  
+  $conn->query($sql);
+
   table_column_updater($conn, "users", "user_id", "VARCHAR(100)", "NOT NULL");
   table_column_updater($conn, "users", "name", "VARCHAR(100)", "NOT NULL");
   table_column_updater($conn, "users", "email", "VARCHAR(100)", "NOT NULL");
@@ -57,70 +47,26 @@ if (isset($_POST['update'])) {
 
   $sql = "ALTER TABLE users ADD PRIMARY KEY(user_id);";
   
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+  $conn->query($sql);
 
   // Creates table contacts
 
-  $sql = "CREATE TABLE IF NOT EXISTS contact (
-  user_id VARCHAR(100) NOT NULL,
-  contact_id VARCHAR(100) NOT NULL,
-  contact_name VARCHAR(100) NOT NULL, 
-  contact_email VARCHAR(100) NOT NULL, 
-  contact_message VARCHAR(100) NOT NULL, 
-  PRIMARY KEY(contact_id));";
+  $sql = "CREATE TABLE IF NOT EXISTS contact (user_id VARCHAR(100) NOT NULL);";
+  
+  $conn->query($sql);
 
-  if ($conn->query($sql) === TRUE) {
-    $last_id = $conn->insert_id;
-  } else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+  table_column_updater($conn, "contact", "user_id", "VARCHAR(100)", "NOT NULL");
+  table_column_updater($conn, "contact", "contact_id", "VARCHAR(100)", "NOT NULL");
+  table_column_updater($conn, "contact", "contact_name", "VARCHAR(100)", "NOT NULL");
+  table_column_updater($conn, "contact", "contact_email", "VARCHAR(100)", "NOT NULL");
+  table_column_updater($conn, "contact", "contact_message", "VARCHAR(100)", "NOT NULL");
 
-  $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+  $sql = "ALTER TABLE contact ADD PRIMARY KEY(contact_id);";
+  
+  $conn->query($sql);
+
   //checks whether the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
   $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
-
-  try {
-
-    // If the email already exists
-    if ($userInfo["email"] == $email_check) {
-      throw new Exception("register_email_exists"); // email already exists
-    }
-
-    // Test CAPTCHA
-    require 'securimage/securimage.php';
-    $securimage = new Securimage();
-    if ($securimage->check($_POST['captcha_code']) == false) {
-      throw new Exception("wrong_captcha");
-    }
-
-    // Insert user data
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
-    $user_id = random_string(50);
-    $recovery_code = random_string(6);
-
-    $user = new User($conn);
-    $user->user_register($user_id, $name, $email, $password_hash, $recovery_code, '0');
-
-    // Jump to index
-    $conn -> close();
-    echo('Success!');
-  } catch (Exception $e) {
-    if (strcmp($e->getMessage(), "register_email_exists") == 0) {
-      $conn -> close();
-      header("Location: setup_wizard.php?register_email_exists");
-    }
-    if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      $conn -> close();
-      header("Location: setup_wizard.php?wrong_captcha");
-    }
-  }
 }

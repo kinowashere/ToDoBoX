@@ -13,9 +13,9 @@ if (isset($_POST['install'])) {
   // Test if database exists
   // If it exists, install cannot be done
 
-  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+  $conn = new mysqli($server_name, $server_username, $server_password);
 
-  if (!$conn->connect_error) {
+  if ($conn->select_db($db_name)) {
     $conn->close();
     header("Location: setup_wizard.php?database_exists");
   }
