@@ -7,7 +7,7 @@ if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
 }
 
-$conn = open_connection();
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // Get data from POST
 
@@ -36,7 +36,7 @@ if (isset($_POST['noteInput'])) {
   }
   unset($box);
 
-  close_connection($conn);
+  $conn -> close();
   header("Location: index.php?create_box");
 
 }
@@ -53,8 +53,8 @@ elseif (isset($_POST["boxIDArchive"])) {
   $box -> box_delete();
   unset($box);
   
-  close_connection($conn);
-  header("Location: archive.php?delete_box");
+  $conn -> close();
+  header("Location: index.php?archive&delete_box");
 } 
 
 // Archive a Box
@@ -69,7 +69,7 @@ elseif (isset($_POST["boxID"])) {
   $box -> box_archive();
   unset($box);
 
-  close_connection($conn);
+  $conn -> close();
   header("Location: index.php?archive_box");
 } 
 
@@ -106,7 +106,7 @@ elseif (isset($_POST["boxIDEdit"])) {
   }
 
   unset($box);
-  close_connection($conn);
+  $conn -> close();
   header("Location: index.php?edited_note");
 
 } 
@@ -124,8 +124,8 @@ elseif (isset($_POST["boxIDArchiveRestore"])) {
   $box -> box_restore();
 
   unset($box);
-  close_connection($conn);
-  header("Location: archive.php?archive_restore");
+  $conn -> close();
+  header("Location: index.php?archive&archive_restore");
 }
 
-close_connection($conn);
+$conn -> close();

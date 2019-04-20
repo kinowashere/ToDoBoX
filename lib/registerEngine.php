@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = open_connection();
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'])) {
   $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
@@ -32,8 +32,8 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);
-    $user_id = $user->user_get_user_id();
     $user->user_register($name, $email, $password_hash);
+    $user_id = $user->user_get_user_id();
 
     // Create Starter / Tutorial Boxes
 
@@ -65,6 +65,7 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $box = new Box($user_id, $conn);
     $box->box_set_data("Delete a box with the delete mark.");
     $box->box_set_category("Tutorial");
+    $box->box_archive();
     unset($box);
 
     // Create the Session
@@ -72,15 +73,15 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $_SESSION["recovery_active"] = 1;
 
     // Jump to index
-    close_connection($conn);
+    $conn -> close();
     header('Location: recovery_code.php');
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: register.php?register_email_exists");
     }
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      close_connection($conn);
+      $conn -> close();
       header("Location: register.php?wrong_captcha");
     }
   }

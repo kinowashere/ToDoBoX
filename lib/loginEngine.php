@@ -1,8 +1,9 @@
 <?php
 session_start();
-$conn = open_connection();
 
 if (isset($_POST['email']) and isset($_POST['password'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
   $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
@@ -28,11 +29,15 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
     $_SESSION['name'] = $user_info['name'];
     $_SESSION['email'] = $user_info['email'];
 
+    $conn -> close();
+
   } catch (Exception $e) {
     if(strcmp($e->getMessage(),"login_incorrect") == 0 ) {
+      $conn -> close();
       header("Location: login.php?login_incorrect");
     }
     if(strcmp($e->getMessage(),"email_doesnt_exist") == 0 ) {
+      $conn -> close();
       header("Location: login.php?email_doesnt_exist");
     }
   }
@@ -41,5 +46,3 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
 if (isset($_SESSION['name'])) {
   header("Location: index.php");
 }
-
-close_connection($conn);

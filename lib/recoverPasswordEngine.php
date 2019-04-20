@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$conn = open_connection();
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 function randomString($length)
 {
@@ -31,4 +31,4 @@ if (isset($_POST['email']) and isset($_POST['recovery_code'])) {
   }
 }
 
-close_connection($conn);
+$conn -> close();

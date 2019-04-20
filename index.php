@@ -11,7 +11,7 @@
 <body>
 	<?php
 	require "lib/openSession.php";
-	require "lib/SQLConnection.php";
+	require "lib/sql_data.php";
 	//Classes
 	require 'lib/user.php';
 	require 'lib/box.php';

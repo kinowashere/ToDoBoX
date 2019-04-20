@@ -19,13 +19,16 @@
 </li>
 <li><a class="subheader">ToDoBoX</a></li>
 <li><a href="index.php"><i class="material-icons">check_box</i>Current</a></li>
-<li><a href="archive.php"><i class="material-icons">archive</i>Archive</a></li>
+<li><a href="?archive"><i class="material-icons">archive</i>Archive</a></li>
 	<div class="divider"></div>
 <li><a class="subheader">Categories</a></li>
-<li><a href="#"><i class="material-icons">folder</i>school(private)</a></li>
-<li><a href="#"><i class="material-icons">folder_shared</i>best tacos</a></li>
-<li><a href="#"><i class="material-icons">folder_special</i>my sushi</a></li>
-
+{% for category in categories %}
+	<li>
+		<a href="?category={{ category }}">
+			<i class="material-icons">folder</i>{{ category }}
+		</a>
+	</li>
+{% endfor %}
 </ul>
 
 <!-- Modal New Box -->
