@@ -116,7 +116,12 @@ if (isset($_POST['install'])) {
     $user->user_register($name, $email, $password_hash, '1');
 
     // Create the Session
-    $_SESSION['user_id'] = $user->user_get_user_id();
+    $_SESSION['user_id'] = $user_id;
+    $_SESSION["recovery_active"] = 1;
+
+    // Jump to index
+    close_connection($conn);
+    header('Location: recovery_code.php');
 
     // Jump to admin_panel
     $conn->close();
