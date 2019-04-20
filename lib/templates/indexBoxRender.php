@@ -28,7 +28,7 @@ elseif(isset($_GET['archive'])) {
 else {
   $user_id = $_SESSION['user_id'];
   $sql = "SELECT valid, box_data, box_date, box_id, box_category 
-  FROM boxes_{$_SESSION['user_id']};";
+  FROM boxes_{$user_id};";
 }
 
 $retval = mysqli_query($conn, $sql);
@@ -45,6 +45,7 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 }
 
 // Twig Engine
+
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
