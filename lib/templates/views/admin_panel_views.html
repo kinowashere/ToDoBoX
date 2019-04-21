@@ -1,0 +1,219 @@
+<div class="container">
+  <div class="row center">
+    <div class="col s6 m8 offset-m2">
+      <div class="recoveryCodeContainer z-depth-1">
+        <h4>Create user</h4>
+        <h5>You can create a new user with or without privilege.</h5>
+        <br>
+        <a href="#createModal" class="btn-large modal-trigger">Create</a>
+      </div>
+    </div>
+    <div class="col s6 m8 offset-m2">
+      <div class="recoveryCodeContainer z-depth-1">
+        <h4>Delete user</h4>
+        <h5>You can delete an existing user without privilege.</h5>
+        <br>
+        <a href="#deleteModal" class="btn-large modal-trigger">Delete</a>
+      </div>
+    </div>
+    <div class="col s6 m8 offset-m2">
+      <div class="recoveryCodeContainer z-depth-1">
+        <h4>View user</h4>
+        <h5>You can view and edit all users.</h5>
+        <br>
+        <a href="#viewModal" class="btn-large modal-trigger">View</a>
+      </div>
+    </div>
+		<div class="col s6 m8 offset-m2">
+      <div class="recoveryCodeContainer z-depth-1">
+        <h4>Check feedback</h4>
+        <h5>You can check and reply to feedback.</h5>
+        <br>
+        <a href="#feedbackModal" class="btn-large modal-trigger">Check</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Create User -->
+<div id="createModal" class="modal">
+	<div class="modal-content">
+		<br>
+		<h5>Create User</h5>
+		<form action="index.php" method="post">
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="name" name="name" type="text" class="validate" required>
+					<label for="name">Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="email" name="email" type="email" class="validate" required>
+					<label for="email">Email</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<input id="password"  name="password" type="password" class="validate" minlength="8" required>
+					<label for="password">Confirm Password</label>
+				</div>
+			</div>
+			<div class="row">
+      	<label>
+					<input type="checkbox" name="check_admin" id="check_admin" value="admin">
+					<span>check if it is an administrator</span>
+				</label>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit">Create
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+	</div>
+</div>
+
+<!-- Modal View User -->
+<div id="viewModal" class="modal">
+	<div class="modal-content">
+		<br>
+		<h5>View User</h5>
+		<table>
+		  <thead>
+        <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Recovery Code</td>
+					<td></td>
+        </tr>
+      </thead>
+			<tbody>
+		{% for user in data%}
+		<tr>
+			<td>{{ user.name }}</td>
+			<td>{{ user.email }}</td>
+			<td>{{ user.recovery_code }}</td>
+			<td>
+				<a class="modal-trigger" href="#editUserModal">
+					<i class="material-icons">edit</i>
+				</a>
+					<i class="material-icons">delete</i>
+			
+			<td>
+		</tr>
+		{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- Modal Check Feedback -->
+<div id="feedbackModal" class="modal">
+	<div class="modal-content">
+		<br>
+		<h5>View User</h5>
+		<table>
+		  <thead>
+        <tr>
+          <td>Name</td>
+          <td>Email</td>
+          <td>Message</td>
+					<td></td>
+        </tr>
+      </thead>
+			<tbody>
+		{% for contact in data%}
+		<tr>
+			<td>{{ contact.contact_name }}</td>
+			<td>{{ contact.contact_email }}</td>
+			<td>{{ contact.contact_message }}</td>
+			<td>
+				<a class="modal-trigger" href="#sendMailModal">
+					<i class="material-icons">mail</i>
+				</a>
+				<i class="material-icons">check</i>
+			
+			<td>
+		</tr>
+		{% endfor %}
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<!-- Modal Send Mail -->
+<div id="sendMailModal" class="modal">
+	<div class="modal-content">
+		<h5>Send us a Woof</h5>
+		<form action="index.php" method="post">
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ data.contact_name }}" id="disabled" type="text" required>
+					<label>Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ email }}" id="disabled" type="email" required>
+					<label>Email</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="message" name="message" class="materialize-textarea" required></textarea>
+					<label for="message">Message</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit">Send
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+	</div>
+</div>
+
+<!-- Modal Edit User -->
+<div id="editUserModal" class="modal">
+	<div class="modal-content">
+		<h5>Send us a Woof</h5>
+		<form action="index.php" method="post">
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ data.user_id }}" id="disabled" name="name" type="text" required>
+					<label for="name">Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input value="{{ data.name }}" id="name" name="name" type="text" required>
+					<label for="name">Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input value="{{ data.email }}" id="email" name="email" type="email" required>
+					<label for="email">Email</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="password" name="paddword" type="text" required>
+					<label for="password">Password</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input value="{{ data.recovery_code }}" id="recovery_code" name="recovery_code" type="text" required>
+					<label for="recovery_code">Recovery Code</label>
+				</div>
+			</div>
+			<div class="row">
+      	<label>
+					<input type="checkbox" name="check_admin" id="check_admin" value="admin">
+					<span>check if it is an administrator</span>
+				</label>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit">Send
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+	</div>
+</div>
