@@ -3,14 +3,14 @@
 <head>
   <title>ToDoBoX</title>
   <?php
-  require "lib/templates/headerRender.php";
+  require "lib/templates/header_render.php";
   ?>
 </head>
 <body>
   <?php
-  require "lib/openSession.php";
+  require "lib/open_session.php";
   require "lib/sql_data.php";
-  require "lib/templates/recoveryRender.php";
+  require "lib/templates/recovery_render.php";
   ?>
 </body>
 </html>

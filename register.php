@@ -4,7 +4,7 @@
 <head>
   <title>ToDoBoX</title>
   <?php
-  require "lib/templates/headerRender.php";
+  require "lib/templates/header_render.php";
   ?>
 </head>
 
@@ -57,7 +57,7 @@
 
           <br>
           <?php
-          require "lib/registerEngine.php";
+          require "lib/register_engine.php";
           ?>
           <br>
         </div>
@@ -69,7 +69,7 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
   <?php
-  require "lib/toasts/loginAndRegisterToasts.php";
+  require "lib/toasts/login_register_toasts.php";
   ?>
 </body>
 

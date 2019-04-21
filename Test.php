@@ -7,6 +7,9 @@
   <?php
   require 'lib/user.php';
   require 'lib/box.php';
+
+  // Add testing stuff here
+  
   ?>
 </body>
 </html>

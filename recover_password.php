@@ -3,7 +3,7 @@
 <head>
   <title>ToDoBoX</title>
   <?php
-  require "lib/templates/headerRender.php";
+  require "lib/templates/header_render.php";
   ?>
 </head>
 <body>
@@ -36,7 +36,7 @@
           <p><a href="login.php">Go back to login page</a></p>
           <br>
           <?php
-          require "lib/recoverPasswordEngine.php";
+          require "lib/recover_password_engine.php";
           ?>
           <br>
         </div>
