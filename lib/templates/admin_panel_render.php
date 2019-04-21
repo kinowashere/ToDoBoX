@@ -34,9 +34,7 @@ if (isset($_POST)) {
     array('data' => $dataArray)
   );
 
-  echo ("wtf");
-
   $conn->close();
 } else {
-  header("location: index.php");
+  header("location: admin_panel.php");
 }
