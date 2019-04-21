@@ -1,22 +1,25 @@
 <?php
 
 require_once 'vendor/autoload.php';
-$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-
 
 if (isset($_POST)) {
-  $conn->close();
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   // Twig Engine
   $loader = new Twig_Loader_Filesystem("lib/templates/views");
   $twig = new Twig_Environment($loader);
 
   echo $twig->render("adminPanelViews.html", $userInfo);
+  echo("wtf");
+
+  $conn->close();
 } else {
   header("location: index.php");
 }
 
 if (isset($_POST['view'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   $retval = mysqli_query($conn, $sql);
   $userArray = array();
@@ -39,6 +42,6 @@ if (isset($_POST['view'])) {
     'user_views.html',
     array('users' => $userArray)
   );
-}
 
-$conn->close();
+  $conn->close();
+}
