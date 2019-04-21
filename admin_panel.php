@@ -17,7 +17,7 @@
   require 'lib/box.php';
   //Get POST Data
   require 'lib/post_index.php';
-  require_once "lib/changeUserData.php";
+  require_once "lib/change_user_data.php";
   // Render website
   require_once 'lib/templates/index_box_render.php';
   require_once 'lib/templates/modals_render.php';
