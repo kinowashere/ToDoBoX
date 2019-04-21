@@ -117,7 +117,8 @@ if (isset($_POST['install'])) {
 
     // Create the Session
     $_SESSION['user_id'] = $user_id;
-    $_SESSION["recovery_active"] = 1;
+    $_SESSION['recovery_active'] = 1;
+    $_SESSION['admin_active'] = 1;
 
     // Jump to index
     close_connection($conn);
