@@ -1,5 +1,6 @@
 <?php
-session_start();
+// You already started a session with open_session
+// thus session_start(); isnt needed
 
 $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
