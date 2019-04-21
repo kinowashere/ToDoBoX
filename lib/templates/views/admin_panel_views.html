@@ -10,14 +10,6 @@
     </div>
     <div class="col s6 m8 offset-m2">
       <div class="recoveryCodeContainer z-depth-1">
-        <h4>Delete user</h4>
-        <h5>You can delete an existing user without privilege.</h5>
-        <br>
-        <a href="#deleteModal" class="btn-large modal-trigger">Delete</a>
-      </div>
-    </div>
-    <div class="col s6 m8 offset-m2">
-      <div class="recoveryCodeContainer z-depth-1">
         <h4>View user</h4>
         <h5>You can view and edit all users.</h5>
         <br>
@@ -88,6 +80,8 @@
       </thead>
 			<tbody>
 		{% for user in data%}
+		<!-- admin users are hidden -->
+		{% if user.is_admin == 0 %}
 		<tr>
 			<td>{{ user.name }}</td>
 			<td>{{ user.email }}</td>
@@ -100,6 +94,7 @@
 			
 			<td>
 		</tr>
+		{% endif %}
 		{% endfor %}
 			</tbody>
 		</table>
@@ -110,7 +105,7 @@
 <div id="feedbackModal" class="modal">
 	<div class="modal-content">
 		<br>
-		<h5>View User</h5>
+		<h5>Check Feedback</h5>
 		<table>
 		  <thead>
         <tr>
@@ -143,7 +138,7 @@
 <!-- Modal Send Mail -->
 <div id="sendMailModal" class="modal">
 	<div class="modal-content">
-		<h5>Send us a Woof</h5>
+		<h5>Send Mail</h5>
 		<form action="index.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
@@ -173,7 +168,7 @@
 <!-- Modal Edit User -->
 <div id="editUserModal" class="modal">
 	<div class="modal-content">
-		<h5>Send us a Woof</h5>
+		<h5>Edit User</h5>
 		<form action="index.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">

@@ -40,28 +40,3 @@ if (isset($_POST)) {
 } else {
   header("location: index.php");
 }
-
-if (isset($_POST['view'])) {
-
-  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-
-  $retval = mysqli_query($conn, $sql);
-  $userArray = array();
-  $counter = 0;
-
-  while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-
-    $counter++;
-  }
-
-  // Twig Engine
-  $loader = new Twig_Loader_Filesystem('lib/templates/views');
-  $twig = new Twig_Environment($loader);
-
-  echo $twig->render(
-    'user_views.html',
-    array('users' => $userArray)
-  );
-
-  $conn->close();
-}
