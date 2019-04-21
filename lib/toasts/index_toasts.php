@@ -34,6 +34,9 @@
   } elseif (isset($_GET["incorrect_password_delete"])) {
     // Couldn't delete account because the password was incorrect (change later to html5!!!)
     toaster("Could not delete because password is incorrect!");
+  } elseif (isset($_GET["incorrect_password_admin"])) {
+    // Couldn't delete account because the password was incorrect (change later to html5!!!)
+    toaster("Could not access because password is incorrect");
   } elseif (isset($_GET["edited_note"])) {
     // Note has been edited
     toaster("Note edited!");
