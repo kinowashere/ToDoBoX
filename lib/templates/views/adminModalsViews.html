@@ -23,15 +23,11 @@
 	<li><a href="#settingsModal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
 	<li><a href="#aboutUsModal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
 	<li><a href="#contactModal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
+	<li><a href="#adminModal" class="waves-effect modal-trigger"><i class="material-icons">build</i>Admin Privileges</a></li>
+	<li><a href="#helpModal" class="waves-effect modal-trigger"><i class="material-icons">help</i>Help</a></li>
 	<li><a href="logout.php" class="waves-effect"><i class="material-icons">power_settings_new</i>Logout</a></li>
 	<div class="divider"></div>
 </li>
-	<li><a class="subheader">Admin Privileges</a></li>
-	<li><a href="#userSettingsModal" class="waves-effect modal-trigger"><i class="material-icons">build</i>User Settings</a></li>
-	<li><a href="#viewUserDataModal" class="waves-effect modal-trigger"><i class="material-icons">remove_red_eye</i>View User Data</a></li>
-	<li><a href="#checkFeedbacksModal" class="waves-effect modal-trigger"><i class="material-icons">markunread</i>Check Feedback</a></li>
-	<li><a href="#helpModal" class="waves-effect modal-trigger"><i class="material-icons">help</i>Help</a></li>
-	<div class="divider"></div>
 
 <li><a class="subheader">ToDoBoX</a></li>
 <li><a href="index.php"><i class="material-icons">check_box</i>Current</a></li>
@@ -286,29 +282,28 @@
 </div>
 
 <!-- Modal View User Data -->
-<div id="viewUserDataModal" class="modal">
-	<div class="modal-content center aboutContainer">
-		<div class="btn-floating logoAbout"></div>
-		<br>
-		<h5>ToDoBoX <small>v 1.0</small></h5>
-		<h4>What can admin do?</h4>
-  <ul>
-    <li>View user data</li>
-    <li>Create new user</li>
-    <li>Create new admin user</li>
-    <li>Delete existing user</li>
-    <li>Change user data</li>
-  </ul>
-		<h5>Ask developers:</h5>
-		<h6>Shiori Yamazaki</h6>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<h6>Manuel Trinidad</h6>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
+<div id="adminModal" class="modal">
+	<div class="modal-content">
+		<h5>Admin Privileges</h5>
+		NB! Password is required to have full access to admin privillages.
+					<script>
+						/* JS Alert */
+						function submitChk () {
+							var flag = confirm ( "Do you want to proceed?");
+							return flag;
+						}
+					</script>
+					<form action="index.php" method="post" onsubmit="return submitChk()">
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="admin" type="password" class="validate" name="admin" required>
+								<label for="admin">Password</label>
+							</div>
+						</div>
+						<button class="btn waves-effect waves-light red" type="submit">Proceed
+							<i class="material-icons right">lock_open</i>
+						</button>
+					</form>
+				</div>
 	</div>
 </div>
