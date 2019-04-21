@@ -1,11 +1,12 @@
 <?php
-require "openSession.php";
-$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // POST
 
 // Change name
 if (isset($_POST['new_name'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
   $new_name = filter_var($_POST['new_name'], FILTER_SANITIZE_STRING);
   try {
     // Check if new name is empty
@@ -26,6 +27,9 @@ if (isset($_POST['new_name'])) {
 
 // Change email
 if (isset($_POST['new_email'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
   $new_email = filter_var($_POST['new_email'], FILTER_SANITIZE_STRING);
 
   // Checks if email already exists
@@ -57,6 +61,9 @@ if (isset($_POST['new_email'])) {
 }
 // Change password
 if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
   $new_password = filter_var($_POST['new_password'], FILTER_SANITIZE_STRING);
   $confirm_password = filter_var($_POST['confirm_password'], FILTER_SANITIZE_STRING);
   try {
@@ -86,6 +93,9 @@ if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
 
 // Change profile photo
 if (isset($_POST['new_profile_photo'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
   $new_profile_photo = filter_var($_POST['new_profile_photo'], FILTER_SANITIZE_NUMBER_INT);
   $user = new User($conn, $_SESSION['user_id']);
   $user->user_set_photo($new_profile_photo);
@@ -95,6 +105,9 @@ if (isset($_POST['new_profile_photo'])) {
 
 // Delete account
 if (isset($_POST["delete_account"])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
   $delete_account = filter_var($_POST['delete_account'], FILTER_SANITIZE_STRING);
   // Checks if password is correct
   $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
@@ -126,6 +139,9 @@ if (isset($_POST["delete_account"])) {
 }
 
 if (isset($_POST['contact_message'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+  
   $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
   $user = new User($conn, $_SESSION['user_id']);
   echo ($user->send_contact($contact_message));

@@ -4,7 +4,7 @@
 <head>
   <title>ToDoBoX</title>
   <?php
-  require "lib/templates/headerRender.php";
+  require "lib/templates/header_render.php";
   ?>
 </head>
 
