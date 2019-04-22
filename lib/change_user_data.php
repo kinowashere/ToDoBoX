@@ -148,13 +148,17 @@ if (isset($_POST["delete_account"])) {
   }
 }
 
+// Send message
+
 if (isset($_POST['contact_message'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+  $user_id = $_SESSION['user_id'];
   
   $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
-  $user = new User($conn, $_SESSION['user_id']);
-  echo ($user->send_contact($contact_message));
+
+  $user = new User($conn, $user_id);
+  $user->send_contact($contact_message);
   unset($user);
   $conn -> close();
   header("Location: index.php?email_success=1");
