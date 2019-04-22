@@ -1,4 +1,6 @@
 <?php
+// Set cookie life to 60 minutes
+ini_set('session.cookie_lifetime', 60*60);
 session_start();
 
 if (isset($_POST['email']) and isset($_POST['password'])) {
