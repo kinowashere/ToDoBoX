@@ -1,9 +1,10 @@
 <?php
 
-$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-
 // Admin Access
 if (isset($_POST['admin'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+  
   $admin = filter_var($_POST['admin'], FILTER_SANITIZE_STRING);
   // Checks if password is correct
   $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
@@ -21,17 +22,22 @@ if (isset($_POST['admin'])) {
     $_SESSION['admin_privilege'] = 1;
     $conn->close();
     header('Location: admin_panel.php');
+    die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "incorrect_password_admin") == 0) {
       unset($_SESSION['admin_privilege']);
       $conn->close();
       header("Location: index.php?incorrect_password_admin");
+      die();
     }
   }
 }
 
 // Create user
 if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
   $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
   //checks whether the email already exists
@@ -100,14 +106,17 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     // Jump to index
     $conn->close();
     header('Location: recovery_code.php');
+    die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
       $conn->close();
       header("Location: register.php?register_email_exists");
+      die();
     }
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
       $conn->close();
       header("Location: register.php?wrong_captcha");
+      die();
     }
   }
 }

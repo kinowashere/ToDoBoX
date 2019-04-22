@@ -18,6 +18,7 @@ if (isset($_POST['install'])) {
   if ($conn->select_db($db_name)) {
     $conn->close();
     header("Location: setup_wizard.php?database_exists");
+    die();
   }
 
   // Perform the initial connection if the test is passed
@@ -123,6 +124,7 @@ if (isset($_POST['install'])) {
     // Jump to index
     close_connection($conn);
     header('Location: recovery_code.php');
+    die();
 
     // Jump to admin_panel
     $conn->close();
@@ -130,6 +132,7 @@ if (isset($_POST['install'])) {
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
       $conn->close();
       header("Location: setup_wizard.php?wrong_captcha");
+      die();
     }
   }
 }

@@ -5,14 +5,15 @@
 
 if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
+  die();
 }
-
-$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // Get data from POST
 
 // If the user creates a new Box
 if (isset($_POST['noteInput'])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   $box_data_input = filter_var($_POST['noteInput'], FILTER_SANITIZE_STRING);
   $box_date_input = $_POST['date'];
@@ -38,11 +39,14 @@ if (isset($_POST['noteInput'])) {
 
   $conn -> close();
   header("Location: index.php?create_box");
+  die();
 
 }
 
 // Delete a Box
 elseif (isset($_POST["boxIDArchive"])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   $box_id = $_POST["boxIDArchive"];
   $user_id = $_SESSION['user_id'];
@@ -55,10 +59,13 @@ elseif (isset($_POST["boxIDArchive"])) {
   
   $conn -> close();
   header("Location: index.php?archive&delete_box");
+  die();
 } 
 
 // Archive a Box
 elseif (isset($_POST["boxID"])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   $user_id = $_SESSION['user_id'];
   $box_id = $_POST["boxID"];
@@ -71,10 +78,13 @@ elseif (isset($_POST["boxID"])) {
 
   $conn -> close();
   header("Location: index.php?archive_box");
+  die();
 } 
 
 // Edit a Box
 elseif (isset($_POST["boxIDEdit"])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
   $user_id = $_SESSION['user_id'];
   $box_id = $_POST["boxIDEdit"];
@@ -108,11 +118,14 @@ elseif (isset($_POST["boxIDEdit"])) {
   unset($box);
   $conn -> close();
   header("Location: index.php?edited_note");
+  die();
 
 } 
 
 // Restore an archived Box
 elseif (isset($_POST["boxIDArchiveRestore"])) {
+
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
   
   $box_id = $_POST["boxIDArchiveRestore"];
   $user_id = $_SESSION["user_id"];
@@ -126,6 +139,5 @@ elseif (isset($_POST["boxIDArchiveRestore"])) {
   unset($box);
   $conn -> close();
   header("Location: index.php?archive&archive_restore");
+  die();
 }
-
-$conn -> close();

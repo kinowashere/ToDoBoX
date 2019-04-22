@@ -19,4 +19,5 @@ if(isset($_SESSION["recovery_active"]) and $_SESSION["recovery_active"] == 1) {
 
 } else {
   header("location: index.php");
+  die();
 }

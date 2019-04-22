@@ -36,14 +36,17 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
     if(strcmp($e->getMessage(),"login_incorrect") == 0 ) {
       $conn -> close();
       header("Location: login.php?login_incorrect");
+      die();
     }
     if(strcmp($e->getMessage(),"email_doesnt_exist") == 0 ) {
       $conn -> close();
       header("Location: login.php?email_doesnt_exist");
+      die();
     }
   }
 }
 
 if (isset($_SESSION['name'])) {
   header("Location: index.php");
+  die();
 }

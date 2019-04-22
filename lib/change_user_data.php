@@ -17,10 +17,12 @@ if (isset($_POST['new_name'])) {
     $user->user_set_name($new_name);
     $conn -> close();
     header("Location: index.php?update_name");
+    die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "empty_name") == 0) {
       $conn -> close();
       header("Location: index.php?empty_name");
+      die();
     }
   }
 }
@@ -49,13 +51,16 @@ if (isset($_POST['new_email'])) {
     $user->user_set_email($new_email);
     $conn -> close();
     header("Location: index.php?update_email");
+    die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "empty_email") == 0) {
       $conn -> close();
       header("Location: index.php?empty_email");
+      die();
     } elseif (strcmp($e->getMessage(), "email_already_exists") == 0) {
       $conn -> close();
       header("Location: index.php?email_already_exists");
+      die();
     }
   }
 }
@@ -80,13 +85,16 @@ if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
     $user->user_set_password($new_password_hash);
     $conn -> close();
     header("Location: index.php?updated_password");
+    die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "password_too_short") == 0) {
       $conn -> close();
       header("Location: index.php?password_too_short");
+      die();
     } elseif (strcmp($e->getMessage(), "different_passwords") == 0) {
       $conn -> close();
       header("Location: index.php?different_passwords");
+      die();
     }
   }
 }
@@ -130,10 +138,12 @@ if (isset($_POST["delete_account"])) {
     // redirect to login.php
     $conn -> close();
     header('Location: deleted_account.php');
+    die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "incorrect_password_delete") == 0) {
       $conn -> close();
       header("Location: index.php?incorrect_password_delete");
+      die();
     }
   }
 }
@@ -148,4 +158,5 @@ if (isset($_POST['contact_message'])) {
   unset($user);
   $conn -> close();
   header("Location: index.php?email_success=1");
+  die();
 }
