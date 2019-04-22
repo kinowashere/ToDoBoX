@@ -9,7 +9,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
   $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
   // Checks if the email already exists
-  $sql = "SELECT user_id, name, email, password_hash FROM users WHERE email = '{$email}'";
+  $sql = "SELECT user_id, name, email, password_hash, is_admin FROM users WHERE email = '{$email}'";
   $retval = mysqli_query($conn, $sql);
   $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
@@ -28,6 +28,7 @@ if (isset($_POST['email']) and isset($_POST['password'])) {
     $_SESSION['user_id'] = $user_info["user_id"];
     $_SESSION['name'] = $user_info['name'];
     $_SESSION['email'] = $user_info['email'];
+    $_SESSION['is_admin'] = $user_info['is_admin'];
 
     $conn -> close();
 

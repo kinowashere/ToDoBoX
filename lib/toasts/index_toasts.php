@@ -46,5 +46,8 @@
   } elseif (isset($_GET["delete_box"])) {
     // Box has been deleted from database
     toaster("Box deleted!");
+  } elseif (isset($_GET["not_an_admin"])) {
+    // Regular user tried to access admin tools
+    toaster("You\'re not an admin! >:(");
   }
   ?>

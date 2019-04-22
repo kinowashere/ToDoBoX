@@ -1,6 +1,11 @@
 <?php
 
 require_once 'vendor/autoload.php';
+
+if (!isset($_SESSION['user_id'])) {
+  header('Location: login.php');
+}
+
 $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
 // Retrieve SQL User Info
