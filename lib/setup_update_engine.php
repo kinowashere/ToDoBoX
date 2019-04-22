@@ -60,6 +60,7 @@ if (isset($_POST['update'])) {
   table_column_updater($conn, "contact", "contact_name", "VARCHAR(100)", "NOT NULL");
   table_column_updater($conn, "contact", "contact_email", "VARCHAR(100)", "NOT NULL");
   table_column_updater($conn, "contact", "contact_message", "VARCHAR(100)", "NOT NULL");
+  table_column_updater($conn, "contact", "valid", "TINYINT(1)", "DEFAULT 1");
 
   $sql = "ALTER TABLE contact ADD PRIMARY KEY(contact_id);";
   
