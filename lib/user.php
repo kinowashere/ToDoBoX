@@ -140,6 +140,22 @@ class User
     return $this->sql_query($this->conn, $sql);
   }
 
+  // Set new recovery code
+  public function user_set_recovery_code($new_user_recovery_code)
+  {
+    $this->user_recovery_code = $new_user_recovery_code;
+    $sql = "UPDATE users SET recovery_code = '{$this->user_recovery_code}' WHERE user_id = '{$this->user_id}';";
+    return $this->sql_query($this->conn, $sql);
+  }
+
+  // Set new recovery code
+  public function user_set_admin()
+  {
+    $sql = "UPDATE users SET is_admin = '1' WHERE user_id = '{$this->user_id}';";
+    return $this->sql_query($this->conn, $sql);
+  }
+
+
   // Delete account and box
   public function user_delete($user_id)
   {

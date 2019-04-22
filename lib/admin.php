@@ -59,7 +59,8 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);
-    if (isset($_POST['check_admin']) && $_POST['check_admin]'] == 'admin') {
+
+    if (isset($_POST['check_admin'])) {
       $user->user_register($name, $email, $password_hash, '1');
     } else {
       $user->user_register($name, $email, $password_hash, '0');
@@ -105,7 +106,7 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
 
     // Jump to index
     $conn->close();
-    header('Location: recovery_code.php');
+    //header('Location: recovery_code.php');
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
@@ -113,16 +114,11 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
       header("Location: register.php?register_email_exists");
       die();
     }
-    if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      $conn->close();
-      header("Location: register.php?wrong_captcha");
-      die();
-    }
   }
 }
 
 // Edit user
-if (isset($_POST['edit'])) {
+if (isset($_POST['edit_user'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
@@ -135,86 +131,76 @@ if (isset($_POST['edit'])) {
 
   try {
 
+
     // If the email already exists
     if ($userInfo["email"] == $email_check) {
       throw new Exception("register_email_exists");
     }
 
     // Insert user data
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
-    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
-    $password_hash = password_hash($password, PASSWORD_DEFAULT);
+    $user_id = filter_var($_POST['user_id'], FILTER_SANITIZE_STRING);
 
-    $user = new User($conn);
-    if (isset($_POST['check_admin']) && $_POST['check_admin]'] == 'admin') {
-      $user->user_register($name, $email, $password_hash, '1');
-    } else {
-      $user->user_register($name, $email, $password_hash, '0');
+    $user = new User($conn, $user_id);
+
+    if (isset($_POST['name'])) {
+      $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+      $user->user_set_name($name);
     }
-    $user_id = $user->user_get_user_id();
 
-    // Create Starter / Tutorial Boxes
+    if (isset($_POST['email'])) {
+      $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+      $user->user_set_email($email);
+    }
 
-    // First Box in Current
-    $box = new Box($user_id, $conn);
-    $box->box_set_data("Welcome to ToDoBoX, {$name}!");
-    $box->box_set_category("Tutorial");
-    unset($box);
+    if (isset($_POST['password'])) {
+      $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+      $password_hash = password_hash($password, PASSWORD_DEFAULT);
+      $user->user_set_password($password_hash);
+    }
 
-    // Second Box in Current
-    $box = new Box($user_id, $conn);
-    $box->box_set_data("Create a new box with + icon in the bottom right.");
-    $box->box_set_category("Tutorial");
-    unset($box);
+    if (isset($_POST['recovery_code'])) {
+      $recovery_code = filter_var($_POST['recovery_code'], FILTER_SANITIZE_STRING);
+      $user->user_set_recovery_code($recovery_code);
+    }
 
-    // Third Box in Current
-    $box = new Box($user_id, $conn);
-    $box->box_set_data("Archive a box with the check mark.");
-    $box->box_set_category("Tutorial");
-    unset($box);
-
-    // Fourth Box in Current
-    $box = new Box($user_id, $conn);
-    $box->box_set_data("Go to Archive in the menu to see your archived boxes.");
-    $box->box_set_category("Tutorial");
-    unset($box);
-
-    // First Box in Archive
-    $box = new Box($user_id, $conn);
-    $box->box_set_data("Delete a box with the delete mark.");
-    $box->box_set_category("Tutorial");
-    $box->box_archive();
-    unset($box);
-
-    // Create the Session
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION["recovery_active"] = 1;
+    if (isset($_POST['check_admin'])) {
+      $user->user_set_admin();
+    }
 
     // Jump to index
     $conn->close();
-    header('Location: recovery_code.php');
+    header('Location: admin_panel.php');
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
       $conn->close();
-      header("Location: register.php?register_email_exists");
-      die();
-    }
-    if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      $conn->close();
-      header("Location: register.php?wrong_captcha");
+      header("Location: admin_panel.php?register_email_exists");
       die();
     }
   }
+}
+
+// Delete user
+if (isset($_POST['delete_user'])) {
+  // Connect to SQL
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+  // Insert user data
+  $user_id = filter_var($_POST['user_id'], FILTER_SANITIZE_STRING);
+
+  $user = new User($conn, $user_id);
+  $user->user_delete($user_id);
+
+  $conn->close();
+  header('Location: admin_panel.php');
+  die();
 }
 
 // Delete feedback
 if (isset($_POST['deleteFeedback'])) {
   // Connect to SQL
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-
   $contact_id = filter_var($_POST['contact_id'], FILTER_SANITIZE_STRING);
+  $test = filter_var($_POST['test'], FILTER_SANITIZE_STRING);
   echo $contact_id;
 
   $sql = "DELETE FROM contact WHERE contact_id = '{$contact_id}';";
