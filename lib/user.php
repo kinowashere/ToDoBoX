@@ -155,7 +155,9 @@ class User
   public function send_contact($contact_message)
   {
     $contact_id = $this->random_string(50);
-    $sql = "INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, user_id) VALUES ('{$contact_id}', '{$this->user_name}', '{$this->user_email}', '{$contact_message}', '{$this->user_id}';";
+    $sql = "
+    INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, user_id) 
+    VALUES ('{$contact_id}', '{$this->user_name}', '{$this->user_email}', '{$contact_message}', '{$this->user_id}');";
     return $this->sql_query($this->conn, $sql);
   }
 }
