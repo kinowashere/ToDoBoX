@@ -2,40 +2,48 @@
 
 require_once 'vendor/autoload.php';
 
-if (isset($_POST)) {
-  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-  $sql = "SELECT contact.contact_name, contact.contact_email, contact.contact_message, 
-  users.user_id, users.name, users.email, users.password_hash, users.recovery_code, users.is_admin
-  FROM contact, users";
-  $retval = mysqli_query($conn, $sql);
-  $dataArray = array();
-  $counter = 0;
+$conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+$sql = "SELECT user_id, contact_id, contact_name, contact_email, contact_message, valid FROM contact";
+$retval = mysqli_query($conn, $sql);
+$contact_array = array();
+$counter = 0;
 
-  while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-    $dataArray[$counter]['contact_name'] = $row['contact_name'];
-    $dataArray[$counter]['contact_email'] = $row['contact_email'];
-    $dataArray[$counter]['contact_message'] = $row['contact_message'];
+while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
+  $contact_array[$counter]['user_id'] = $row['user_id'];
+  $contact_array[$counter]['contact_id'] = $row['contact_id'];
+  $contact_array[$counter]['contact_name'] = $row['contact_name'];
+  $contact_array[$counter]['contact_email'] = $row['contact_email'];
+  $contact_array[$counter]['contact_message'] = $row['contact_message'];
+  $contact_array[$counter]['valid'] = $row['valid'];
 
-    $dataArray[$counter]['user_id'] = $row['user_id'];
-    $dataArray[$counter]['name'] = $row['name'];
-    $dataArray[$counter]['email'] = $row['email'];
-    $dataArray[$counter]['recovery_code'] = $row['recovery_code'];
-    $dataArray[$counter]['is_admin'] = $row['is_admin'];
-
-    $counter++;
-  }
-
-  // Twig Engine
-  $loader = new Twig_Loader_Filesystem("lib/templates/views");
-  $twig = new Twig_Environment($loader);
-
-  echo $twig->render(
-    'admin_panel_views.html',
-    array('data' => $dataArray)
-  );
-
-  $conn->close();
-} else {
-  header("location: admin_panel.php");
-  die();
+  $counter++;
 }
+
+$sql = "SELECT user_id, name, email, password_hash, recovery_code, is_admin FROM users";
+$retval = mysqli_query($conn, $sql);
+$users_array = array();
+$counter = 0;
+
+while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
+  $users_array[$counter]['user_id'] = $row['user_id'];
+  $users_array[$counter]['name'] = $row['name'];
+  $users_array[$counter]['email'] = $row['email'];
+  $users_array[$counter]['recovery_code'] = $row['recovery_code'];
+  $users_array[$counter]['is_admin'] = $row['is_admin'];
+
+  $counter++;
+}
+
+// Twig Engine
+$loader = new Twig_Loader_Filesystem("lib/templates/views");
+$twig = new Twig_Environment($loader);
+
+echo $twig->render(
+  'admin_panel_views.html',
+  array(
+    'contact' => $contact_array,
+    'users' => $users_array
+  )
+);
+
+$conn->close();

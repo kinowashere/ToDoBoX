@@ -32,7 +32,7 @@
 	<div class="modal-content">
 		<br>
 		<h5>Create User</h5>
-		<form action="index.php" method="post">
+		<form action="admin_panel.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
 					<input id="name" name="name" type="text" class="validate" required>
@@ -57,7 +57,7 @@
 					<span>check if it is an administrator</span>
 				</label>
 			</div>
-			<button class="btn waves-effect waves-light" type="submit">Create
+			<button class="btn waves-effect waves-light" name="create" type="submit">Create
 				<i class="material-icons right">send</i>
 			</button>
 		</form>
@@ -79,7 +79,7 @@
         </tr>
       </thead>
 			<tbody>
-		{% for user in data%}
+		{% for user in users %}
 		<!-- admin users are hidden -->
 		{% if user.is_admin == 0 %}
 		<tr>
@@ -116,7 +116,7 @@
         </tr>
       </thead>
 			<tbody>
-		{% for contact in data%}
+		{% for contact in contact%}
 		<tr>
 			<td>{{ contact.contact_name }}</td>
 			<td>{{ contact.contact_email }}</td>
@@ -125,30 +125,28 @@
 				<a class="modal-trigger" href="#sendMailModal">
 					<i class="material-icons">mail</i>
 				</a>
+				<a class="modal-trigger" href="#deleteFeedbackModal">
+					<i class="material-icons red-text">delete</i>
+				</a>
+			{% if contact.valid == 1 %}
 				<i class="material-icons">check</i>
-			
+			{% endif %}	
 			<td>
 		</tr>
-		{% endfor %}
-			</tbody>
-		</table>
-	</div>
-</div>
-
 <!-- Modal Send Mail -->
 <div id="sendMailModal" class="modal">
 	<div class="modal-content">
 		<h5>Send Mail</h5>
-		<form action="index.php" method="post">
+		<form action="admin_panel.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
-					<input disabled value="{{ data.contact_name }}" id="disabled" type="text" required>
+					<input disabled value="{{ contact.contact_name }}" id="disabled" type="text" required>
 					<label>Name</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input disabled value="{{ email }}" id="disabled" type="email" required>
+					<input disabled value="{{ contact.contact_email }}" id="disabled" type="email" required>
 					<label>Email</label>
 				</div>
 			</div>
@@ -158,10 +156,57 @@
 					<label for="message">Message</label>
 				</div>
 			</div>
-			<button class="btn waves-effect waves-light" type="submit">Send
+			<button class="btn waves-effect waves-light" name="edit" type="submit">Change
 				<i class="material-icons right">send</i>
 			</button>
 		</form>
+	</div>
+</div>
+		<!-- Modal Delete Mail -->
+<div id="deleteFeedbackModal" class="modal">
+	<div class="modal-content">
+		<h5>Delete Feedback</h5>
+		<form action="admin_panel.php" method="post">
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ contact.user_id }}" name="user_id" id="disabled" type="text" required>
+					<label>User ID</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ contact.contact_id }}" name="contact_id" id="contact_id" type="text" required>
+					<label for="contact_id">Contact ID</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ contact.contact_name }}" id="disabled" type="text" required>
+					<label>Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ contact.contact_email }}" id="disabled" type="email" required>
+					<label>Email</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ contact.contact_message }}" id="disabled" type="email" required>
+					<label>Message</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light" name="deleteFeedback" type="submit">Delete
+				<i class="material-icons right">delete</i>
+			</button>
+		</form>
+	</div>
+</div>
+
+		{% endfor %}
+			</tbody>
+		</table>
 	</div>
 </div>
 
@@ -169,11 +214,11 @@
 <div id="editUserModal" class="modal">
 	<div class="modal-content">
 		<h5>Edit User</h5>
-		<form action="index.php" method="post">
+		<form action="admin_panel.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
-					<input disabled value="{{ data.user_id }}" id="disabled" name="name" type="text" required>
-					<label for="name">Name</label>
+					<input disabled value="{{ data.user_id }}" id="disabled" name="user_id" type="text" required>
+					<label for="user_id">User ID</label>
 				</div>
 			</div>
 			<div class="row">
