@@ -13,6 +13,7 @@
   require "lib/open_session.php";
   if($_SESSION["is_admin"] == 0) {
     header('Location: index.php?not_an_admin');
+    die();
   }
   require "lib/sql_data.php";
   //Classes

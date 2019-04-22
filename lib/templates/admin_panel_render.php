@@ -37,4 +37,5 @@ if (isset($_POST)) {
   $conn->close();
 } else {
   header("location: admin_panel.php");
+  die();
 }
