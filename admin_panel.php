@@ -11,7 +11,7 @@
 <body>
   <?php
   require "lib/open_session.php";
-  if($_SESSION["is_admin"] == 0) {
+  if (!($_SESSION["admin_privilege"] == 1)) {
     header('Location: index.php?not_an_admin');
     die();
   }
