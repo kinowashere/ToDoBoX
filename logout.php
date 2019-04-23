@@ -24,8 +24,8 @@
   <div class="container">
     <div class="row center">
       <div class="col s12 m6 offset-m3">
-        <div class="logoutContainer z-depth-1">
-          <div class="btn-floating shibaLogout">
+        <div class="logout_container z-depth-1">
+          <div class="btn-floating shiba_logout">
           </div>
           <h3 style="font-weight: bold;">ToDoBoX</h3>
           <br>

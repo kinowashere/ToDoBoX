@@ -15,7 +15,7 @@
   <div class="container">
     <div class="row center">
       <div class="col s12 m8 offset-m2">
-        <div class="loginContainer z-depth-1">
+        <div class="login_container z-depth-1">
           <h3>ToDoBoX</h3>
           <form action="login.php" method="post">
             <div class="row blue-text text-darken-2">

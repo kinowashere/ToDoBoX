@@ -43,7 +43,7 @@ p {
 	padding:0.75rem;
 }
 
-.addButton {
+.add_button {
 	position: fixed;
 	right: 48px;
 	bottom: 48px;
@@ -96,7 +96,7 @@ Login Page
 
 */
 
-.loginContainer {
+.login_container {
 	margin-top: 100px;
 	background-color: #FFF;
 	border-radius: 8px;
@@ -121,13 +121,13 @@ Logout
 
 */
 
-.logoutContainer {
+.logout_container {
 	margin-top: 100px;
 	background-color: #FFF;
 	border-radius: 8px;
 	padding: 64px;
 }
-.shibaLogout {
+.shiba_logout {
 	width: 150px;
 	height: 150px;
 	background-image: url('../img/shibas/15.jpg');
@@ -141,13 +141,13 @@ Logout
 
 */
 
-.deletedContainer {
+.deleted_container {
 	margin-top: 100px;
 	background-color: #FFF;
 	border-radius: 8px;
 	padding: 64px;
 }
-.shibaDeleted {
+.shiba_deleted {
 	width: 150px;
 	height: 150px;
 	background-image: url('../img/shibas/10.jpg');
@@ -161,13 +161,13 @@ Recovery Code
 
 */
 
-.recoveryCodeContainer {
+.recovery_code_container {
 	margin-top: 20px;
 	background-color: #FFF;
 	border-radius: 8px;
 	padding: 64px;
 }
-.shibaRecovery {
+.shiba_recovery {
 	width: 150px;
 	height: 150px;
 	background-image: url('../img/shibas/24.jpg');

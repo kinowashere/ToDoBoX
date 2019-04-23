@@ -3,27 +3,27 @@
 <div class="container">
 	<div class="row center">
 		<div class="col s12 m4">
-			<div class="recoveryCodeContainer z-depth-1">
+			<div class="recovery_code_container z-depth-1">
 				<h4>Create user</h4>
 				<h5>You can create a new user with or without privilege.</h5>
 				<br>
-				<a href="#createModal" class="btn-large modal-trigger">Create</a>
+				<a href="#create_modal" class="btn-large modal-trigger">Create</a>
 			</div>
 		</div>
 		<div class="col s12 m4">
-			<div class="recoveryCodeContainer z-depth-1">
+			<div class="recovery_code_container z-depth-1">
 				<h4>View user</h4>
 				<h5>You can view and edit all users.</h5>
 				<br>
-				<a href="#viewModal" class="btn-large modal-trigger">View</a>
+				<a href="#view_modal" class="btn-large modal-trigger">View</a>
 			</div>
 		</div>
 		<div class="col s12 m4">
-			<div class="recoveryCodeContainer z-depth-1">
+			<div class="recovery_code_container z-depth-1">
 				<h4>Check feedback</h4>
 				<h5>You can check and reply to feedback.</h5>
 				<br>
-				<a href="#feedbackModal" class="btn-large modal-trigger">Check</a>
+				<a href="#feedback_modal" class="btn-large modal-trigger">Check</a>
 			</div>
 		</div>
 	</div>
@@ -31,7 +31,7 @@
 
 <!-- Modal Create User -->
 
-<div id="createModal" class="modal">
+<div id="create_modal" class="modal">
 	<div class="modal-content">
 		<br>
 		<h5>Create User</h5>
@@ -69,7 +69,7 @@
 
 <!-- Modal View User -->
 
-<div id="viewModal" class="modal">
+<div id="view_modal" class="modal">
 	<div class="modal-content">
 
 		<br>
@@ -94,10 +94,10 @@
 					<td>{{ user.email }}</td>
 					<td>{{ user.recovery_code }}</td>
 					<td>
-						<a class="modal-trigger" href="#editUser{{ user.user_id }}">
+						<a class="modal-trigger" href="#edit_user_{{ user.user_id }}">
 							<i class="material-icons">edit</i>
 						</a>
-						<a class="modal-trigger" href="#deleteUser{{ user.user_id }}">
+						<a class="modal-trigger" href="#delete_user{{ user.user_id }}">
 							<i class="material-icons red-text">delete</i>
 						</a>
 					</td>
@@ -113,7 +113,7 @@
 
 <!-- Modal Check Feedback -->
 
-<div id="feedbackModal" class="modal">
+<div id="feedback_modal" class="modal">
 	<div class="modal-content">
 
 		<br>
@@ -135,10 +135,10 @@
 					<td>{{ contact.contact_email }}</td>
 					<td>{{ contact.contact_message }}</td>
 					<td>
-						<a class="modal-trigger" href="#sendMailModal_{{ contact.contact_id }}">
+						<a class="modal-trigger" href="#send_mail_modal_{{ contact.contact_id }}">
 							<i class="material-icons">mail</i>
 						</a>
-						<a class="modal-trigger" href="#deleteFeedbackModal_{{ contact.contact_id }}">
+						<a class="modal-trigger" href="#delete_feedback_modal_{{ contact.contact_id }}">
 							<i class="material-icons red-text">delete</i>
 						</a>
 						{% if contact.valid == 1 %}
@@ -156,7 +156,7 @@
 <!-- Modal Send Mail -->
 
 {% for contact in contact %}
-<div id="sendMailModal_{{ contact.contact_id }}" class="modal">
+<div id="send_mail_modal_{{ contact.contact_id }}" class="modal">
 	<div class="modal-content">
 		<h5>Send Mail</h5>
 			<div class="row">
@@ -186,7 +186,7 @@
 
 <!-- Modal Delete Mail -->
 {% for contact in contact %}
-<div id="deleteFeedbackModal_{{ contact.contact_id }}" class="modal">
+<div id="delete_feedback_modal_{{ contact.contact_id }}" class="modal">
 	<div class="modal-content">
 		<h5>Delete Feedback</h5>
 		<script>
@@ -238,7 +238,7 @@
 <!-- Modal Edit User -->
 
 {% for user in users %}
-<div id="editUser{{ user.user_id }}" class="modal">
+<div id="edit_user_{{ user.user_id }}" class="modal">
 	<div class="modal-content">
 		<h5>Edit User</h5>
 		<form action="admin_panel.php" method="post">
@@ -289,7 +289,7 @@
 <!-- Modal Delete User -->
 
 {% for user in users %}
-<div id="deleteUser{{ user.user_id }}" class="modal">
+<div id="delete_user{{ user.user_id }}" class="modal">
 	<div class="modal-content center">
 		<h5>Delete user</h5>
 		<p>NB! This process cannot be undone.</p>
