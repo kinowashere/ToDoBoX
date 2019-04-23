@@ -138,7 +138,7 @@
 						<a class="modal-trigger" href="#sendMailModal">
 							<i class="material-icons">mail</i>
 						</a>
-						<a class="modal-trigger" href="#deleteFeedbackModal">
+						<a class="modal-trigger" href="#deleteFeedbackModal_{{ contact.contact_id }}">
 							<i class="material-icons red-text">delete</i>
 						</a>
 						{% if contact.valid == 1 %}
@@ -179,7 +179,7 @@
 
 <!-- Modal Delete Mail -->
 
-<div id="deleteFeedbackModal" class="modal">
+<div id="deleteFeedbackModal_{{ contact.contact_id }}" class="modal">
 	<div class="modal-content">
 		<h5>Delete Feedback</h5>
 		<script>
