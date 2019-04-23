@@ -1,0 +1,297 @@
+	<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
+		<i class="material-icons">menu</i>
+	</a>
+
+<!-- Sidebar -->
+<ul id="slide-out" class="sidenav">
+	<li>
+		
+		<div class="user-view" style="padding: 32px 32px 16px 32px;">
+			<div class="background">
+				<img src="img/background.jpg">
+			</div>
+			<a href="#profilePhotoModal" class="waves-effect modal-trigger ">
+				<img class="profilePhoto" src="img/shibas/{{ profile_photo }}.jpg">
+			</a>
+			<span class="white-text name" style="font-weight: bold">{{ name }}
+					<i class="material-icons tiny">verified_user</i>
+			</span>
+
+		</div>
+	</li>
+	<li><a href="#settingsModal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
+	<li><a href="#aboutUsModal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
+	<li><a href="#contactModal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
+	<li><a href="#adminModal" class="waves-effect modal-trigger"><i class="material-icons">build</i>Admin Privileges</a></li>
+	<li><a href="#helpModal" class="waves-effect modal-trigger"><i class="material-icons">help</i>Help</a></li>
+	<li><a href="logout.php" class="waves-effect"><i class="material-icons">power_settings_new</i>Logout</a></li>
+	<div class="divider"></div>
+</li>
+
+<li><a class="subheader">ToDoBoX | Admin Panel</a></li>
+</ul>
+
+<!-- Modal New Box -->
+<form method="post" action="index.php">
+	<div id="newBox" class="modal">
+		<div class="modal-content newBoxContent">
+			<h5>New Note</h5>
+			<div class="row blue-text text-darken-2">
+				<div class="input-field col s12">
+					<i class="material-icons prefix">mode_edit</i>
+					<textarea name="noteInput" id="noteInput" class="materialize-textarea" data-length="120" required></textarea>
+					<label for="noteInput">What to do?</label>
+				</div>
+				<div class="input-field col s12">
+					<i class="material-icons prefix">date_range</i>
+					<input type="date" name="date" id="date">
+					<label for="date">Due by</label>
+				</div>
+				<div class="input-field col s12">
+					<i class="material-icons prefix">widgets</i>
+					<input type="text" name="category" id="category">
+					<label for="category">Category</label>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<a href="#!" class="modal-close btn-large waves-effect waves-red btn-flat transparent" style="height: 36px;">
+				<i class="material-icons" style="line-height: 1">clear</i>
+			</a>
+			<button type="submit" class="modal-close btn-large waves-effect waves-green btn-flat transparent" style="height: 36px;"><i class="material-icons" style="line-height: 1">check</i></button>
+		</div>
+	</div>
+</form>
+
+<!-- Modal Profile Photo -->
+<div id="profilePhotoModal" class="modal">
+	<div class="modal-content">
+		<div class="container">
+			<h5>Profile Photo</h5>
+			<p>Pick the best shiba for you!<br><br></p>
+			<form action="index.php" method="post">
+				{% set counter = 0 %}
+				{% for shiba in shibas %}
+				<button name="new_profile_photo" type="submit" value="{{ counter }}" class="btn-floating shibaPick" style="background-image: url('img/shibas/{{ shiba }}');">
+				</button>
+				{% set counter = counter + 1 %}
+				{% endfor %}
+			</form>
+		</div>
+	</div>
+</div>
+</div>
+
+<!-- Modal Settings -->
+<div id="settingsModal" class="modal">
+	<div class="modal-content">
+		<h5>Settings</h5>
+		<br>
+		<ul class="collapsible">
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">account_box</i>
+					Change name
+				</div>
+				<div class="collapsible-body">
+					<form action="index.php" method="post">
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="name" type="text" class="validate" value="{{ name }}" name="new_name" required>
+								<label for="name">Name</label>
+							</div>
+						</div>
+						<button class="btn waves-effect waves-light" type="submit">Change
+							<i class="material-icons right">edit</i>
+						</button>
+					</form>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">email</i>
+					Change email address
+				</div>
+				<div class="collapsible-body">
+					<form action="index.php" method="post">
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="email" type="email" class="validate" value="{{ email }}" name="new_email" required>
+								<label for="email">Email</label>
+							</div>
+						</div>
+						<button class="btn waves-effect waves-light" type="submit" name="action">Change
+							<i class="material-icons right">edit</i>
+						</button>
+					</form>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">enhanced_encryption</i>
+					Change password
+				</div>
+				<div class="collapsible-body">
+					<form action="index.php" method="post">
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="password1" type="password" class="validate" name="new_password" minlength="8" required>
+								<label for="password1">New Password</label>
+							</div>
+							<div class="input-field col s6">
+								<input id="password2" type="password" class="validate" name="confirm_password" minlength="8" required>
+								<label for="password2">Confirm Password</label>
+							</div>
+						</div>
+						<button class="btn waves-effect waves-light" type="submit">Change
+							<i class="material-icons right">edit</i>
+						</button>
+					</form>
+				</div>
+			</li>
+			<li>
+				<div class="collapsible-header">
+					<i class="material-icons">delete</i>
+					Delete account
+				</div>
+				<div class="collapsible-body">
+					<script>
+						/* JS Alert */
+						function submitChk () {
+							var flag = confirm ( "Are you sure to delete this account?\nThe account will permanentely deleted.");
+							return flag;
+						}
+					</script>
+					<form action="index.php" method="post" onsubmit="return submitChk()">
+						<p>NB! This process cannot be undone.</br></p>
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="delete_account" type="password" class="validate" name="delete_account" required>
+								<label for="delete_account">Current Password</label>
+							</div>
+						</div>
+						<button class="btn waves-effect waves-light red" type="submit">DELETE
+							<i class="material-icons right">delete</i>
+						</button>
+					</form>
+				</div>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<!-- Modal About Us -->
+<div id="aboutUsModal" class="modal">
+	<div class="modal-content center aboutContainer">
+		<div class="btn-floating logoAbout"></div>
+		<br>
+		<h5>ToDoBoX <small>v 1.0</small></h5>
+		<p style="font-style: italic;">
+			"Woof, aroof roof wo wo wrooof arooooo 
+			<br>
+			woof woo woo woo aroof aroo woof woof"
+			<br>
+			<small>
+				(A to-do list, but with shibas)
+				<br>
+				(your te good boi too)
+			</small>
+		</p>
+		<h5>Proudly presented by:</h5>
+		<h6>Shiori Yamazaki</h6>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<h6>Manuel Trinidad</h6>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+	</div>
+</div>
+
+<!-- Modal Contact -->
+<div id="contactModal" class="modal">
+	<div class="modal-content">
+		<h5>Send us a Woof</h5>
+		<form action="index.php" method="post">
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ name }}" id="disabled" name="contact_name" type="text" required>
+					<label for="contact_name">Name</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s6">
+					<input disabled value="{{ email }}" id="disabled" name="contact_email" type="email" required>
+					<label for="contact_email">Contact Email</label>
+				</div>
+			</div>
+			<div class="row">
+				<div class="input-field col s12">
+					<textarea id="contact_message" name="contact_message" class="materialize-textarea" required></textarea>
+					<label for="contact_message">Message</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light" type="submit">Send
+				<i class="material-icons right">send</i>
+			</button>
+		</form>
+	</div>
+</div>
+
+<!-- Modal Help -->
+<div id="helpModal" class="modal">
+	<div class="modal-content center aboutContainer">
+		<div class="btn-floating logoAbout"></div>
+		<br>
+		<h5>ToDoBoX <small>v 1.0</small></h5>
+		<h4>What can admin do?</h4>
+  <ul>
+    <li>View user data</li>
+    <li>Create new user</li>
+    <li>Create new admin user</li>
+    <li>Delete existing user</li>
+    <li>Change user data</li>
+  </ul>
+		<h5>Ask developers:</h5>
+		<h6>Shiori Yamazaki</h6>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<h6>Manuel Trinidad</h6>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+		<a href="#" class="btn-floating btn-small"></a>
+	</div>
+</div>
+
+<!-- Modal View User Data -->
+<div id="adminModal" class="modal">
+	<div class="modal-content">
+		<h5>Admin Privileges</h5>
+		NB! Password is required to have full access to admin privillages.
+					<script>
+						/* JS Alert */
+						function submitChk () {
+							var flag = confirm ( "Do you want to proceed?");
+							return flag;
+						}
+					</script>
+					<form action="index.php" method="post" onsubmit="return submitChk()">
+						<div class="row">
+							<div class="input-field col s6">
+								<input id="admin" type="password" class="validate" name="admin" required>
+								<label for="admin">Password</label>
+							</div>
+						</div>
+						<button class="btn waves-effect waves-light red" type="submit">Proceed
+							<i class="material-icons right">lock_open</i>
+						</button>
+					</form>
+				</div>
+	</div>
+</div>

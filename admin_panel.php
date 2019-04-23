@@ -23,7 +23,7 @@
   require 'lib/admin.php';
   require_once "lib/change_user_data.php";
   // Render website
-  require_once 'lib/templates/modals_render.php';
+  require_once 'lib/templates/admin_panel_modals_render.php';
   require_once 'lib/templates/admin_panel_render.php';
   ?>
 
