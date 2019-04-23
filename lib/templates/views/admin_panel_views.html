@@ -151,16 +151,15 @@
 <div id="sendMailModal" class="modal">
 	<div class="modal-content">
 		<h5>Send Mail</h5>
-		<form action="admin_panel.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
-					<input readonly value="{{ contact.contact_name }}" name="contact_name" id="disabled" type="text">
+					<input readonly value="{{ contact.contact_name }}" id="disabled" type="text">
 					<label>Name</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input readonly value="{{ contact.contact_email }}" name="contact_email" id="disabled" type="email">
+					<input readonly value="{{ contact.contact_email }}" id="disabled" type="email">
 					<label>Email</label>
 				</div>
 			</div>
@@ -170,10 +169,9 @@
 					<label for="message">Message</label>
 				</div>
 			</div>
-			<button class="btn waves-effect waves-light" name="send_mail" type="submit">Send
-				<i class="material-icons right">send</i>
+			<button class="btn waves-effect waves-light">Send
+				<a href="mailto:{{ contact.contact_email}}?subject=Hello, {{ contact.contact_name }}&body={{ contact.contact_message }}%0D%0A%0D%0ABest regards,%0D%0AToDoBoX"><i class="material-icons right">send</i></a>
 			</button>
-		</form>
 	</div>
 </div>
 

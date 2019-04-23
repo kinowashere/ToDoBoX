@@ -232,7 +232,7 @@ if (isset($_POST['send_mail'])) {
     'host' => 'ssl://smtp.gmail.com',
     'port' => '465',
     'auth' => true,
-    'username' => 'todoboxtaltech@gmail.com',
+    'username' => 'myaccount',
     'password' => 'manuelandshiori23'
   ));
 
@@ -243,14 +243,6 @@ if (isset($_POST['send_mail'])) {
   } else {
     echo ('privet<p>Message successfully sent!</p>');
   }
-  // Connect to SQL
-  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-  $contact_id = filter_var($_POST['contact_id'], FILTER_SANITIZE_STRING);
-  $test = filter_var($_POST['test'], FILTER_SANITIZE_STRING);
-  echo $contact_id;
-
-  $sql = "DELETE FROM contact WHERE contact_id = '{$contact_id}';";
-  $conn->query($sql);
 
   $conn->close();
   //header('Location: admin_panel.php');
