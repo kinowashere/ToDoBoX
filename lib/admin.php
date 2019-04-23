@@ -145,7 +145,7 @@ if (isset($_POST['edit_user'])) {
     }
 
     if (isset($_POST['email'])) {
-      $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
+      $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
       $user->user_set_email($email);
     }
 
@@ -193,7 +193,7 @@ if (isset($_POST['delete_user'])) {
 }
 
 // Delete feedback
-if (isset($_POST['deleteFeedback'])) {
+if (isset($_POST['delete_feedback'])) {
   // Connect to SQL
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
   $contact_id = filter_var($_POST['contact_id'], FILTER_SANITIZE_STRING);
@@ -205,5 +205,54 @@ if (isset($_POST['deleteFeedback'])) {
 
   $conn->close();
   header('Location: admin_panel.php');
+  die();
+}
+
+// Send feedback
+if (isset($_POST['send_mail'])) {
+  echo "tere";
+  print_r($_POST);
+  $contact_name = filter_var($_POST['contact_name'], FILTER_SANITIZE_STRING);
+  $contact_email = filter_var($_POST['contact_email'], FILTER_SANITIZE_EMAIL);
+  $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
+
+  require_once "lib/Mail-1.4.1/Mail.php";
+  $from = '<todoboxtaltech@gmail.com>';
+  $to = $contact_mail;
+  $subject = 'Hello, ' . $contact_name;
+  $body = "Hello, " . $contact_name . "\n" . $contact_message . "\nBest regards,\nToDoBoX";
+
+  $headers = array(
+    'From' => $from,
+    'To' => $to,
+    'Subject' => $subject
+  );
+
+  $smtp = Mail::factory('smtp', array(
+    'host' => 'ssl://smtp.gmail.com',
+    'port' => '465',
+    'auth' => true,
+    'username' => 'todoboxtaltech@gmail.com',
+    'password' => 'manuelandshiori23'
+  ));
+
+  $mail = $smtp->send($to, $headers, $body);
+
+  if (PEAR::isError($mail)) {
+    echo ('tere<p>' . $mail->getMessage() . '</p>');
+  } else {
+    echo ('privet<p>Message successfully sent!</p>');
+  }
+  // Connect to SQL
+  $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+  $contact_id = filter_var($_POST['contact_id'], FILTER_SANITIZE_STRING);
+  $test = filter_var($_POST['test'], FILTER_SANITIZE_STRING);
+  echo $contact_id;
+
+  $sql = "DELETE FROM contact WHERE contact_id = '{$contact_id}';";
+  $conn->query($sql);
+
+  $conn->close();
+  //header('Location: admin_panel.php');
   die();
 }
