@@ -106,7 +106,7 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
 
     // Jump to index
     $conn->close();
-    //header('Location: recovery_code.php');
+    header('Location: admin_panel.php');
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
