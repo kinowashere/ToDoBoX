@@ -100,10 +100,6 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
     $box->box_archive();
     unset($box);
 
-    // Create the Session
-    $_SESSION['user_id'] = $user_id;
-    $_SESSION["recovery_active"] = 1;
-
     // Jump to index
     $conn->close();
     header('Location: admin_panel.php');
@@ -119,6 +115,7 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
 
 // Edit user
 if (isset($_POST['edit_user'])) {
+  print_r($_POST);
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
@@ -169,7 +166,7 @@ if (isset($_POST['edit_user'])) {
 
     // Jump to index
     $conn->close();
-    header('Location: admin_panel.php');
+    //header('Location: admin_panel.php');
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
