@@ -135,7 +135,7 @@
 					<td>{{ contact.contact_email }}</td>
 					<td>{{ contact.contact_message }}</td>
 					<td>
-						<a class="modal-trigger" href="#sendMailModal">
+						<a class="modal-trigger" href="#sendMailModal_{{ contact.contact_id }}">
 							<i class="material-icons">mail</i>
 						</a>
 						<a class="modal-trigger" href="#deleteFeedbackModal_{{ contact.contact_id }}">
@@ -146,9 +146,10 @@
 						{% endif %}	
 					</td>
 				</tr>
-
+{% endfor %}
 <!-- Modal Send Mail -->
-<div id="sendMailModal" class="modal">
+{% for contact in contact %}
+<div id="sendMailModal_{{ contact.contact_id }}" class="modal">
 	<div class="modal-content">
 		<h5>Send Mail</h5>
 			<div class="row">
@@ -174,6 +175,7 @@
 			</button>
 	</div>
 </div>
+{% endfor %}
 
 <!-- Modal Delete Mail -->
 
