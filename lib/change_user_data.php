@@ -15,12 +15,12 @@ if (isset($_POST['new_name'])) {
     }
     $user = new User($conn, $_SESSION['user_id']);
     $user->user_set_name($new_name);
-    $conn -> close();
+    $conn->close();
     header("Location: index.php?update_name");
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "empty_name") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: index.php?empty_name");
       die();
     }
@@ -37,10 +37,10 @@ if (isset($_POST['new_email'])) {
   // Checks if email already exists
   $sql = "SELECT email FROM users WHERE email = '{$new_email}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
   try {
     // Checks if email already exists
-    if ($userInfo["email"] == $email_check) {
+    if ($user_info["email"] == $email_check) {
       throw new Exception("email_already_exists");
     }
     // Check if new email is empty
@@ -49,16 +49,16 @@ if (isset($_POST['new_email'])) {
     }
     $user = new User($conn, $_SESSION['user_id']);
     $user->user_set_email($new_email);
-    $conn -> close();
+    $conn->close();
     header("Location: index.php?update_email");
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "empty_email") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: index.php?empty_email");
       die();
     } elseif (strcmp($e->getMessage(), "email_already_exists") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: index.php?email_already_exists");
       die();
     }
@@ -83,16 +83,16 @@ if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
     $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
     $user = new User($conn, $_SESSION['user_id']);
     $user->user_set_password($new_password_hash);
-    $conn -> close();
+    $conn->close();
     header("Location: index.php?updated_password");
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "password_too_short") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: index.php?password_too_short");
       die();
     } elseif (strcmp($e->getMessage(), "different_passwords") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: index.php?different_passwords");
       die();
     }
@@ -107,7 +107,7 @@ if (isset($_POST['new_profile_photo'])) {
   $new_profile_photo = filter_var($_POST['new_profile_photo'], FILTER_SANITIZE_NUMBER_INT);
   $user = new User($conn, $_SESSION['user_id']);
   $user->user_set_photo($new_profile_photo);
-  $conn -> close();
+  $conn->close();
   header("Location: index.php");
 }
 
@@ -120,11 +120,11 @@ if (isset($_POST["delete_account"])) {
   // Checks if password is correct
   $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
 
   // returns true if typed password and stored password are the same
-  $auth = password_verify($delete_account, $userInfo["password_hash"]);
+  $auth = password_verify($delete_account, $user_info["password_hash"]);
   try {
     // Checks if password is correct
     if (!$auth) {
@@ -136,12 +136,12 @@ if (isset($_POST["delete_account"])) {
     session_unset();
     session_destroy();
     // redirect to login.php
-    $conn -> close();
+    $conn->close();
     header('Location: deleted_account.php');
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "incorrect_password_delete") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: index.php?incorrect_password_delete");
       die();
     }
@@ -154,13 +154,13 @@ if (isset($_POST['contact_message'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
   $user_id = $_SESSION['user_id'];
-  
+
   $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
 
   $user = new User($conn, $user_id);
   $user->send_contact($contact_message);
   unset($user);
-  $conn -> close();
-  header("Location: index.php?email_success=1");
+  $conn->close();
+  header("Location: index.php?email_success");
   die();
 }

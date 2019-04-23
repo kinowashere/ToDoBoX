@@ -96,7 +96,7 @@ if (isset($_POST['install'])) {
   //checks whether the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
   try {
 

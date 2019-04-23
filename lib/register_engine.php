@@ -9,12 +9,12 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
   //checks whether the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
   try {
 
     // If the email already exists
-    if ($userInfo["email"] == $email_check) {
+    if ($user_info["email"] == $email_check) {
       throw new Exception("register_email_exists");
     }
 
@@ -73,17 +73,17 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $_SESSION["recovery_active"] = 1;
 
     // Jump to index
-    $conn -> close();
+    $conn->close();
     header('Location: recovery_code.php');
     die();
   } catch (Exception $e) {
     if (strcmp($e->getMessage(), "register_email_exists") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: register.php?register_email_exists");
       die();
     }
     if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
-      $conn -> close();
+      $conn->close();
       header("Location: register.php?wrong_captcha");
       die();
     }

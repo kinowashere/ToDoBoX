@@ -17,12 +17,12 @@ if (isset($_POST['email']) and isset($_POST['recovery_code'])) {
   //checks whether the email already exists
   $sql = "select email, recovery_code, password_hash from users where email = '{$email}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = array();
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
-  $conn -> close();
+  $user_info = array();
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $conn->close();
   try {
     //Incorrect email or code
-    if ($userInfo["email"] != $email or $userInfo["recovery_code"] != $recovery_code) {
+    if ($user_info["email"] != $email or $user_info["recovery_code"] != $recovery_code) {
       throw new Exception('<p style="color:red">Wrong email or recovery code</p>');
     }
 
@@ -30,6 +30,6 @@ if (isset($_POST['email']) and isset($_POST['recovery_code'])) {
     $user->user_recover_password();
   } catch (Exception $e) {
     echo $e->getMessage();
-    $conn -> close();
+    $conn->close();
   }
 }

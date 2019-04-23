@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>ToDoBoX</title>
   <?php
   require "lib/templates/header_render.php";
   ?>
 </head>
+
 <body>
   <?php
   require "lib/sql_data.php";
@@ -15,7 +17,7 @@
       <div class="col s12 m8 offset-m2">
         <div class="loginContainer z-depth-1">
           <h3>ToDoBoX</h3>
-          <form action="recoverPassword.php" method="post">
+          <form action="recover_password.php" method="post">
             <div class="row blue-text text-darken-2">
               <div class="input-field col s8 offset-s2">
                 <i class="material-icons prefix">mail</i>
@@ -47,4 +49,5 @@
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
 </body>
+
 </html>

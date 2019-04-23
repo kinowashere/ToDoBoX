@@ -19,7 +19,7 @@
   <div class="container">
     <div class="row center">
       <div class="col s12 m8 offset-m2">
-        <div class="setupWizardContainer z-depth-1">
+        <div class="setup_wizard_container z-depth-1">
           <h4>ToDoBoX</h4>
           <h6>Setup Wizard | Install necessary database and tables</h6>
           <br>
@@ -28,15 +28,15 @@
             <div class="col s12">
               <ul class="tabs">
                 <li class="tab col s4" style="line-height: 1.5;">
-                  <a class="active" href="#firstTime">First Time</a>
+                  <a class="active" href="#first_time">First Time</a>
                 </li>
                 <li class="tab col s4" style="line-height: 1.5;">
-                  <a href="#updateTables">Update Tables</a>
+                  <a href="#update_tables">Update Tables</a>
                 </li>
               </ul>
             </div>
 
-            <div id="firstTime" class="col s12">
+            <div id="first_time" class="col s12">
               <form method="post" action="setup_wizard.php">
                 <div class="row blue-text text-darken-2">
                   <h5 class="col s12 grey-text text-darken-4">Server Data</h5>
@@ -93,11 +93,11 @@
               </form>
             </div>
 
-            <div id="updateTables" class="col s12">
+            <div id="update_tables" class="col s12">
               <form method="post" action="setup_wizard.php">
                 <button type="submit" name="update" class="btn-large waves-effect blue">
-                    <i class="material-icons left">check</i>Update tables
-                  </button>
+                  <i class="material-icons left">check</i>Update tables
+                </button>
               </form>
             </div>
 

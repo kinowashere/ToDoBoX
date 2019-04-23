@@ -4,7 +4,8 @@
 // The table will be updated with the set parameters
 // Returns false if something fails, else true
 
-function table_column_updater($conn, $table, $column_name, $column_datatype, $extra_info = "") {
+function table_column_updater($conn, $table, $column_name, $column_datatype, $extra_info = "")
+{
 
   // Add column if it doesn't exist
 
@@ -34,7 +35,7 @@ if (isset($_POST['update'])) {
   // Updates table users
 
   $sql = "CREATE TABLE IF NOT EXISTS users (user_id VARCHAR(100) NOT NULL);";
-  
+
   $conn->query($sql);
 
   table_column_updater($conn, "users", "user_id", "VARCHAR(100)", "NOT NULL");
@@ -46,13 +47,13 @@ if (isset($_POST['update'])) {
   table_column_updater($conn, "users", "is_admin", "TINYINT(1)", "NOT NULL DEFAULT 0");
 
   $sql = "ALTER TABLE users ADD PRIMARY KEY(user_id);";
-  
+
   $conn->query($sql);
 
   // Creates table contacts
 
   $sql = "CREATE TABLE IF NOT EXISTS contact (user_id VARCHAR(100) NOT NULL);";
-  
+
   $conn->query($sql);
 
   table_column_updater($conn, "contact", "user_id", "VARCHAR(100)", "NOT NULL");
@@ -63,11 +64,11 @@ if (isset($_POST['update'])) {
   table_column_updater($conn, "contact", "valid", "TINYINT(1)", "DEFAULT 1");
 
   $sql = "ALTER TABLE contact ADD PRIMARY KEY(contact_id);";
-  
+
   $conn->query($sql);
 
   //checks whether the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 }

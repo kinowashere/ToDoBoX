@@ -9,10 +9,10 @@ if (isset($_POST['admin'])) {
   // Checks if password is correct
   $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
   // returns true if typed password and stored password are the same
-  $auth = password_verify($admin, $userInfo["password_hash"]);
+  $auth = password_verify($admin, $user_info["password_hash"]);
   try {
     // Checks if password is correct
     if (!$auth) {
@@ -43,12 +43,12 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
   //checks whether the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
   try {
 
     // If the email already exists
-    if ($userInfo["email"] == $email_check) {
+    if ($user_info["email"] == $email_check) {
       throw new Exception("register_email_exists");
     }
 
@@ -124,13 +124,13 @@ if (isset($_POST['edit_user'])) {
   //checks whether the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
-  $userInfo = mysqli_fetch_array($retval, MYSQLI_ASSOC);
+  $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
   try {
 
 
     // If the email already exists
-    if ($userInfo["email"] == $email_check) {
+    if ($user_info["email"] == $email_check) {
       throw new Exception("register_email_exists");
     }
 
