@@ -49,39 +49,39 @@ p {
 	bottom: 48px;
 }
 
-#newBox {
+#new_box {
 	width: 500px;
 	max-height: 120%;
 }
-.profilePhoto {
+.profile_photo {
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
 }
-#aboutUsModal {
+#about_us_modal {
 	max-width: 40%;
 }
-#contactModal {
+#contact_modal {
 	max-width: 40%;
 }
-.editModal {
+.edit_modal {
 	max-width: 40%;
 }
 @media only screen and (max-width: 992px) {
-	#aboutUsModal {
+	#about_us_modal {
 		max-width: 100%;
 	}
-	#contactModal {
+	#contact_modal {
 		max-width: 100%;
 	}
-	.editModal {
+	.edit_modal {
 		max-width: 100%;
 	}
 }
-.aboutContainer {
+.about_container {
 	padding: 40px !important;
 }
-.logoAbout {
+.logo_about {
 	width: 100px;
 	height: 100px;
 	margin: auto;
@@ -109,7 +109,7 @@ Modals
 
 */
 
-.shibaPick {
+.shiba_pick {
 	width: 100px;
 	height: 100px;
 	margin: 8px;

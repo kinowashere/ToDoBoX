@@ -50,7 +50,7 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 if ($user_info['is_admin'] == 1) {
-  echo $twig->render('adminModalsViews.html', array(
+  echo $twig->render('admin_modals_views.html', array(
     "user_id" => $_SESSION["user_id"],
     "name" => $user_info['name'],
     "email" => $user_info['email'],
@@ -59,7 +59,7 @@ if ($user_info['is_admin'] == 1) {
     'categories' => $categories_array
   ));
 } else {
-  echo $twig->render('modalsViews.html', array(
+  echo $twig->render('modals_views.html', array(
     "user_id" => $_SESSION["user_id"],
     "name" => $user_info['name'],
     "email" => $user_info['email'],

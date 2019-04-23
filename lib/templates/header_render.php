@@ -6,6 +6,4 @@ require_once 'vendor/autoload.php';
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
-echo $twig->render('headerViews.html');
-
-?>
+echo $twig->render('header_views.html');

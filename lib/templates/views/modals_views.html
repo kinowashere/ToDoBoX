@@ -9,26 +9,18 @@
 			<div class="background">
 				<img src="img/background.jpg">
 			</div>
-			<a href="#profilePhotoModal" class="waves-effect modal-trigger ">
-				<img class="profilePhoto" src="img/shibas/{{ profile_photo }}.jpg">
+			<a href="#profile_photo_modal" class="waves-effect modal-trigger ">
+				<img class="profile_photo" src="img/shibas/{{ profile_photo }}.jpg">
 			</a>
-			<span class="white-text name" style="font-weight: bold">{{ name }}
-					<i class="material-icons tiny">verified_user</i>
-			</span>
-
-
-
+			<span class="white-text name" style="font-weight: bold">{{ name }}</span>
 		</div>
 	</li>
-	<li><a href="#settingsModal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
-	<li><a href="#aboutUsModal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
-	<li><a href="#contactModal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
-	<li><a href="#adminModal" class="waves-effect modal-trigger"><i class="material-icons">build</i>Admin Privileges</a></li>
-	<li><a href="#helpModal" class="waves-effect modal-trigger"><i class="material-icons">help</i>Help</a></li>
+	<li><a href="#settings_modal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
+	<li><a href="#about_us_modal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
+	<li><a href="#contact_modal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
 	<li><a href="logout.php" class="waves-effect"><i class="material-icons">power_settings_new</i>Logout</a></li>
 	<div class="divider"></div>
 </li>
-
 <li><a class="subheader">ToDoBoX</a></li>
 <li><a href="index.php"><i class="material-icons">check_box</i>Current</a></li>
 <li><a href="?archive"><i class="material-icons">archive</i>Archive</a></li>
@@ -45,8 +37,8 @@
 
 <!-- Modal New Box -->
 <form method="post" action="index.php">
-	<div id="newBox" class="modal">
-		<div class="modal-content newBoxContent">
+	<div id="new_box" class="modal">
+		<div class="modal-content new_box_content">
 			<h5>New Note</h5>
 			<div class="row blue-text text-darken-2">
 				<div class="input-field col s12">
@@ -76,7 +68,7 @@
 </form>
 
 <!-- Modal Profile Photo -->
-<div id="profilePhotoModal" class="modal">
+<div id="profile_photo_modal" class="modal">
 	<div class="modal-content">
 		<div class="container">
 			<h5>Profile Photo</h5>
@@ -84,7 +76,7 @@
 			<form action="index.php" method="post">
 				{% set counter = 0 %}
 				{% for shiba in shibas %}
-				<button name="new_profile_photo" type="submit" value="{{ counter }}" class="btn-floating shibaPick" style="background-image: url('img/shibas/{{ shiba }}');">
+				<button name="new_profile_photo" type="submit" value="{{ counter }}" class="btn-floating shiba_pick" style="background-image: url('img/shibas/{{ shiba }}');">
 				</button>
 				{% set counter = counter + 1 %}
 				{% endfor %}
@@ -95,7 +87,7 @@
 </div>
 
 <!-- Modal Settings -->
-<div id="settingsModal" class="modal">
+<div id="settings_modal" class="modal">
 	<div class="modal-content">
 		<h5>Settings</h5>
 		<br>
@@ -147,12 +139,12 @@
 					<form action="index.php" method="post">
 						<div class="row">
 							<div class="input-field col s6">
-								<input id="password1" type="password" class="validate" name="new_password" minlength="8" required>
-								<label for="password1">New Password</label>
+								<input id="new_password" type="password" class="validate" name="new_password" minlength="8" required>
+								<label for="new_password">New Password</label>
 							</div>
 							<div class="input-field col s6">
-								<input id="password2" type="password" class="validate" name="confirm_password" minlength="8" required>
-								<label for="password2">Confirm Password</label>
+								<input id="confirm_password" type="password" class="validate" name="confirm_password" minlength="8" required>
+								<label for="confirm_password">Confirm Password</label>
 							</div>
 						</div>
 						<button class="btn waves-effect waves-light" type="submit">Change
@@ -193,9 +185,9 @@
 </div>
 
 <!-- Modal About Us -->
-<div id="aboutUsModal" class="modal">
-	<div class="modal-content center aboutContainer">
-		<div class="btn-floating logoAbout"></div>
+<div id="about_us_modal" class="modal">
+	<div class="modal-content center about_container">
+		<div class="btn-floating logo_about"></div>
 		<br>
 		<h5>ToDoBoX <small>v 1.0</small></h5>
 		<p style="font-style: italic;">
@@ -224,19 +216,19 @@
 </div>
 
 <!-- Modal Contact -->
-<div id="contactModal" class="modal">
+<div id="contact_modal" class="modal">
 	<div class="modal-content">
 		<h5>Send us a Woof</h5>
 		<form action="index.php" method="post">
 			<div class="row">
 				<div class="input-field col s6">
-					<input disabled value="{{ name }}" id="disabled" name="contact_name" type="text" required>
+					<input disabled value="{{ name }}"  name="contact_name" type="text" required>
 					<label for="contact_name">Name</label>
 				</div>
 			</div>
 			<div class="row">
 				<div class="input-field col s6">
-					<input disabled value="{{ email }}" id="disabled" name="contact_email" type="email" required>
+					<input disabled value="{{ email }}"  name="contact_email" type="email" required>
 					<label for="contact_email">Contact Email</label>
 				</div>
 			</div>
@@ -250,60 +242,5 @@
 				<i class="material-icons right">send</i>
 			</button>
 		</form>
-	</div>
-</div>
-
-<!-- Modal Help -->
-<div id="helpModal" class="modal">
-	<div class="modal-content center aboutContainer">
-		<div class="btn-floating logoAbout"></div>
-		<br>
-		<h5>ToDoBoX <small>v 1.0</small></h5>
-		<h4>What can admin do?</h4>
-  <ul>
-    <li>View user data</li>
-    <li>Create new user</li>
-    <li>Create new admin user</li>
-    <li>Delete existing user</li>
-    <li>Change user data</li>
-  </ul>
-		<h5>Ask developers:</h5>
-		<h6>Shiori Yamazaki</h6>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<h6>Manuel Trinidad</h6>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-		<a href="#" class="btn-floating btn-small"></a>
-	</div>
-</div>
-
-<!-- Modal View User Data -->
-<div id="adminModal" class="modal">
-	<div class="modal-content">
-		<h5>Admin Privileges</h5>
-		NB! Password is required to have full access to admin privillages.
-					<script>
-						/* JS Alert */
-						function submitChk () {
-							var flag = confirm ( "Do you want to proceed?");
-							return flag;
-						}
-					</script>
-					<form action="index.php" method="post" onsubmit="return submitChk()">
-						<div class="row">
-							<div class="input-field col s6">
-								<input id="admin" type="password" class="validate" name="admin" required>
-								<label for="admin">Password</label>
-							</div>
-						</div>
-						<button class="btn waves-effect waves-light red" type="submit">Proceed
-							<i class="material-icons right">lock_open</i>
-						</button>
-					</form>
-				</div>
 	</div>
 </div>

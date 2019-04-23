@@ -15,7 +15,7 @@ if (isset($_SESSION["recovery_active"]) and $_SESSION["recovery_active"] == 1) {
   $loader = new Twig_Loader_Filesystem("lib/templates/views");
   $twig = new Twig_Environment($loader);
 
-  echo $twig->render("recoveryViews.html", $user_info);
+  echo $twig->render("recovery_views.html", $user_info);
 } else {
   header("location: index.php");
   die();

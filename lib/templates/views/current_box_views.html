@@ -1,5 +1,5 @@
 <!-- add icon-->
-<a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 addButton modal-trigger" href="#newBox">
+<a class="btn-floating btn-large waves-effect waves-light light-blue darken-4 addButton modal-trigger" href="#new_box">
 	<i class="material-icons">add</i>
 </a>
 
@@ -65,7 +65,7 @@
 {% for box in tasks %}
 {% if box.valid == '1' %}
 <form method="post" action="index.php">
-	<div class="modal editModal" id="edit{{ box.box_id }}">
+	<div class="modal edit_modal" id="edit{{ box.box_id }}">
 		<div class="modal-content">
 			<h5>Edit box</h5>
 			<div class="row blue-text text-darken-2">
