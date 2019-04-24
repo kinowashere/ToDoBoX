@@ -33,15 +33,17 @@
 <li><a href="index.php"><i class="material-icons">check_box</i>Current</a></li>
 <li><a href="?archive"><i class="material-icons">archive</i>Archive</a></li>
 	<div class="divider"></div>
-<li><a class="subheader">Categories</a></li>
 {% if admin_privilege != 1 %}
 {% for category in categories %}
+<li><a class="subheader">Categories</a></li>
 	<li>
 		<a href="?category={{ category }}">
 			<i class="material-icons">folder</i>{{ category }}
 		</a>
 	</li>
 {% endfor %}
+{% else %}
+<li><a class="subheader">ToDoBoX | Admin Panel</a></li>
 {% endif %}
 </ul>
 
