@@ -49,26 +49,16 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
-if ($user_info['is_admin'] == 1) {
-  echo $twig->render('admin_modals_views.html', array(
-    "user_id" => $_SESSION["user_id"],
-    "name" => $user_info['name'],
-    "email" => $user_info['email'],
-    "profile_photo" => $user_info['profile_photo'],
-    "shibas" => $shibas_array,
-    'categories' => $categories_array
-  ));
-} else {
-  echo $twig->render('modals_views.html', array(
-    "user_id" => $_SESSION["user_id"],
-    "name" => $user_info['name'],
-    "email" => $user_info['email'],
-    "profile_photo" => $user_info['profile_photo'],
-    "shibas" => $shibas_array,
-    'categories' => $categories_array
-  ));
-}
 
+echo $twig->render('modals_views.html', array(
+    "user_id" => $_SESSION["user_id"],
+    "name" => $user_info['name'],
+    "email" => $user_info['email'],
+    'is_admin' => $user_info['is_admin'],
+    "profile_photo" => $user_info['profile_photo'],
+    "shibas" => $shibas_array,
+    'categories' => $categories_array
+));
 
 
 $conn->close();

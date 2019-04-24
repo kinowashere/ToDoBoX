@@ -50,13 +50,15 @@ while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
-echo $twig->render('admin_panel_modals_views.html', array(
+echo $twig->render('modals_views.html', array(
   "user_id" => $_SESSION["user_id"],
   "name" => $user_info['name'],
   "email" => $user_info['email'],
   "profile_photo" => $user_info['profile_photo'],
+  'is_admin' => $user_info['is_admin'],
   "shibas" => $shibas_array,
-  'categories' => $categories_array
+  'categories' => $categories_array,
+  'admin_privilege' => $_SESSION['admin_privilege']
 ));
 
 $conn->close();

@@ -12,12 +12,20 @@
 			<a href="#profile_photo_modal" class="waves-effect modal-trigger ">
 				<img class="profile_photo" src="img/shibas/{{ profile_photo }}.jpg">
 			</a>
-			<span class="white-text name" style="font-weight: bold">{{ name }}</span>
+			<span class="white-text name" style="font-weight: bold">
+				{{ name }}
+				{% if is_admin == 1 %}
+				<i class="material-icons tiny">verified_user</i>
+				{% endif %}
+			</span>
 		</div>
 	</li>
 	<li><a href="#settings_modal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
 	<li><a href="#about_us_modal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
 	<li><a href="#contact_modal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
+	{% if is_admin == 1 %}
+	<li><a href="#admin_modal" class="waves-effect modal-trigger"><i class="material-icons">build</i>Admin Privileges</a></li>
+	{% endif %}
 	<li><a href="logout.php" class="waves-effect"><i class="material-icons">power_settings_new</i>Logout</a></li>
 	<div class="divider"></div>
 </li>
@@ -26,6 +34,7 @@
 <li><a href="?archive"><i class="material-icons">archive</i>Archive</a></li>
 	<div class="divider"></div>
 <li><a class="subheader">Categories</a></li>
+{% if admin_privilege != 1 %}
 {% for category in categories %}
 	<li>
 		<a href="?category={{ category }}">
@@ -33,6 +42,7 @@
 		</a>
 	</li>
 {% endfor %}
+{% endif %}
 </ul>
 
 <!-- Modal New Box -->
@@ -244,3 +254,30 @@
 		</form>
 	</div>
 </div>
+{% if is_admin == 1 %}
+<!-- Modal View User Data -->
+<div id="admin_modal" class="modal">
+	<div class="modal-content">
+		<h5>Admin Privileges</h5>
+		NB! Password is required to have full access to admin privillages.
+		<script>
+			/* JS Alert */
+			function submitChk () {
+				var flag = confirm ( "Do you want to proceed?");
+				return flag;
+			}
+		</script>
+		<form action="index.php" method="post" onsubmit="return submitChk()">
+			<div class="row">
+				<div class="input-field col s6">
+					<input id="admin" type="password" class="validate" name="admin" required>
+					<label for="admin">Password</label>
+				</div>
+			</div>
+			<button class="btn waves-effect waves-light red" type="submit">Proceed
+				<i class="material-icons right">lock_open</i>
+			</button>
+		</form>
+	</div>
+</div>
+{% endif %}
