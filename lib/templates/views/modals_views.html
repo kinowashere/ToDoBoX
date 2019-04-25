@@ -34,8 +34,8 @@
 <li><a href="?archive"><i class="material-icons">archive</i>Archive</a></li>
 	<div class="divider"></div>
 {% if admin_privilege != 1 %}
-{% for category in categories %}
 <li><a class="subheader">Categories</a></li>
+{% for category in categories %}
 	<li>
 		<a href="?category={{ category }}">
 			<i class="material-icons">folder</i>{{ category }}
