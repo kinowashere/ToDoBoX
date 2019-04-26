@@ -21,7 +21,7 @@
       <div class="col s12 m8 offset-m2">
         <div class="setup_wizard_container z-depth-1">
           <h4>ToDoBoX</h4>
-          <h6>Setup Wizard | Install necessary database and tables</h6>
+          <h6>Setup Wizard | Install database and tables</h6>
           <br>
 
           <div class="row">
@@ -89,6 +89,10 @@
                   <button type="submit" name="install" class="btn-large waves-effect blue">
                     <i class="material-icons left">check</i>Install database and tables
                   </button>
+                  <br>
+                  <br>
+                  <p><a href="login.php">If you already have everything set up?</a></p>
+
                 </div>
               </form>
             </div>
@@ -110,6 +114,9 @@
   <!--JavaScript at end of body for optimized loading-->
   <script type="text/javascript" src="js/materialize.min.js"></script>
   <script type="text/javascript" src="js/script.js"></script>
+  <?php
+  require "lib/toasts/setup_wizard_toasts.php";
+  ?>
 </body>
 
 </html>
