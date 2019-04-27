@@ -50,8 +50,13 @@ class User
   }
 
   // Register user
-  public function user_register($new_user_name, $new_user_email, $new_user_password_hash, $user_is_admin = '0')
+  public function user_register($new_user_name, $new_user_email, $new_user_password_hash, $user_is_admin = 0)
   {
+
+    if($new_user_name == '' or $new_user_email == '' or $new_user_password_hash == '') {
+      return false;
+    }
+
     $this->user_id = $this->random_string(50);
     $this->user_boxes_table = 'boxes_' . $this->user_id;
     $this->user_name = $new_user_name;
@@ -59,13 +64,13 @@ class User
     $this->user_password_hash = $new_user_password_hash;
     $this->user_recovery_code = $this->random_string(6);
     $this->user_is_admin = $user_is_admin;
-    $sql = "INSERT INTO users (user_id, name, email, recovery_code, 
-    password_hash, profile_photo, is_admin) VALUES ('{$this->user_id}', 
-    '{$this->user_name}', '{$this->user_email}', 
-    '{$this->user_recovery_code}', '{$this->user_password_hash}', '0', {$this->user_is_admin});";
-    if ($this->sql_query($this->conn, $sql) == false) {
-      return false;
-    }
+    $this->user_photo = 0;
+    $sql = "INSERT INTO users (user_id, name, email, recovery_code, password_hash, profile_photo, is_admin) VALUES (?,?,?,?,?,?,?);";
+    
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("sssssii", $this->user_id, $this->user_name, $this->user_email, $this->user_recovery_code, $this->user_password_hash, $this->user_photo, $this->user_is_admin);
+    $stmt -> execute();
+    $stmt -> close();
 
     $sql = "CREATE TABLE {$this->user_boxes_table} 
     (box_id INT(11) NOT NULL AUTO_INCREMENT, valid INT(11), 
@@ -180,7 +185,7 @@ class User
     $this->user_recovery_code = $new_user_recovery_code;
     $sql = "UPDATE users SET recovery_code = ? WHERE user_id = '{$this->user_id}';";
     $stmt = $this -> conn -> prepare($sql);
-    $stmt -> bind_param("s", $this->user_recovery_code;
+    $stmt -> bind_param("s", $this->user_recovery_code);
     $stmt -> execute();
     $stmt -> close();
   }
@@ -206,7 +211,7 @@ class User
   // Send contact
   public function send_contact($contact_message)
   {
-    
+
     if($contact_message == '') {
       return false;
     }
