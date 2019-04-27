@@ -3,6 +3,7 @@
 require_once 'vendor/autoload.php';
 
 $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
+
 $sql = "SELECT user_id, contact_id, contact_name, contact_email, contact_message, valid FROM contact";
 $retval = mysqli_query($conn, $sql);
 $contact_array = array();

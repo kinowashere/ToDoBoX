@@ -87,8 +87,6 @@
 
 			<tbody>
 				{% for user in users %}
-				<!-- Admin users are hidden -->
-				{% if user.is_admin == 0 %}
 				<tr>
 					<td>{{ user.name }}</td>
 					<td>{{ user.email }}</td>
@@ -102,7 +100,6 @@
 						</a>
 					</td>
 				</tr>
-				{% endif %}
 				{% endfor %}
 			</tbody>
 
