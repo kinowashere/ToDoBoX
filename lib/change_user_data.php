@@ -40,7 +40,7 @@ if (isset($_POST['new_email'])) {
   $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
   try {
     // Checks if email already exists
-    if ($user_info["email"] == $email_check) {
+    if ($user_info["email"] == $new_email) {
       throw new Exception("email_already_exists");
     }
     // Check if new email is empty
