@@ -6,7 +6,7 @@ $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'])) {
   $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-  //check if email already exists
+  // Check if email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
   $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
@@ -18,11 +18,11 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
       throw new Exception("register_email_exists");
     }
 
-    // Wrong captcha
+    // Test CAPTCHA
     require 'securimage/securimage.php';
     $securimage = new Securimage();
     if ($securimage->check($_POST['captcha_code']) == false) {
-      throw new Exception("wrong_captcha"); // wrong captcha
+      throw new Exception("wrong_captcha");
     }
 
     // Insert user data
