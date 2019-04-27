@@ -26,7 +26,7 @@ $counter = 0;
 
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
   $users_array[$counter]['user_id'] = $row['user_id'];
-  $users_array[$counter]['name'] = $row['name'];
+  $users_array[$counter]['name'] = htmlspecialchars_decode($row['name']);
   $users_array[$counter]['email'] = $row['email'];
   $users_array[$counter]['recovery_code'] = $row['recovery_code'];
   $users_array[$counter]['is_admin'] = $row['is_admin'];

@@ -57,7 +57,7 @@ echo $twig->render('modals_views.html', array(
   'is_admin' => $user_info['is_admin'],
   "profile_photo" => $user_info['profile_photo'],
   "shibas" => $shibas_array,
-  'categories' => $categories_array
+  'categories' => htmlspecialchars_decode($categories_array, ENT_QUOTES)
 ));
 
 

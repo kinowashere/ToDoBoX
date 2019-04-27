@@ -52,12 +52,12 @@ $twig = new Twig_Environment($loader);
 
 echo $twig->render('modals_views.html', array(
   "user_id" => $_SESSION["user_id"],
-  "name" => $user_info['name'],
+  "name" => htmlspecialchars_decode($user_info['name'], ENT_QUOTES),
   "email" => $user_info['email'],
   "profile_photo" => $user_info['profile_photo'],
   'is_admin' => $user_info['is_admin'],
   "shibas" => $shibas_array,
-  'categories' => $categories_array,
+  'categories' => htmlspecialchars_decode($categories_array, ENT_QUOTES),
   'admin_privilege' => $_SESSION['admin_privilege']
 ));
 
