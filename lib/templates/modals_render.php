@@ -40,7 +40,7 @@ $categories_array = array();
 $counter = 0;
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
   if ($row['box_category'] != "") {
-    $categories_array[$counter] = $row['box_category'];
+    $categories_array[$counter] = htmlspecialchars_decode($row['box_category']);
   }
   $counter++;
 }
@@ -57,7 +57,7 @@ echo $twig->render('modals_views.html', array(
   'is_admin' => $user_info['is_admin'],
   "profile_photo" => $user_info['profile_photo'],
   "shibas" => $shibas_array,
-  'categories' => htmlspecialchars_decode($categories_array, ENT_QUOTES)
+  'categories' => $categories_array
 ));
 
 
