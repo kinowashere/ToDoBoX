@@ -21,7 +21,7 @@ if (isset($_POST['install'])) {
     die();
   }
 
-  // Perform initial connection if the test is passed
+  // Perform initial connection
 
   $conn = new mysqli($server_name, $server_username, $server_password);
 
@@ -29,7 +29,7 @@ if (isset($_POST['install'])) {
     die("Connection failed: " . $conn->connect_error);
   }
 
-  // Save all server info to a PHP file
+  // Save all server info to sql_data.php
 
   $var_server_name = var_export($server_name, true);
   $var_server_username = var_export($server_username, true);

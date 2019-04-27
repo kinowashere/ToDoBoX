@@ -43,7 +43,7 @@
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">computer</i>
-                    <input id="server_name" type="text" name="server_name">
+                    <input id="server_name" type="text" name="server_name" class="validate">
                     <label for="server_name">Server Name</label>
                   </div>
 
@@ -55,7 +55,7 @@
 
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input id="server_password" type="password" name="server_password">
+                    <input id="server_password" type="password" name="server_password" class="validate">
                     <label for="server_password">Server Password</label>
                   </div>
 
@@ -76,7 +76,7 @@
                   </div>
                   <div class="input-field col s8 offset-s2">
                     <i class="material-icons prefix">vpn_key</i>
-                    <input id="password" type="password" name="password">
+                    <input id="password" type="password" name="password" class="validate">
                     <label for="password">Admin Password</label>
                   </div>
                   <div class="input-field col s8 offset-s2">
