@@ -9,8 +9,9 @@ if(isset($_GET['category'])) {
   $category = $_GET['category'];
   $user_id = $_SESSION['user_id'];
   $sql = "SELECT valid, box_data, box_date, box_id, box_category 
-  FROM boxes_{$user_id} 
-  WHERE box_category = '{$category}';";
+  FROM boxes
+  WHERE user_id = '{$user_id}'
+  AND box_category = '{$category}';";
 }
 
 // If we're looking for the Archive
@@ -18,8 +19,9 @@ if(isset($_GET['category'])) {
 elseif(isset($_GET['archive'])) {
   $user_id = $_SESSION['user_id'];
   $sql = "SELECT valid, box_data, box_date, box_id, box_category 
-  FROM boxes_{$user_id} 
-  WHERE valid = 0;";
+  FROM boxes 
+  WHERE user_id = '{$user_id}'
+  AND valid = 0;";
 }
 
 // If we're just looking for current ones
@@ -28,7 +30,8 @@ elseif(isset($_GET['archive'])) {
 else {
   $user_id = $_SESSION['user_id'];
   $sql = "SELECT valid, box_data, box_date, box_id, box_category 
-  FROM boxes_{$user_id};";
+  FROM boxes
+  WHERE user_id = '{$user_id}';";
 }
 
 $retval = mysqli_query($conn, $sql);

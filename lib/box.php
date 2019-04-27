@@ -17,7 +17,7 @@ class Box extends User
 
     // If the Box doesn't exist, create it
     if ($box_id == NULL) {
-      $sql = "INSERT INTO {$this->user_boxes_table} (valid) VALUES (1);";
+      $sql = "INSERT INTO boxes (user_id, valid) VALUES ('{$session_user_id}', 1);";
       if ($this->conn->query($sql)) {
         $this->box_id = $this->conn->insert_id;
         return true;
@@ -26,7 +26,7 @@ class Box extends User
       }
       // Else if the Box exists, set the values to the class variables
     } else {
-      $sql = "SELECT valid, box_data, box_category, box_date FROM {$this->user_boxes_table};";
+      $sql = "SELECT valid, box_data, box_category, box_date FROM boxes WHERE user_id = '{$this -> user_id}';";
       $retval = mysqli_query($this->conn, $sql);
       $box_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
       $this->box_id = $box_id;
@@ -40,21 +40,21 @@ class Box extends User
   // Deletes the box
   public function box_delete()
   {
-    $sql = "DELETE FROM {$this->user_boxes_table} WHERE box_id = {$this->box_id};";
+    $sql = "DELETE FROM boxes WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     return $this->sql_query($this->conn, $sql);
   }
 
   // Archive the box
   public function box_archive()
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET valid = 0 WHERE box_id = {$this->box_id};";
+    $sql = "UPDATE boxes SET valid = 0 WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     return $this->sql_query($this->conn, $sql);
   }
 
   // Restore an archived Box
   public function box_restore()
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET valid = 1 WHERE box_id = {$this->box_id};";
+    $sql = "UPDATE boxes SET valid = 1 WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     return $this->sql_query($this->conn, $sql);
   }
 
@@ -62,7 +62,7 @@ class Box extends User
   
   public function box_set_data($new_box_data)
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_data = ? WHERE box_id = {$this->box_id};";
+    $sql = "UPDATE boxes SET box_data = ? WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     $stmt = $this -> conn -> prepare($sql);
     $stmt -> bind_param("s", $new_box_data);
     $stmt -> execute();
@@ -71,7 +71,7 @@ class Box extends User
 
   public function box_set_category($new_box_category)
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_category = ? WHERE box_id = {$this->box_id};";
+    $sql = "UPDATE boxes SET box_category = ? WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     $stmt = $this -> conn -> prepare($sql);
     $stmt -> bind_param("s", $new_box_category);
     $stmt -> execute();
@@ -80,7 +80,7 @@ class Box extends User
 
   public function box_set_date($new_box_date)
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_date = ? WHERE box_id = {$this->box_id};";
+    $sql = "UPDATE boxes SET box_date = ? WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     $stmt = $this -> conn -> prepare($sql);
     $stmt -> bind_param("s", $new_box_date);
     $stmt -> execute();
@@ -88,7 +88,7 @@ class Box extends User
   }
   public function box_unset_date()
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_date = NULL WHERE box_id = {$this->box_id};";
+    $sql = "UPDATE boxes SET box_date = NULL WHERE user_id = '{$this -> user_id}' AND box_id = {$this->box_id};";
     return $this->sql_query($this->conn, $sql);
   }
 }
