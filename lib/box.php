@@ -62,20 +62,29 @@ class Box extends User
   
   public function box_set_data($new_box_data)
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_data = '{$new_box_data}' WHERE box_id = {$this->box_id};";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE {$this->user_boxes_table} SET box_data = ? WHERE box_id = {$this->box_id};";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $new_box_data);
+    $stmt -> execute();
+    $stmt -> close();
   }
 
   public function box_set_category($new_box_category)
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_category = '{$new_box_category}' WHERE box_id = {$this->box_id};";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE {$this->user_boxes_table} SET box_category = ? WHERE box_id = {$this->box_id};";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $new_box_category);
+    $stmt -> execute();
+    $stmt -> close();
   }
 
   public function box_set_date($new_box_date)
   {
-    $sql = "UPDATE {$this->user_boxes_table} SET box_date = '{$new_box_date}' WHERE box_id = {$this->box_id};";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE {$this->user_boxes_table} SET box_date = ? WHERE box_id = {$this->box_id};";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $new_box_date);
+    $stmt -> execute();
+    $stmt -> close();
   }
   public function box_unset_date()
   {
