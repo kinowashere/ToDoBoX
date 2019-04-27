@@ -17,9 +17,10 @@
 
 $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-$user = new User($conn);
-$user -> user_register('Pablo', 'pabels@pabels', '12345678');
-echo($user -> user_get_name());
+$box = new Box('r4yvqNkSVKQRiP8oeasXWlx5BpJb2GzL3Fw7YZC6HUIMOjfgnh', $conn, 64);
+$box->box_set_data("Henlo madafak");
+$box->box_set_category("Tutorial.com");
+unset($box);
 
 $conn -> close();
 

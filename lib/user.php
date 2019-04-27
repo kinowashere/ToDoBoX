@@ -3,7 +3,6 @@ class User
 {
   public $user_id;
   protected $conn;
-  protected $user_boxes_table;
   protected $user_name;
   protected $user_email;
   protected $user_password;
@@ -19,8 +18,7 @@ class User
       $user_info = array();
       $this->user_id = $session_user_id;
       $this->conn = $general_conn;
-      $this->user_boxes_table = 'boxes_' . $this->user_id;
-      $sql = "SELECT name, email, profile_photo, recovery_code FROM users WHERE user_id = '{$this->user_id}'";
+      $sql = "SELECT name, email, profile_photo, recovery_code FROM users WHERE user_id = '{$this->user_id}';";
       $retval = mysqli_query($this->conn, $sql);
       $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
       $this->user_name = $user_info['name'];
@@ -58,7 +56,6 @@ class User
     }
 
     $this->user_id = $this->random_string(50);
-    $this->user_boxes_table = 'boxes_' . $this->user_id;
     $this->user_name = $new_user_name;
     $this->user_email = $new_user_email;
     $this->user_password_hash = $new_user_password_hash;
@@ -71,13 +68,6 @@ class User
     $stmt -> bind_param("sssssii", $this->user_id, $this->user_name, $this->user_email, $this->user_recovery_code, $this->user_password_hash, $this->user_photo, $this->user_is_admin);
     $stmt -> execute();
     $stmt -> close();
-
-    $sql = "CREATE TABLE {$this->user_boxes_table} 
-    (box_id INT(11) NOT NULL AUTO_INCREMENT, valid INT(11), 
-    box_data VARCHAR(255), box_category VARCHAR(255), 
-    box_date DATE, PRIMARY KEY (box_id));";
-
-    return $this->sql_query($this->conn, $sql);
   }
 
   // Get values from the class

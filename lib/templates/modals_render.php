@@ -33,7 +33,7 @@ foreach ($shibas_temp as $file) {
 
 // Retrieve categories
 
-$sql = "SELECT DISTINCT box_category FROM boxes_{$user_id}";
+$sql = "SELECT DISTINCT box_category FROM boxes WHERE user_id = '{$user_id}';";
 $retval = mysqli_query($conn, $sql);
 
 $categories_array = array();
