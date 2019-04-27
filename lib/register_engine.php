@@ -6,14 +6,18 @@ $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'])) {
   $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
+<<<<<<< HEAD
   // Checks if the email already exists
+=======
+  //check if email already exists
+>>>>>>> 049b85eb35d938ca3faaffe63341a5de08b7d6a6
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
   $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
 
   try {
 
-    // If the email already exists
+    // Test if email already exists
     if ($user_info["email"] == $email_check) {
       throw new Exception("register_email_exists");
     }
@@ -73,11 +77,11 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $box->box_archive();
     unset($box);
 
-    // Create the Session
+    // Create session
     $_SESSION['user_id'] = $user_id;
     $_SESSION["recovery_active"] = 1;
 
-    // Jump to index
+    // Jump to recovery_code.php
     $conn->close();
     header('Location: recovery_code.php');
     die();
