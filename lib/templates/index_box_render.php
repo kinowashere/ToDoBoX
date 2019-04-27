@@ -37,7 +37,7 @@ $counter = 0;
 
 while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
  $boxesArray[$counter]['valid'] = $row['valid'];
- $boxesArray[$counter]['box_data'] = html_entity_decode($row['box_data']);
+ $boxesArray[$counter]['box_data'] = $row['box_data'];
  $boxesArray[$counter]['box_date'] = $row['box_date'];
  $boxesArray[$counter]['box_id'] = $row['box_id'];
  $boxesArray[$counter]['box_category'] = $row['box_category'];

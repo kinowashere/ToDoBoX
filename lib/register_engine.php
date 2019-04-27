@@ -6,7 +6,7 @@ $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'])) {
   $email_check = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
 
-  //checks whether the email already exists
+  // Checks if the email already exists
   $sql = "SELECT email FROM users WHERE email = '{$email_check}'";
   $retval = mysqli_query($conn, $sql);
   $user_info = mysqli_fetch_array($retval, MYSQLI_ASSOC);
@@ -18,7 +18,7 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
       throw new Exception("register_email_exists");
     }
 
-    // wrong captcha
+    // Wrong captcha
     require 'securimage/securimage.php';
     $securimage = new Securimage();
     if ($securimage->check($_POST['captcha_code']) == false) {
@@ -30,6 +30,11 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
+
+    // If the name is empty
+    if($name == '') {
+      throw new Exception('empty_name');
+    }
 
     $user = new User($conn);
     $user->user_register($name, $email, $password_hash);
@@ -82,9 +87,14 @@ if (isset($_POST['name']) and isset($_POST['password']) and isset($_POST['email'
       header("Location: register.php?register_email_exists");
       die();
     }
-    if (strcmp($e->getMessage(), "wrong_captcha") == 0) {
+    elseif (strcmp($e->getMessage(), "wrong_captcha") == 0) {
       $conn->close();
       header("Location: register.php?wrong_captcha");
+      die();
+    }
+    elseif (strcmp($e->getMessage(), "empty_name") == 0) {
+      $conn->close();
+      header("Location: register.php?empty_name");
       die();
     }
   }

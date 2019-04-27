@@ -103,25 +103,49 @@ class User
   // Set newname
   public function user_set_name($new_user_name)
   {
+
+    if($new_user_name == '') {
+      return false;
+    }
+
     $this->user_name = $new_user_name;
-    $sql = "UPDATE users SET name = '{$this->user_name}' WHERE user_id = '{$this->user_id}';";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE users SET name = ? WHERE user_id = '{$this->user_id}';";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $this->user_name);
+    $stmt -> execute();
+    $stmt -> close();
   }
 
   // Set new email
   public function user_set_email($new_user_email)
   {
+
+    if($new_user_email == '') {
+      return false;
+    }
+
     $this->user_email = $new_user_email;
-    $sql = "UPDATE users SET email = '{$this->user_email}' WHERE user_id = '{$this->user_id}';";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE users SET email = ? WHERE user_id = '{$this->user_id}';";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $this->user_email);
+    $stmt -> execute();
+    $stmt -> close();
   }
 
   // Set new password
   public function user_set_password($new_user_password_hash)
   {
+
+    if($new_user_password_hash == '') {
+      return false;
+    }
+
     $this->user_password = $new_user_password_hash;
-    $sql = "UPDATE users SET password_hash = '{$this->user_password}' WHERE user_id = '{$this->user_id}';";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE users SET password_hash = ? WHERE user_id = '{$this->user_id}';";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $this->user_password);
+    $stmt -> execute();
+    $stmt -> close();
   }
 
   // Recover password
@@ -135,6 +159,11 @@ class User
   // Set new profile photo
   public function user_set_photo($new_user_photo)
   {
+
+    if(!is_int($new_user_photo)) {
+      return false;
+    }
+
     $this->user_photo = $new_user_photo;
     $sql = "UPDATE users SET profile_photo = '{$this->user_photo}' WHERE user_id = '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
@@ -143,9 +172,17 @@ class User
   // Set new recovery code
   public function user_set_recovery_code($new_user_recovery_code)
   {
+
+    if($new_user_recovery_code == '') {
+      return false;
+    }
+
     $this->user_recovery_code = $new_user_recovery_code;
-    $sql = "UPDATE users SET recovery_code = '{$this->user_recovery_code}' WHERE user_id = '{$this->user_id}';";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "UPDATE users SET recovery_code = ? WHERE user_id = '{$this->user_id}';";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("s", $this->user_recovery_code;
+    $stmt -> execute();
+    $stmt -> close();
   }
 
   // Set new recovery code
@@ -154,7 +191,6 @@ class User
     $sql = "UPDATE users SET is_admin = '1' WHERE user_id = '{$this->user_id}';";
     return $this->sql_query($this->conn, $sql);
   }
-
 
   // Delete account and box
   public function user_delete($user_id)
@@ -170,10 +206,16 @@ class User
   // Send contact
   public function send_contact($contact_message)
   {
+    
+    if($contact_message == '') {
+      return false;
+    }
+
     $contact_id = $this->random_string(50);
-    $sql = "
-    INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, user_id) 
-    VALUES ('{$contact_id}', '{$this->user_name}', '{$this->user_email}', '{$contact_message}', '{$this->user_id}');";
-    return $this->sql_query($this->conn, $sql);
+    $sql = "INSERT INTO contact (contact_id, contact_name, contact_email, contact_message, user_id) VALUES (?, ?, ?, ?, ?);";
+    $stmt = $this -> conn -> prepare($sql);
+    $stmt -> bind_param("sssss", $contact_id, $this->user_name, $this->user_email, $contact_message, $this->user_id);
+    $stmt -> execute();
+    $stmt -> close();
   }
 }
