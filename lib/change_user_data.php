@@ -7,7 +7,7 @@ if (isset($_POST['new_name'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $new_name = filter_var($_POST['new_name'], FILTER_SANITIZE_STRING);
+  $new_name = filter_var($_POST['new_name'], FILTER_SANITIZE_SPECIAL_CHARS);
   try {
     // Check if new name is empty
     if ($new_name == "") {
@@ -32,7 +32,7 @@ if (isset($_POST['new_email'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $new_email = filter_var($_POST['new_email'], FILTER_SANITIZE_STRING);
+  $new_email = filter_var($_POST['new_email'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   // Checks if email already exists
   $sql = "SELECT email FROM users WHERE email = '{$new_email}'";
@@ -69,8 +69,8 @@ if (isset($_POST['new_password']) and isset($_POST["confirm_password"])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $new_password = filter_var($_POST['new_password'], FILTER_SANITIZE_STRING);
-  $confirm_password = filter_var($_POST['confirm_password'], FILTER_SANITIZE_STRING);
+  $new_password = filter_var($_POST['new_password'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $confirm_password = filter_var($_POST['confirm_password'], FILTER_SANITIZE_SPECIAL_CHARS);
   try {
     // Check if password is long enough
     if (strlen($new_password) < 8) {
@@ -116,7 +116,7 @@ if (isset($_POST["delete_account"])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $delete_account = filter_var($_POST['delete_account'], FILTER_SANITIZE_STRING);
+  $delete_account = filter_var($_POST['delete_account'], FILTER_SANITIZE_SPECIAL_CHARS);
   // Checks if password is correct
   $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
   $retval = mysqli_query($conn, $sql);
@@ -155,7 +155,7 @@ if (isset($_POST['contact_message'])) {
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
   $user_id = $_SESSION['user_id'];
 
-  $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
+  $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   $user = new User($conn, $user_id);
   $user->send_contact($contact_message);

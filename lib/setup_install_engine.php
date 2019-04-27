@@ -102,9 +102,9 @@ if (isset($_POST['install'])) {
     }
 
     // Insert user data
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);

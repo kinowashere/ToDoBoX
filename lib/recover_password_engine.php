@@ -11,8 +11,8 @@ if (isset($_POST['email']) and isset($_POST['recovery_code'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $email = filter_var($_POST['email'], FILTER_SANITIZE_STRING);
-  $recovery_code = filter_var($_POST['recovery_code'], FILTER_SANITIZE_STRING);
+  $email = filter_var($_POST['email'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $recovery_code = filter_var($_POST['recovery_code'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   //checks whether the email already exists
   $sql = "select email, recovery_code, password_hash from users where email = '{$email}'";

@@ -5,7 +5,7 @@ if (isset($_POST['admin'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $admin = filter_var($_POST['admin'], FILTER_SANITIZE_STRING);
+  $admin = filter_var($_POST['admin'], FILTER_SANITIZE_SPECIAL_CHARS);
   // Checks if password is correct
   $sql = "SELECT password_hash FROM users WHERE user_id = '{$_SESSION['user_id']}'";
   $retval = mysqli_query($conn, $sql);
@@ -53,9 +53,9 @@ if (isset($_POST['create'])  and isset($_POST['password']) and isset($_POST['ema
     }
 
     // Insert user data
-    $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+    $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     $user = new User($conn);
@@ -135,12 +135,12 @@ if (isset($_POST['edit_user'])) {
     }
 
     // Insert user data
-    $user_id = filter_var($_POST['user_id'], FILTER_SANITIZE_STRING);
+    $user_id = filter_var($_POST['user_id'], FILTER_SANITIZE_SPECIAL_CHARS);
 
     $user = new User($conn, $user_id);
 
     if (isset($_POST['name'])) {
-      $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
+      $name = filter_var($_POST['name'], FILTER_SANITIZE_SPECIAL_CHARS);
       $user->user_set_name($name);
     }
 
@@ -150,13 +150,13 @@ if (isset($_POST['edit_user'])) {
     }
 
     if (isset($_POST['password'])) {
-      $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+      $password = filter_var($_POST['password'], FILTER_SANITIZE_SPECIAL_CHARS);
       $password_hash = password_hash($password, PASSWORD_DEFAULT);
       $user->user_set_password($password_hash);
     }
 
     if (isset($_POST['recovery_code'])) {
-      $recovery_code = filter_var($_POST['recovery_code'], FILTER_SANITIZE_STRING);
+      $recovery_code = filter_var($_POST['recovery_code'], FILTER_SANITIZE_SPECIAL_CHARS);
       $user->user_set_recovery_code($recovery_code);
     }
 
@@ -182,7 +182,7 @@ if (isset($_POST['delete_user'])) {
   // Connect to SQL
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
   // Insert user data
-  $user_id = filter_var($_POST['user_id'], FILTER_SANITIZE_STRING);
+  $user_id = filter_var($_POST['user_id'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   $user = new User($conn, $user_id);
   $user->user_delete($user_id);
@@ -196,8 +196,8 @@ if (isset($_POST['delete_user'])) {
 if (isset($_POST['delete_feedback'])) {
   // Connect to SQL
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
-  $contact_id = filter_var($_POST['contact_id'], FILTER_SANITIZE_STRING);
-  $test = filter_var($_POST['test'], FILTER_SANITIZE_STRING);
+  $contact_id = filter_var($_POST['contact_id'], FILTER_SANITIZE_SPECIAL_CHARS);
+  $test = filter_var($_POST['test'], FILTER_SANITIZE_SPECIAL_CHARS);
   echo $contact_id;
 
   $sql = "DELETE FROM contact WHERE contact_id = '{$contact_id}';";
@@ -212,9 +212,9 @@ if (isset($_POST['delete_feedback'])) {
 if (isset($_POST['send_mail'])) {
   echo "tere";
   print_r($_POST);
-  $contact_name = filter_var($_POST['contact_name'], FILTER_SANITIZE_STRING);
+  $contact_name = filter_var($_POST['contact_name'], FILTER_SANITIZE_SPECIAL_CHARS);
   $contact_email = filter_var($_POST['contact_email'], FILTER_SANITIZE_EMAIL);
-  $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_STRING);
+  $contact_message = filter_var($_POST['contact_message'], FILTER_SANITIZE_SPECIAL_CHARS);
 
   require_once "lib/Mail-1.4.1/Mail.php";
   $from = '<todoboxtaltech@gmail.com>';

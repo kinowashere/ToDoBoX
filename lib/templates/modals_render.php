@@ -51,13 +51,13 @@ $loader = new Twig_Loader_Filesystem('lib/templates/views');
 $twig = new Twig_Environment($loader);
 
 echo $twig->render('modals_views.html', array(
-    "user_id" => $_SESSION["user_id"],
-    "name" => $user_info['name'],
-    "email" => $user_info['email'],
-    'is_admin' => $user_info['is_admin'],
-    "profile_photo" => $user_info['profile_photo'],
-    "shibas" => $shibas_array,
-    'categories' => $categories_array
+  "user_id" => $_SESSION["user_id"],
+  "name" => htmlspecialchars_decode($user_info['name'], ENT_QUOTES),
+  "email" => $user_info['email'],
+  'is_admin' => $user_info['is_admin'],
+  "profile_photo" => $user_info['profile_photo'],
+  "shibas" => $shibas_array,
+  'categories' => $categories_array
 ));
 
 

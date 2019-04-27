@@ -15,9 +15,9 @@ if (isset($_POST['note_input'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $box_data_input = filter_var($_POST['note_input'], FILTER_SANITIZE_STRING);
+  $box_data_input = filter_var($_POST['note_input'], FILTER_SANITIZE_SPECIAL_CHARS);
   $box_date_input = $_POST['date'];
-  $box_category_input = filter_var($_POST['category'], FILTER_SANITIZE_STRING);
+  $box_category_input = filter_var($_POST['category'], FILTER_SANITIZE_SPECIAL_CHARS);
   $user_id = $_SESSION['user_id'];
 
   // Creates the Box object
@@ -93,7 +93,7 @@ elseif (isset($_POST["box_id_edit"])) {
 
   //Edit Box content
   if ($_POST["edit_note_input"] != "") {
-    $box_data_input = filter_var($_POST['edit_note_input'], FILTER_SANITIZE_STRING);
+    $box_data_input = filter_var($_POST['edit_note_input'], FILTER_SANITIZE_SPECIAL_CHARS);
     $box->box_set_data($box_data_input);
   }
 
@@ -105,7 +105,7 @@ elseif (isset($_POST["box_id_edit"])) {
 
   // Edit Box category
   if (isset($_POST["edit_category"])) {
-    $box_category_input = filter_var($_POST["edit_category"], FILTER_SANITIZE_STRING);
+    $box_category_input = filter_var($_POST["edit_category"], FILTER_SANITIZE_SPECIAL_CHARS);
     $box->box_set_category($box_category_input);
   }
 
