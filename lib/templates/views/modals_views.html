@@ -1,6 +1,6 @@
-	<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
-		<i class="material-icons">menu</i>
-	</a>
+<a href="#" class="btn-flat btn-large waves-effect waves-light sidenav-trigger transparent" data-target="slide-out" id="menuButton">
+	<i class="material-icons">menu</i>
+</a>
 
 <!-- Sidebar -->
 <ul id="slide-out" class="sidenav">
@@ -23,17 +23,17 @@
 	<li><a href="#settings_modal" class="waves-effect modal-trigger"><i class="material-icons">settings</i>Settings</a></li>
 	<li><a href="#about_us_modal" class="waves-effect modal-trigger"><i class="material-icons">supervisor_account</i>About Us</a></li>
 	<li><a href="#contact_modal" class="waves-effect modal-trigger"><i class="material-icons">message</i>Contact</a></li>
-	{% if is_admin == 1 %}
+	{% if is_admin == 1 and admin_privilege == 0 %}
 	<li><a href="#admin_modal" class="waves-effect modal-trigger"><i class="material-icons">build</i>Admin Privileges</a></li>
 	{% endif %}
 	<li><a href="logout.php" class="waves-effect"><i class="material-icons">power_settings_new</i>Logout</a></li>
 	<div class="divider"></div>
 </li>
+{% if admin_privilege != 1 %}
 <li><a class="subheader">ToDoBoX</a></li>
 <li><a href="index.php"><i class="material-icons">check_box</i>Current</a></li>
 <li><a href="?archive"><i class="material-icons">archive</i>Archive</a></li>
 	<div class="divider"></div>
-{% if admin_privilege != 1 %}
 <li><a class="subheader">Categories</a></li>
 {% for category in categories %}
 	<li>

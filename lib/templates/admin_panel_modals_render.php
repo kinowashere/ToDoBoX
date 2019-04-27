@@ -31,20 +31,6 @@ foreach ($shibas_temp as $file) {
   }
 }
 
-// Retrieve categories
-
-$sql = "SELECT DISTINCT box_category FROM boxes_{$user_id}";
-$retval = mysqli_query($conn, $sql);
-
-$categories_array = array();
-$counter = 0;
-while ($row = mysqli_fetch_array($retval, MYSQLI_ASSOC)) {
-  if ($row['box_category'] != "") {
-    $categories_array[$counter] = $row['box_category'];
-  }
-  $counter++;
-}
-
 // Twig
 
 $loader = new Twig_Loader_Filesystem('lib/templates/views');
@@ -57,7 +43,6 @@ echo $twig->render('modals_views.html', array(
   "profile_photo" => $user_info['profile_photo'],
   'is_admin' => $user_info['is_admin'],
   "shibas" => $shibas_array,
-  'categories' => htmlspecialchars_decode($categories_array, ENT_QUOTES),
   'admin_privilege' => $_SESSION['admin_privilege']
 ));
 

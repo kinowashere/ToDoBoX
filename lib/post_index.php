@@ -8,6 +8,10 @@ if (!isset($_SESSION['user_id'])) {
   die();
 }
 
+if(isset($_SESSION['admin_privilege'])) {
+  $_SESSION['admin_privilege'] = 0;
+}
+
 // Get data from POST
 
 // If the user creates a new Box
