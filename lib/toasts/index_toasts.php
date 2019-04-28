@@ -49,5 +49,8 @@
   } elseif (isset($_GET["not_an_admin"])) {
     // Regular user tried to access admin tools
     toaster("You\'re not an admin! >:(");
+  } elseif (isset($_GET["new_profile_photo"])) {
+    // New profile photo is set
+    toaster("Updated your profile photo!");
   }
   ?>

@@ -104,11 +104,15 @@ if (isset($_POST['new_profile_photo'])) {
 
   $conn = new mysqli($server_name, $server_username, $server_password, $db_name);
 
-  $new_profile_photo = filter_var($_POST['new_profile_photo'], FILTER_SANITIZE_NUMBER_INT);
+  $new_profile_photo = (int)filter_var($_POST['new_profile_photo'], FILTER_SANITIZE_NUMBER_INT);
   $user = new User($conn, $_SESSION['user_id']);
-  $user->user_set_photo($new_profile_photo);
-  $conn->close();
-  header("Location: index.php");
+  if(!$user->user_set_photo($new_profile_photo)){
+    header("Location: index.php?failed_profile_picture");
+  } else {
+    $conn->close();
+    header("Location: index.php?new_profile_photo");
+  }
+  die();
 }
 
 // Delete account

@@ -2,12 +2,13 @@
 
 // Checks if user is logged in
 // If not, redirect to login
-
 if (!isset($_SESSION['user_id'])) {
   header('Location: login.php');
   die();
 }
 
+
+// Unsets the admin session if it was set before
 if(isset($_SESSION['admin_privilege'])) {
   $_SESSION['admin_privilege'] = 0;
 }
